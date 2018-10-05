@@ -132,27 +132,14 @@ set noswapfile
 
 " undo tree plugin
 nnoremap <F7> :UndotreeToggle<cr>
-inoremap <F7> <Esc>:UndotreeToggle<cr>
+let g:undotree_SetFocusWhenToggle = 1
 
 " persistent undo
 set undofile                " Save undo's after file closes
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
-
-" disable persistent undo on some files
-autocmd BufNewFile,BufRead * call PersistentUndo()
-function PersistentUndo()
-    let file_name = expand('%:p')
-    let file_name_esc = substitute(file_name, "%", "%%", "g")
-    let file_name_esc = substitute(file_name_esc, "/", "%", "g")
-    " exclude some directories, or files with too long names
-    if match(expand('%:p'), '^/tmp') != -1  ||
-     \ strlen(file_name_esc) > 75
-        setlocal noundofile
-        echo 'Warning: undo file not in use'
-    endif
-endfunction
+let g:auto_persistent_undo = 0
 
 " time between automatic updates
 set updatetime=200
@@ -334,8 +321,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
+    set switchbuf=useopen,usetab,newtab
+    set stal=2
 catch
 endtry
 
@@ -429,6 +416,9 @@ function AutoPaste()
     endif
 endfunction
 inoremap <C-v>	<space><backspace><Esc>:call AutoPaste()<cr>a
+
+" F5 in insert mode
+imap <F5> <esc><F5>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => cope displaying
