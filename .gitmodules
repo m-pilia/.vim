@@ -250,3 +250,7 @@
 	path = bundle/vim-auto-persistent-undo
 	url = git@github.com:m-pilia/vim-auto-persistent-undo.git
 	ignore = dirty
+[submodule "bundle/vim-gutentags"]
+	path = bundle/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git
+	ignore = dirty

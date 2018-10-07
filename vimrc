@@ -767,3 +767,9 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+" tag search
+nmap <leader>t :Tags<cr>
+
+" gutentags
+let g:gutentags_cache_dir = '~/.cache/tags'
+
