@@ -680,7 +680,7 @@ let g:pymode_options_colorcolumn = 0
 let g:pymode_lint_on_fly = 0
 let g:pymode_lint_cwindow = 0
 let g:pymode_lint_sort = ['E', 'C', 'I']
-let g:pymode_lint_ignore = ["W391", "E501"]
+let g:pymode_lint_ignore = ["W391", "E501", "E702"]
 
 " vim-markdown
 let g:vim_markdown_math = 1
