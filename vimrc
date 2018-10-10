@@ -238,7 +238,7 @@ vmap <Down> <nop>
 vmap <Left> <nop>
 vmap <Right> <nop>
 
-" camel case motion
+" Camel case motion
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
@@ -250,7 +250,7 @@ sunmap ge
 inoremap <C-w> <Esc>:normal db<Cr><Del>i
 inoremap <C-k> <Esc>:normal ww<Cr>h:normal db<Cr>i
 
-" shortcuts for <home> and <end>
+" Shortcuts for <home> and <end>
 nmap <leader>h <Home>
 nmap <leader>l <End>
 vmap <leader>h <Home>
@@ -259,49 +259,15 @@ vmap <leader>l <End>
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
-" Smart way to move between windows
-"map <C-j> <C-W>j
-"map <C-k> <C-W>k
-"map <C-h> <C-W>h
-"map <C-l> <C-W>l
-
-" Mappings to access buffers (don't use "\p" because a
-" delay before pressing "p" would accidentally paste).
-" <leader>l       : list buffers
-" <leader>b <leader>f <leader>s : go back/forward/last-used
-" <leader>1 <leader>2 <leader>3 : go to buffer 1/2/3 etc
-nnoremap <Leader>b :bp<CR>
+" Cycle through buffers
 nnoremap <Leader>f :bn<CR>
-nnoremap <Leader>s :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
-nnoremap <Leader>0 :10b<CR>
-" nnoremap <Leader>l :ls<CR>
+nnoremap <Leader>F :bp<CR>
 
-" Close the current buffer
-map <leader>bd :Bclose<cr>
-
-" Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
-
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-
-" navigate windows with alt+arrow
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
+" Navigate windows with arrows
+nmap <silent> <Up> :wincmd k<CR>
+nmap <silent> <Down> :wincmd j<CR>
+nmap <silent> <Left> :wincmd h<CR>
+nmap <silent> <Right> :wincmd l<CR>
 
 " move between tabs
 " (use `sed -n l` to check how input is mapped into terminal)
@@ -707,6 +673,7 @@ let g:python_highlight_all = 1
 autocmd FileType PKGBUILD set ft=sh
 
 " python-mode
+let g:pymode_breakpoint_cmd = "import pdb; pdb.set_trace()  # XXX BREAKPOINT"
 let g:pymode_rope_completion = 0 " disable completion
 let g:pymode_syntax = 0 " disable syntax highlighting
 let g:pymode_options_colorcolumn = 0
