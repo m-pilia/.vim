@@ -1,0 +1,1 @@
+syn keyword cppStorageClass	__restrict__ __restrict
