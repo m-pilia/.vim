@@ -704,6 +704,11 @@ let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 " vim-gitgutter
 autocmd FileType c,cpp,cuda,python let g:gitgutter_enabled = 0
 
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+nmap è :CtrlPBuffer<cr>
+
 " CtrlSF
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
