@@ -41,12 +41,15 @@ set autoread
 autocmd FocusGained,BufEnter * :silent! !
 
 syntax enable " Enable syntax highlighting
+command! SyntaxRegionName echo synIDattr(synID(line("."), col("."), 0), "name")
 
 " Color scheme
 colorscheme desert
 set background=dark
 highlight comment ctermfg=lightblue
 highlight constant ctermfg=red
+highlight SpellBad ctermfg=white ctermbg=darkred guifg=white guibg=darkred
+highlight SpellCap ctermfg=white ctermbg=brown guifg=white guibg=brown
 
 " Set extra options when running in GUI mode
 if has("gui_running")
