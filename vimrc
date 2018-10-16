@@ -745,6 +745,19 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " tag search
 nmap <leader>t :Tags<cr>
 
-" gutentags
+" Gutentags
 let g:gutentags_cache_dir = '~/.cache/tags'
+
+" Syntastic
+autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_jump = 0
+let g:syntastic_mode_map = {
+            \ 'mode': 'active',
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': ['python', 'go']
+            \ }
 

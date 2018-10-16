@@ -258,3 +258,7 @@
 	path = bundle/python-mode-workaround
 	url = git@github.com:m-pilia/python-mode.git
 	ignore = dirty
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+	ignore = dirty
