@@ -721,10 +721,7 @@ nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-let g:ctrlsf_auto_focus = {
-    \ "at": "done",
-    \ "duration_less_than": 1000
-    \ }
+let g:ctrlsf_auto_focus = { "at": "start" }
 
 " vim-multiple-cursors
 let g:multi_cursor_start_key = '<Esc>n'
