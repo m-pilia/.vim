@@ -266,3 +266,7 @@
 	path = bundle/cpsm
 	url = https://github.com/nixprime/cpsm.git
 	ignore = dirty
+[submodule "bundle/lightline.vim"]
+	path = bundle/lightline.vim
+	url = https://github.com/itchyny/lightline.vim.git
+	ignore = dirty

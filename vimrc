@@ -144,7 +144,7 @@ set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 let g:auto_persistent_undo = 0
 
-" time between automatic updates
+" time (ms) between automatic updates
 set updatetime=200
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -762,5 +762,34 @@ let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': [],
             \ 'passive_filetypes': ['python', 'go']
+            \ }
+
+" lightline
+set noshowmode
+let g:lightline = {'colorscheme': 'wombat'}
+let g:lightline.component_function = {
+            \ 'gitbranch': 'fugitive#head',
+            \ }
+let g:lightline.component = {
+            \ 'lineinfo': '%l/%L:%-v',
+            \ 'filename': '%f %m',
+            \ }
+let g:lightline.tab_component = {
+            \ 'filename': '%f %m',
+            \ }
+let g:lightline.active = {
+            \ 'left': [
+            \     [ 'mode', 'paste' ],
+            \     [ 'gitbranch', 'readonly', 'filename' ],
+            \ ],
+            \ 'right': [
+            \     [ 'percent' ],
+            \     [ 'lineinfo' ],
+            \     [ 'fileformat', 'fileencoding', 'filetype' ],
+            \ ],
+            \ }
+let g:lightline.tabline = {
+            \ 'left': [ [ 'tabs' ] ],
+            \ 'right': [],
             \ }
 
