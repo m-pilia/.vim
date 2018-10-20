@@ -183,7 +183,7 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " pseudoindent wrapped lines
-autocmd FileType tex :set showbreak=\ \ \ \ 
+autocmd FileType tex :set showbreak=\ \ \ \ |
 
 " fold based on syntax
 set foldmethod=syntax
@@ -710,7 +710,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
 let g:ctrlp_use_caching = 0
-nmap è :CtrlPBuffer<cr>
+nnoremap è :CtrlPBuffer<cr>
 
 " CtrlSF
 nmap     <C-F>f <Plug>CtrlSFPrompt
@@ -732,18 +732,18 @@ let g:multi_cursor_exit_from_visual_mode = 0
 
 " fzf
 " Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+nnoremap <leader><tab> <plug>(fzf-maps-n)
+xnoremap <leader><tab> <plug>(fzf-maps-x)
+onoremap <leader><tab> <plug>(fzf-maps-o)
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <c-x><c-k> <plug>(fzf-complete-word)
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " tag search
-nmap <leader>t :Tags<cr>
+nnoremap <leader>t :Tags<cr>
 
 " Gutentags
 let g:gutentags_cache_dir = '~/.cache/tags'
@@ -791,4 +791,31 @@ let g:lightline.tabline = {
             \ 'left': [ [ 'tabs' ] ],
             \ 'right': [],
             \ }
+
+" vebugger
+let g:vebugger_leader='<leader>V'
+nnoremap <leader>Vk :VBGkill<cr>
+nnoremap <leader>VG :VBGstartGDB |
+nnoremap <leader>VL :VBGstartLLDB |
+nnoremap <leader>VJ :VBGstartJDB |
+nnoremap <leader>VR :VBGstartRDB |
+nnoremap <leader>VP :VBGstartPDB |
+nnoremap <leader>VM :VBGstartMDBG |
+
+" lldb
+nnoremap <leader>Lh :Lhide
+nnoremap <leader>LH :Lshow
+nnoremap <leader>La :Lattach
+nnoremap <leader>Lt :Ltarget
+let g:lldb_map_Ldetach = "<leader>Ld"
+let g:lldb_map_Lrun = "<leader>Lr"
+let g:lldb_map_Lstart = "<leader>LR"
+let g:lldb_map_Lcontinue = "<leader>Lc"
+let g:lldb_map_Lstep = "<leader>Ls"
+let g:lldb_map_Lnext = "<leader>Ln"
+let g:lldb_map_Lfinish = "<leader>Lf"
+let g:lldb_map_Lbreakpoint = "<leader>Lb"
+let g:lldb_map_Lprint = "<leader>Lp"
+let g:lldb_map_Lpo = "<leader>Lo"
+let g:lldb_map_LpO = "<leader>LO"
 

@@ -234,10 +234,6 @@
 	path = bundle/vrod
 	url = https://github.com/MicahElliott/vrod.git
 	ignore = dirty
-[submodule "bundle/conque.vim"]
-	path = bundle/conque.vim
-	url = https://github.com/wkentaro-archive/conque.vim.git
-	ignore = dirty
 [submodule "bundle/vim-git"]
 	path = bundle/vim-git
 	url = https://github.com/tpope/vim-git.git
@@ -269,4 +265,16 @@
 [submodule "bundle/lightline.vim"]
 	path = bundle/lightline.vim
 	url = https://github.com/itchyny/lightline.vim.git
+	ignore = dirty
+[submodule "bundle/vim-vebugger"]
+	path = bundle/vim-vebugger
+	url = git@github.com:idanarye/vim-vebugger.git
+	ignore = dirty
+[submodule "bundle/vim-lldb"]
+	path = bundle/vim-lldb
+	url = git@github.com:gilligan/vim-lldb.git
+	ignore = dirty
+[submodule "bundle/detectindent"]
+	path = bundle/detectindent
+	url = git@github.com:roryokane/detectindent.git
 	ignore = dirty
