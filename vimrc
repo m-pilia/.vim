@@ -747,6 +747,8 @@ nmap <leader>t :Tags<cr>
 
 " Gutentags
 let g:gutentags_cache_dir = '~/.cache/tags'
+let g:gutentags_trace = 0
+let g:gutentags_generate_on_empty_buffer = 1
 
 " Syntastic
 autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
