@@ -771,7 +771,7 @@ let g:lightline.component_function = {
             \ }
 let g:lightline.component = {
             \ 'lineinfo': '%l/%L:%-v',
-            \ 'filename': '%f %m',
+            \ 'filename': '%<%f %m',
             \ }
 let g:lightline.tab_component = {
             \ 'filename': '%f %m',
