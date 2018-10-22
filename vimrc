@@ -762,6 +762,16 @@ let g:syntastic_mode_map = {
             \ 'active_filetypes': [],
             \ 'passive_filetypes': ['python', 'go']
             \ }
+let g:syntastic_tex_chktex_quiet_messages = {
+            \ '!level':  'errors',
+            \ }
+let g:syntastic_tex_lacheck_quiet_messages = {
+            \ 'regex': [
+            \     '\mpossible unwanted space at "{"',
+            \     '\mwhitespace before punctation mark in " \."',
+            \     '\mdouble space at',
+            \ ],
+            \ }
 
 " lightline
 set noshowmode
