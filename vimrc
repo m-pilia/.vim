@@ -260,7 +260,7 @@ vmap <leader>h <Home>
 vmap <leader>l <End>
 
 " Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+map <silent> <leader><cr> :noh<cr> <bar> :CtrlSFClearHL<cr>
 
 " Cycle through buffers
 nnoremap <Leader>f :bn<CR>
@@ -713,6 +713,9 @@ let g:ctrlp_use_caching = 0
 nnoremap è :CtrlPBuffer<cr>
 
 " CtrlSF
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_auto_focus = { "at": "start" }
+let g:ctrlsf_selected_line_hl = 'op'
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
 vmap     <C-F>F <Plug>CtrlSFVwordExec
@@ -721,7 +724,6 @@ nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-let g:ctrlsf_auto_focus = { "at": "start" }
 
 " vim-multiple-cursors
 let g:multi_cursor_start_key = '<Esc>n'
