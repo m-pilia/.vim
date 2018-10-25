@@ -361,6 +361,9 @@ command Trim :call DeleteTrailingWS()
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+" Replace word with yanked text
+vnoremap <leader>S "_d"0P
+
 " Copy-paste to system clipboard
 vmap <Leader>y "+y
 vmap <Leader>d "+d
