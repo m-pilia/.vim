@@ -744,13 +744,15 @@ inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
 inoremap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-" tag search
-nnoremap <leader>t :Tags<cr>
 
 " Gutentags
 let g:gutentags_cache_dir = '~/.cache/tags'
 let g:gutentags_trace = 0
 let g:gutentags_generate_on_empty_buffer = 1
+
+" Tag search
+nnoremap <leader>T :Tags<cr>
+nmap <leader>t <c-]>
 
 " Syntastic
 autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
