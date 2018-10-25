@@ -836,3 +836,10 @@ let g:lldb_map_Lprint = "<leader>Lp"
 let g:lldb_map_Lpo = "<leader>Lo"
 let g:lldb_map_LpO = "<leader>LO"
 
+" DetectSpellLang
+let g:guesslang_langs = [ 'en_GB', 'sv', 'it' ]
+
+" FastFold
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+

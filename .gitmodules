@@ -278,3 +278,9 @@
 	path = bundle/detectindent
 	url = git@github.com:roryokane/detectindent.git
 	ignore = dirty
+[submodule "bundle/vim-DetectSpellLang"]
+	path = bundle/vim-DetectSpellLang
+	url = git@github.com:Konfekt/vim-DetectSpellLang.git
+[submodule "bundle/FastFold"]
+	path = bundle/FastFold
+	url = git@github.com:Konfekt/FastFold.git
