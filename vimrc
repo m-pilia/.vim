@@ -1,3 +1,5 @@
+"""{{{Fundamentals
+"""
 
 " Leader
 nmap <space> <nop>
@@ -24,21 +26,11 @@ let g:pathogen_disabled = [
             \ ]
 call pathogen#infect()
 
-" tex file flavor
-let g:tex_flavor = "latex"
+"""
+"""}}}Fundamentals
 
-" .cuh extension for CUDA headers
-autocmd BufRead,BufNewFile *.cuh set filetype=cuda
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Set to auto read when a file is changed from the outside
-set autoread
-" Trigger autoread when changing buffers or coming back to vim.
-autocmd FocusGained,BufEnter * :silent! !
+""" {{{Colors
+"""
 
 syntax enable " Enable syntax highlighting
 command! SyntaxRegionName echo synIDattr(synID(line("."), col("."), 0), "name")
@@ -51,7 +43,7 @@ highlight constant ctermfg=red
 highlight SpellBad ctermfg=white ctermbg=darkred guifg=white guibg=darkred
 highlight SpellCap ctermfg=white ctermbg=brown guifg=white guibg=brown
 
-" Set extra options when running in GUI mode
+" GUI options
 if has("gui_running")
     set guioptions-=T
     set guioptions+=e
@@ -59,51 +51,65 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
-set encoding=utf8 " Set utf8 as standard encoding
-set ffs=unix,dos,mac " Use Unix as the standard file type
+" Encoding and file type
+set encoding=utf8
+set ffs=unix,dos,mac
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => UI
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Doxygen highlighting
+let g:doxygen_enhanced_color=1
+autocmd FileType c :set syntax=c.doxygen
+autocmd FileType cpp :set syntax=cpp.doxygen
+autocmd FileType java :set syntax=java.doxygen
+autocmd FileType idl :set syntax=idl.doxygen
+autocmd FileType php :set syntax=php.doxygen
 
-set so=7 " Set 7 lines to the cursor - when moving vertically using j/k
+" Syntax highlighting synchronization settings
+" See http://vimdoc.sourceforge.net/htmldoc/syntax.html#:syn-sync
+"
+" Sync file from start (NOTE: slow but very precise)
+autocmd BufEnter * :syntax sync fromstart
+
+" PKGBUILD syntax highlighting is horrible
+autocmd FileType PKGBUILD set ft=sh
+
+"""
+""" }}}Colors
+
+""" {{{ UI
+"""
 
 " Wild menu completion
 set wildmenu
 set wildmode=longest:full
 set wildignore=*.o,*~,*.pyc
 
-set ruler " Always show current position
+set ruler
 
 set cmdheight=1 " Height of the command bar
 
-set hid " A buffer becomes hidden when it is abandoned
+set hid " Hide abandoned buffers
 
-set backspace=eol,start,indent " Configure backspace so it acts as it should
+set backspace=eol,start,indent " Configure backspace
 
-set whichwrap+=<,>,h,l,[,] " Configure keys to move next/previous line
+set whichwrap+=<,>,h,l,[,] " Configure keys to move over wrapped lines
 
 " Search options
 set ignorecase
 set smartcase
 set hlsearch " Highlight search results
-set incsearch " Makes search act like search in modern browsers
-set magic " For regular expressions turn magic on
+set incsearch " Incremental search
+set magic
 
-set lazyredraw " Don't redraw while executing macros (for performance)
+set lazyredraw " Don't redraw while executing macros
 
-set showmatch " Show matching brackets when text indicator is over them
-set mat=2 " How many tenths of a second to blink when matching brackets
+set showmatch " Blink on matching brackets
+set mat=2 " Matching brackets blink duration
 
-" remove search highlighting with <f6>
-inoremap <F6> <esc>:let @/ = ""<cr>i
-nnoremap <F6> :let @/ = ""<cr>
-
-" grep options
+" Grep options
 set grepprg=ack\ --nogroup\ --column\ $*
 set grepformat=%f:%l:%c:%m
 
-" No annoying sound on errors
+" No sound on errors
 set noerrorbells
 set novisualbell
 set t_vb=
@@ -115,29 +121,51 @@ highlight LineNr ctermfg=grey
 set cursorline
 hi CursorLine term=NONE cterm=NONE
 
+"""
+""" }}}UI
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" {{{Buffer
+"""
 
-" save file
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" Save/load views (folds etc.) automatically
+set viewdir=$HOME/.vim/views
+" set viewoptions-=options
+" augroup AutoSaveFolds
+"     autocmd!
+"     autocmd BufWinLeave *.* mkview
+"     autocmd BufWinEnter *.* silent loadview
+" augroup END
+
+" Read files after changes from outside
+set autoread
+" Trigger autoread
+autocmd FocusGained,BufEnter * :silent! !
+
+" Modeline settings
+set nomodeline
+set modelines=0
+
+" Save file
 nnoremap <Leader>w :w<CR>
 
-" detect filetype on save
+" Detect filetype on save
 autocmd BufWritePost * if &filetype == '' | filetype detect |  endif
 
-set history=2000 " Sets how many lines of history VIM has to remember
+" Number of commands in vim history
+set history=5000
 
-" Turn backup off
+" Disable backups
 set nobackup
 set nowb
 set noswapfile
 
-" undo tree plugin
-nnoremap <F7> :UndotreeToggle<cr>
-let g:undotree_SetFocusWhenToggle = 1
-
-" persistent undo
+" Persistent undo
 set undofile                " Save undo's after file closes
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
@@ -147,61 +175,94 @@ let g:auto_persistent_undo = 0
 " time (ms) between automatic updates
 set updatetime=200
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tex file flavor
+let g:tex_flavor = "latex"
 
-" line length
+" .cuh extension for CUDA headers
+autocmd BufRead,BufNewFile *.cuh set filetype=cuda
+
+"""
+""" }}}Buffer
+
+""" {{{Indent
+"""
+
+" Text width
+set textwidth=500
 autocmd FileType tex,markdown set textwidth=79
 
-" tab settings
+" Set different text width inside comment regions
+function SetCommentWidth(re)
+    let l:winview = winsaveview()
+    let l:region = synIDattr(synID(line("."), col("."), 0), "name")
+    if match(region, a:re) >= 0
+        setlocal textwidth=72
+    else
+        setlocal textwidth=120
+    endif
+    call winrestview(l:winview)
+endfunction
+augroup CommentWidth
+    autocmd!
+    autocmd FileType c,cpp,cuda,java,python autocmd CursorMoved,CursorMovedI *
+                \ :call SetCommentWidth('\v(Comment|doxygen)')
+augroup END
+
+" Automatic line break
+set lbr
+
+" Tab settings
 set expandtab
 set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" short tab width for functional languages and some markup languages
+" Short tab width for functional languages and some markup languages
 autocmd FileType ocaml,sml,racket,haskell,yaml setlocal shiftwidth=2
 autocmd FileType ocaml,sml,racket,haskell,yaml setlocal tabstop=2
 
-" don't expand tab in bash
+" Don't expand tab in bash
 autocmd FileType sh set noexpandtab
 
-" disable cindent (which removes Python comment indent)
+" Disable cindent (which removes Python comment indent)
 autocmd FileType python set cindent
 
 " tab lines without losing selection
 vnoremap <s-tab> <gv
 vnoremap <tab> >gv
 
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
-" pseudoindent wrapped lines
+" Pseudoindent wrapped lines
 autocmd FileType tex :set showbreak=\ \ \ \ |
 
-" fold based on syntax
-set foldmethod=syntax
+" wrap lines in diff
+autocmd FilterWritePre * if &diff | setlocal wrap< | endif
+
+" Fold based on syntax
+setlocal foldmethod=syntax
+autocmd Filetype vim setlocal foldmethod=marker
 set nofoldenable
 set foldlevel=99
 
+" PHP settings
+" enable html snippets in php files
+autocmd BufRead,BufNewFile *.php set ft=php.html
+" smartindent for php files
+autocmd BufRead,BufNewFile *.php set smartindent
+" don't align php tags at line beginning
+autocmd FileType php.html setlocal indentexpr=
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
+""" }}}Indent
 
-set nostartofline " keep column when moving to first/last line
+""" {{{Motion
+"""
 
-" Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+" Keep column when moving to first/last line
+set nostartofline
 
 set viminfo^=% " Remember info about open buffers on close
 
@@ -209,11 +270,11 @@ set viminfo^=% " Remember info about open buffers on close
 map j gj
 map k gk
 
+" Lines around the cursor
+set scrolloff=7
+
 " Keep current line in the middle of the window
 autocmd CursorMoved,BufReadPost * exe "normal! zz"
-
-" Enable mouse interaction
-"set mouse=a
 
 " Disable arrows
 map <C-Up> <nop>
@@ -259,7 +320,7 @@ nmap <leader>l <End>
 vmap <leader>h <Home>
 vmap <leader>l <End>
 
-" Disable highlight when <leader><cr> is pressed
+" Remove search highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr> <bar> :CtrlSFClearHL<cr>
 
 " Cycle through buffers
@@ -272,7 +333,7 @@ nmap <silent> <Down> :wincmd j<CR>
 nmap <silent> <Left> :wincmd h<CR>
 nmap <silent> <Right> :wincmd l<CR>
 
-" move between tabs
+" Move between tabs
 " (use `sed -n l` to check how input is mapped into terminal)
 imap <Esc>[1;3C <esc>:tabprevious<cr>
 vmap <Esc>[1;3C <esc>:tabprevious<cr>
@@ -281,8 +342,7 @@ imap <Esc>[1;3D <esc>:tabnext<cr>
 vmap <Esc>[1;3D <esc>:tabnext<cr>
 nmap <Esc>[1;3D :tabnext<cr>
 
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
+" Open a new tab with the current buffer's path
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
@@ -295,7 +355,7 @@ try
 catch
 endtry
 
-" Don't close window, when deleting a buffer
+" Don't close window when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
     let l:currentBufNum = bufnr("%")
@@ -316,9 +376,11 @@ function! <SID>BufcloseCloseIt()
     endif
 endfunction
 
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
+"""
+""" }}}Motion
+
+"""{{{Legacy status line
+"""
 
 " Always show the status line
 set laststatus=2
@@ -340,18 +402,20 @@ set statusline+=%2*\ \ %l%*             " line number
 set statusline+=%1*/%L\ %*              " line tot
 set statusline+=%1*(%p%%)%*             " line percentage
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
+"""}}}Legacy status line
 
-" Remap VIM 0 to first non-blank character
+"""{{{Editing
+"""
+
+" First non-blank character
 map 0 ^
 
 " Delete trailing white space
 func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
@@ -393,74 +457,16 @@ inoremap <C-v>	<space><backspace><Esc>:call AutoPaste()<cr>a
 " F5 in insert mode
 imap <F5> <esc><F5>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => cope displaying
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""
+"""}}}Editing
 
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"  <leader>p
-"
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+"""""""""""
+"""""""""""  Plugin settings
+"""""""""""
 
+"""{{{Ultisnips
+"""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Spell checking
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" spellcheck on some file formats
-autocmd FileType tex,markdown set spell
-autocmd FileType bib set nospell
-
-" Pressing <leader>ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
-
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  plugin configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" doxygen highlighting
-let g:doxygen_enhanced_color=1
-autocmd FileType c :set syntax=c.doxygen
-autocmd FileType cpp :set syntax=cpp.doxygen
-autocmd FileType java :set syntax=java.doxygen
-autocmd FileType idl :set syntax=idl.doxygen
-autocmd FileType php :set syntax=php.doxygen
-
-" Set different text width inside comment regions
-function SetCommentWidth(re)
-    let l:winview = winsaveview()
-    let l:region = synIDattr(synID(line("."), col("."), 0), "name")
-    if match(region, a:re) >= 0
-        setlocal textwidth=72
-    else
-        setlocal textwidth=120
-    endif
-    call winrestview(l:winview)
-endfunction
-augroup CommentWidth
-    autocmd!
-    autocmd FileType c,cpp,cuda,java,python autocmd CursorMoved,CursorMovedI *
-                \ :call SetCommentWidth('\v(Comment|doxygen)')
-augroup END
-
-" Ultisnips
 let g:UltiSnipsExpandTrigger="<c-j>"
 " force UltiSnips to use Python 2, for YCM compatibility
 let g:UltiSnipsUsePythonVersion = 2
@@ -468,35 +474,50 @@ let g:UltiSnipsUsePythonVersion = 2
 "let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 "let g:UltiSnipsListSnippets="<c-e>"
 
-" YouCompleteMe
-" completion shortcut
-"let g:ycm_key_invoke_completion = '<C-b>'
-" use ultisnips suggestions
+"""
+"""}}}
+
+"""{{{YouCompleteMe
+"""
+
+" Completion shortcut
+let g:ycm_key_invoke_completion = '<C-b>'
+
+" Use ultisnips suggestions
 let g:ycm_use_ultisnips_completer = 1
-" default (fallback) extra conf file
+
+" Default (fallback) extra conf file
 " let g:ycm_global_ycm_extra_conf = "~/Cryptbox/Configs/.ycm_extra_conf.py"
-" whitelist/blacklist for extra conf files
+
+" Whitelist/blacklist for extra conf files
 " let g:ycm_extra_conf_globlist = ['~/Dropbox/*', '~/Cryptbox/*']
-" disable preview on complete
+
+" Disable preview on complete
 set completeopt-=preview
-" completion keys
+
+" Completion keys
 let g:ycm_key_list_previous_completion = ['<S-Tab>']
 let g:ycm_key_list_select_completion = ['<Tab>']
-" goto declaration/definition
+
+" Goto declaration/definition
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g <silent> <leader><g
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g :YcmCompleter GoTo<cr>
-" pass diagnostic data to vim
+
+" Pass diagnostic data to vim
 let g:ycm_always_populate_location_list = 1
-" goto next/prev warning/error
+
+" Goto next/prev warning/error
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><n :lnext<cr>
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><N :lprevious<cr>
-" commands
+
+" Commands
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><f :YcmCompleter FixIt<cr>
 autocmd FileType cs,objc,objcpp nnoremap <leader><r :YcmCompleter RefactorRename
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><d :YcmCompleter GetDoc<cr>
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><p :YcmCompleter GetParent<cr>
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><t :YcmCompleter GetType<cr>
 autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><e :YcmShowDetailedDiagnostic<cr>
+
 " File type blacklist
 let g:ycm_filetype_blacklist = {
       \ 'tagbar' : 1,
@@ -515,23 +536,35 @@ let g:ycm_semantic_triggers = {
       \ }
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
-" omni completion
+" Omni completion
 set omnifunc=syntaxcomplete#Complete
 
-" " omni completion function for java completion plugin (conflicts with eclim)
+" Omni completion function for java completion plugin (conflicts with eclim)
 " autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
-" ListToggle
+"""
+""" }}}YouCompleteMe
+
+"""{{{ListToggle
+"""
+
 let g:lt_location_list_toggle_map = '<leader><l'
 let g:lt_quickfix_list_toggle_map = '<leader><q'
 let g:lt_height = 10
 
-" eclim
+"""
+"""}}}ListToggle
+
+"""{{{Eclim
+
 let g:EclimCompletionMethod = 'omnifunc'
-" launch eclim when opening a java file, only when it is not running yet
-autocmd FileType java silent !if [[ `ps x | grep 'org\.eclim\.application' | grep -v 'grep'` == '' ]]; then /usr/lib/eclipse/eclimd > /dev/null & fi
-" create eclim project if absent when opening file
+
+" Launch eclim when opening a java file, only when it is not running yet
+" autocmd FileType java silent !if [[ `ps x | grep 'org\.eclim\.application' | grep -v 'grep'` == '' ]]; then /usr/lib/eclipse/eclimd > /dev/null & fi
+
+" Create eclim project if absent when opening file
 "autocmd FileType java silent :call eclimproject#CreateEclimProject()
+"
 " map shortcut for import
 autocmd FileType java nnoremap <leader>i <Esc>:JavaImport<cr>
 " map shortcut to suggest a correction
@@ -539,32 +572,39 @@ autocmd FileType java nnoremap <leader>k :JavaCorrect<cr>
 " override weird tab behaviour
 autocmd FileType java silent inoremap <tab> <tab>
 
-" PHP
-" enable html snippets in php files
-autocmd BufRead,BufNewFile *.php set ft=php.html
-" smartindent for php files
-autocmd BufRead,BufNewFile *.php set smartindent
-" don't align php tags at line beginning
-autocmd FileType php.html setlocal indentexpr=
+"""
+""" }}}Eclim
 
-" camel case backspace
-let g:camelbackspaceTrigger = ''
+"""{{{ConqueTerm
+"""
 
-" disable ConqueTerm warnings
 let g:ConqueTerm_StartMessages = 0
 
-" screenshell settings
-" chose terminal multiplexer ("GnuScreen" or "Tmux")
+"""
+""" }}}ConqueTerm
+
+""" {{{Screenshell
+"""
+
+" Chose terminal multiplexer ("GnuScreen" or "Tmux")
 let g:ScreenImpl = "GnuScreen"
-" create shell session into a new terminal window
+
+" Create shell session into a new terminal window
 let g:ScreenShellExternal = 1
-" height of the screenshell screen
+
+" Height of the screenshell screen
 let g:ScreenShellHeight = 16
-" set initial focus ("vim" or "shell")
+
+" Set initial focus ("vim" or "shell")
 let g:ScreenShellInitialFocus = "vim"
 let g:ScreenShellTerminal = "konsole"
 
-" color parentheses in lisp languages
+"""
+""" }}}Screenshell
+
+""" {{{RainbowParentheses
+"""
+
 let g:rbpt_max = 16
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -589,31 +629,35 @@ autocmd FileType lisp,racket RainbowParenthesesToggle
 autocmd FileType lisp,racket RainbowParenthesesLoadRound
 autocmd FileType lisp,racket RainbowParenthesesLoadSquare
 
-" syntax highlighting synchronization settings
-" see http://vimdoc.sourceforge.net/htmldoc/syntax.html#:syn-sync
-" sync file from start (NOTE: slow but very precise)
-autocmd BufEnter * :syntax sync fromstart
-" get rid of C comment problems
-"autocmd BufEnter * :syntax sync ccomment
+"""
+"""}}}
 
-" neco-ghc
+"""{{{neco-ghc
+"""
+
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:necoghc_enable_detailed_browse = 1
 let g:haddock_browser="/usr/bin/chromium"
 
-" ghc-mod
+"""
+"""}}}
+
+"""{{{ghc-mod
+"""
+
 map <silent> tw :w<cr>:GhcModTypeInsert<CR>
 map <silent> ts :w<cr>:GhcModSplitFunCase<CR>
 map <silent> tq :w<cr>:GhcModType<CR>
 map <silent> te :w<cr>:GhcModTypeClear<CR>
 
-" haskell syntax highlight
-let hs_highlight_boolean = 1
-let hs_highlight_debug = 1
+"""
+"""}}}
 
-" haskell-vim
+"""{{{haskell-vim
+"""
+
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -621,33 +665,62 @@ let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
 let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 
-" tabularize
+" haskell syntax highlight
+let hs_highlight_boolean = 1
+let hs_highlight_debug = 1
+
+"""}}}
+
+"""{{{tabularize
+"""
+
 let g:haskell_tabular = 1
 vmap a= :Tabularize /=<CR>
 vmap a; :Tabularize /::<CR>
 vmap a- :Tabularize /-><CR>
 
-" nerdcommenter
+"""
+"""}}}
+
+"""{{{Nerdcommenter
+"""
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
+
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
+
 " Set a language to use its alternate delimiters by default
 let g:NERDAltDelims_java = 1
+
 " Add your own custom formats or override the defaults
 let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
+
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" expand region
+"""
+"""}}}
+
+"""{{{expand_region
+"""
+
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-" vim-go
+"""
+"""}}}
+
+"""{{{vim-go
+"""
+
 set autowrite
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
@@ -655,31 +728,44 @@ map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>:lclose<CR>
 
-" NERDTree
+"""
+"""}}}
+
+"""{{{NERDTree
+"""
+
 nnoremap <Leader>- :NERDTreeToggle<Enter>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-" delete the buffer of a file just deleted with NerdTree
+
+" Delete the buffer of a file just deleted with NerdTree
 let NERDTreeAutoDeleteBuffer = 1
-" quit when opening a file
+
+" Quit when opening a file
 let NERDTreeQuitOnOpen = 1
 
-" lh-brackets
-let g:usemarks = 0
+"""
+"""}}}
 
-" wrap lines in diff
-autocmd FilterWritePre * if &diff | setlocal wrap< | endif
+"""{{{vimtex
+"""
 
-" vimtex
 let g:vimtex_complete_recursive_bib = 1
 
-" python-syntax extension
+"""
+"""}}}
+
+"""{{{python-syntax
+"""
+
 let g:python_highlight_all = 1
 
-" PKGBUILD syntax highlighting is horrible
-autocmd FileType PKGBUILD set ft=sh
+"""
+"""}}}
 
-" python-mode
+"""{{{python-mode
+"""
+
 let g:pymode_options = 0
 let g:pymode_trim_whitespaces = 0
 let g:pymode_breakpoint_cmd = "import pdb; pdb.set_trace()  # XXX BREAKPOINT"
@@ -691,11 +777,21 @@ let g:pymode_lint_cwindow = 0
 let g:pymode_lint_sort = ['E', 'C', 'I']
 let g:pymode_lint_ignore = ["W391", "E501", "E702"]
 
-" vim-markdown
+"""
+"""}}}
+
+"""{{{vim-markdown
+"""
+
 let g:vim_markdown_math = 1
 " autocmd FileType markdown set conceallevel=2
 
-" auto-pairs
+"""
+"""}}}
+
+"""{{{auto-pairs
+"""
+
 let g:AutoPairs = {
             \ '(':')',
             \ '[':']',
@@ -707,10 +803,20 @@ let g:AutoPairs = {
 autocmd FileType tex let g:AutoPairs['$'] = '$'
 let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 
-" vim-gitgutter
+"""
+"""}}}
+
+"""{{{vim-gitgutter
+"""
+
 autocmd FileType c,cpp,cuda,python let g:gitgutter_enabled = 0
 
-" CtrlP
+"""
+"""}}}
+
+"""{{{CtrlP
+"""
+
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
@@ -718,7 +824,12 @@ let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
 let g:ctrlp_use_caching = 0
 nnoremap è :CtrlPBuffer<cr>
 
-" CtrlSF
+"""
+"""}}}
+
+"""{{{CtrlSF
+"""
+
 let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_auto_focus = { "at": "start" }
 let g:ctrlsf_selected_line_hl = 'op'
@@ -731,14 +842,24 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
-" vim-multiple-cursors
+"""
+"""}}}
+
+"""{{{vim-multiple-cursors
+"""
+
 let g:multi_cursor_start_key = '<Esc>n'
 let g:multi_cursor_select_all_key = 'g<Esc>n'
 let g:ctrlsf_default_view_mode = 'compact'
 let g:multi_cursor_exit_from_insert_mode = 0
 let g:multi_cursor_exit_from_visual_mode = 0
 
-" fzf
+"""
+"""}}}
+
+"""{{{fzf
+"""
+
 " Mapping selecting mappings
 nnoremap <leader><tab> <plug>(fzf-maps-n)
 xnoremap <leader><tab> <plug>(fzf-maps-x)
@@ -751,7 +872,12 @@ inoremap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
-" Gutentags
+"""
+"""}}}
+
+"""{{{Gutentags
+"""
+
 let g:gutentags_cache_dir = '~/.cache/tags'
 let g:gutentags_trace = 0
 let g:gutentags_generate_on_empty_buffer = 1
@@ -760,21 +886,29 @@ let g:gutentags_generate_on_empty_buffer = 1
 nnoremap <leader>T :Tags<cr>
 nmap <leader>t <c-]>
 
-" Syntastic
+"""
+"""}}}
+
+"""{{{Syntastic
+"""
+
 autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_auto_jump = 0
+
 let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': [],
             \ 'passive_filetypes': ['python', 'go']
             \ }
+
 let g:syntastic_tex_chktex_quiet_messages = {
             \ '!level':  'errors',
             \ }
+
 let g:syntastic_tex_lacheck_quiet_messages = {
             \ 'regex': [
             \     '\mpossible unwanted space at "{"',
@@ -783,19 +917,28 @@ let g:syntastic_tex_lacheck_quiet_messages = {
             \ ],
             \ }
 
-" lightline
+"""
+"""}}}
+
+"""{{{lightline
+"""
+
 set noshowmode
 let g:lightline = {'colorscheme': 'wombat'}
+
 let g:lightline.component_function = {
             \ 'gitbranch': 'fugitive#head',
             \ }
+
 let g:lightline.component = {
             \ 'lineinfo': '%l/%L:%-v',
             \ 'filename': '%<%f %m',
             \ }
+
 let g:lightline.tab_component = {
             \ 'filename': '%f %m',
             \ }
+
 let g:lightline.active = {
             \ 'left': [
             \     [ 'mode', 'paste' ],
@@ -807,12 +950,18 @@ let g:lightline.active = {
             \     [ 'fileformat', 'fileencoding', 'filetype' ],
             \ ],
             \ }
+
 let g:lightline.tabline = {
             \ 'left': [ [ 'tabs' ] ],
             \ 'right': [],
             \ }
 
-" vebugger
+"""
+"""}}}
+
+"""{{{vebugger
+"""
+
 let g:vebugger_leader='<leader>V'
 nnoremap <leader>Vk :VBGkill<cr>
 nnoremap <leader>VG :VBGstartGDB |
@@ -822,7 +971,12 @@ nnoremap <leader>VR :VBGstartRDB |
 nnoremap <leader>VP :VBGstartPDB |
 nnoremap <leader>VM :VBGstartMDBG |
 
-" lldb
+"""
+"""}}}
+
+"""{{{lldb
+"""
+
 nnoremap <leader>Lh :Lhide
 nnoremap <leader>LH :Lshow
 nnoremap <leader>La :Lattach
@@ -839,10 +993,35 @@ let g:lldb_map_Lprint = "<leader>Lp"
 let g:lldb_map_Lpo = "<leader>Lo"
 let g:lldb_map_LpO = "<leader>LO"
 
-" DetectSpellLang
+"""
+"""}}}
+
+"""{{{DetectSpellLang
+"""
+
+map <leader>ss :setlocal spell!<cr>
+autocmd FileType tex,markdown set spell
+autocmd FileType bib set nospell
 let g:guesslang_langs = [ 'en_GB', 'sv', 'it' ]
 
-" FastFold
+"""
+"""}}}
+
+"""{{{FastFold
+"""
+
 nmap zuz <Plug>(FastFoldUpdate)
 let g:fastfold_savehook = 1
+
+"""
+"""}}}
+
+"""{{{UndoTree
+"""
+
+nnoremap <F7> :UndotreeToggle<cr>
+let g:undotree_SetFocusWhenToggle = 1
+
+"""
+"""}}}
 
