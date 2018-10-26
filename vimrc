@@ -679,6 +679,8 @@ let g:python_highlight_all = 1
 autocmd FileType PKGBUILD set ft=sh
 
 " python-mode
+let g:pymode_options = 0
+let g:pymode_trim_whitespaces = 0
 let g:pymode_breakpoint_cmd = "import pdb; pdb.set_trace()  # XXX BREAKPOINT"
 let g:pymode_rope_completion = 0 " disable completion
 let g:pymode_syntax = 0 " disable syntax highlighting
