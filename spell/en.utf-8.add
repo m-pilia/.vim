@@ -71,3 +71,9 @@ preimages
 thresholded
 subsampling
 ISPC
+Wilcoxon
+resampling
+groupwise
+resampled
+affinely
+PCA
