@@ -408,9 +408,6 @@ set statusline+=%1*(%p%%)%*             " line percentage
 """{{{Editing
 """
 
-" First non-blank character
-map 0 ^
-
 " Delete trailing white space
 func! DeleteTrailingWS()
     exe "normal mz"
