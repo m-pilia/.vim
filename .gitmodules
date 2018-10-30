@@ -281,6 +281,12 @@
 [submodule "bundle/vim-DetectSpellLang"]
 	path = bundle/vim-DetectSpellLang
 	url = git@github.com:Konfekt/vim-DetectSpellLang.git
+	ignore = dirty
 [submodule "bundle/FastFold"]
 	path = bundle/FastFold
 	url = git@github.com:Konfekt/FastFold.git
+	ignore = dirty
+[submodule "bundle/vim-tex-fold"]
+	path = bundle/vim-tex-fold
+	url = https://github.com/matze/vim-tex-fold.git
+	ignore = dirty

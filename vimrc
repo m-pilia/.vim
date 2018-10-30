@@ -1022,3 +1022,10 @@ let g:undotree_SetFocusWhenToggle = 1
 """
 """}}}
 
+"""{{{vim-tex-fold
+"""
+
+let g:tex_fold_additional_envs = ['frontmatter']
+
+"""
+"""}}}
