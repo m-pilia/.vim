@@ -293,3 +293,12 @@
 [submodule "bundle/restore_view"]
 	path = bundle/restore_view
 	url = https://github.com/vim-scripts/restore_view.vim
+	ignore = dirty
+[submodule "bundle/vim-prosession"]
+	path = bundle/vim-prosession
+	url = https://github.com/dhruvasagar/vim-prosession.git
+	ignore = dirty
+[submodule "bundle/vim-obsession"]
+	path = bundle/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
+	ignore = dirty

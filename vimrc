@@ -20,6 +20,7 @@ filetype indent on
 " Load plugins with pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 let g:pathogen_disabled = [
+            \ 'restore_view',
             \ 'complete_parentheses',
             \ 'toggle_comments',
             \ 'python-mode',
@@ -1020,6 +1021,14 @@ let g:undotree_SetFocusWhenToggle = 1
 """
 
 let g:tex_fold_additional_envs = ['frontmatter']
+
+"""
+"""}}}
+
+"""{{{ vim-prosession
+"""
+
+let g:prosession_on_startup = 1
 
 """
 """}}}
