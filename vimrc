@@ -133,14 +133,9 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
-" Save/load views (folds etc.) automatically
+" Views
 set viewdir=$HOME/.vim/views
-" set viewoptions-=options
-" augroup AutoSaveFolds
-"     autocmd!
-"     autocmd BufWinLeave *.* mkview
-"     autocmd BufWinEnter *.* silent loadview
-" augroup END
+set viewoptions-=options
 
 " Read files after changes from outside
 set autoread
@@ -244,7 +239,6 @@ autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 " Fold based on syntax
 setlocal foldmethod=syntax
 autocmd Filetype vim setlocal foldmethod=marker
-set nofoldenable
 set foldlevel=99
 
 " PHP settings
