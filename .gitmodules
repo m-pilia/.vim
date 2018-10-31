@@ -302,3 +302,7 @@
 	path = bundle/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
 	ignore = dirty
+[submodule "bundle/vim-create-fold"]
+	path = bundle/vim-create-fold
+	url = git@github.com:m-pilia/vim-create-fold.git
+	ignore = dirty
