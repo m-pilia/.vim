@@ -22,7 +22,6 @@ let g:pathogen_disabled = [
             \ 'restore_view',
             \ 'complete_parentheses',
             \ 'toggle_comments',
-            \ 'python-mode',
             \ ]
 call pathogen#infect()
 
@@ -705,21 +704,6 @@ let g:python_highlight_all = 1
 
 """}}}
 
-"""{{{python-mode
-
-let g:pymode_options = 0
-let g:pymode_trim_whitespaces = 0
-let g:pymode_breakpoint_cmd = "import pdb; pdb.set_trace()  # XXX BREAKPOINT"
-let g:pymode_rope_completion = 0 " disable completion
-let g:pymode_syntax = 0 " disable syntax highlighting
-let g:pymode_options_colorcolumn = 0
-let g:pymode_lint_on_fly = 0
-let g:pymode_lint_cwindow = 0
-let g:pymode_lint_sort = ['E', 'C', 'I']
-let g:pymode_lint_ignore = ["W391", "E501", "E702"]
-
-"""}}}
-
 """{{{vim-markdown
 
 let g:vim_markdown_math = 1
@@ -825,7 +809,7 @@ let g:syntastic_auto_jump = 0
 let g:syntastic_mode_map = {
             \ 'mode': 'active',
             \ 'active_filetypes': [],
-            \ 'passive_filetypes': ['python', 'go']
+            \ 'passive_filetypes': ['go']
             \ }
 
 let g:syntastic_tex_chktex_quiet_messages = {
@@ -837,6 +821,12 @@ let g:syntastic_tex_lacheck_quiet_messages = {
             \     '\mpossible unwanted space at "{"',
             \     '\mwhitespace before punctation mark in " \."',
             \     '\mdouble space at',
+            \ ],
+            \ }
+
+let g:syntastic_python_flake8_quiet_messages = {
+            \ 'regex': [
+            \     'W391', 'E501', 'E702',
             \ ],
             \ }
 
@@ -939,3 +929,22 @@ let g:tex_fold_additional_envs = ['frontmatter']
 let g:prosession_on_startup = 1
 
 """}}}
+
+"""{{{jedi-vim
+
+let g:jedi#completions_enabled = 0
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+
+" Insert breakpoint
+autocmd FileType python nnoremap
+            \ <leader>b <s-o>import pdb; pdb.set_trace()
+            \  # XXX BREAKPOINT<esc>
+
+"""}}}
+

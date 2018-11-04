@@ -74,10 +74,6 @@
 	path = bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 	ignore = dirty
-[submodule "bundle/python-mode"]
-	path = bundle/python-mode
-	url = https://github.com/python-mode/python-mode
-	ignore = dirty
 [submodule "bundle/python-syntax"]
 	path = bundle/python-syntax
 	url = https://github.com/vim-python/python-syntax.git
@@ -250,10 +246,6 @@
 	path = bundle/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
 	ignore = dirty
-[submodule "bundle/python-mode-workaround"]
-	path = bundle/python-mode-workaround
-	url = git@github.com:m-pilia/python-mode.git
-	ignore = dirty
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
@@ -305,4 +297,12 @@
 [submodule "bundle/vim-create-fold"]
 	path = bundle/vim-create-fold
 	url = git@github.com:m-pilia/vim-create-fold.git
+	ignore = dirty
+[submodule "bundle/vim-python-pep8-indent"]
+	path = bundle/vim-python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent.git
+	ignore = dirty
+[submodule "bundle/jedi-vim"]
+	path = bundle/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git
 	ignore = dirty
