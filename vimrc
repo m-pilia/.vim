@@ -1,4 +1,4 @@
-"""{{{Fundamentals
+"""{{{ Fundamentals
 
 " Leader
 nmap <space> <nop>
@@ -25,9 +25,9 @@ let g:pathogen_disabled = [
             \ ]
 call pathogen#infect()
 
-"""}}}Fundamentals
+"""}}}
 
-"""{{{Colors
+"""{{{ Colors
 
 syntax enable " Enable syntax highlighting
 command! SyntaxRegionName echo synIDattr(synID(line("."), col("."), 0), "name")
@@ -69,9 +69,9 @@ autocmd BufEnter * :syntax sync fromstart
 " PKGBUILD syntax highlighting is horrible
 autocmd FileType PKGBUILD set ft=sh
 
-"""}}}Colors
+"""}}}
 
-"""{{{UI
+"""{{{ UI
 
 " Wild menu completion
 set wildmenu
@@ -116,9 +116,9 @@ highlight LineNr ctermfg=grey
 set cursorline
 hi CursorLine term=NONE cterm=NONE
 
-"""}}}UI
+"""}}}
 
-"""{{{Buffer
+"""{{{ Buffer
 
 " Return to last edit position when opening files
 autocmd BufReadPost *
@@ -169,9 +169,9 @@ let g:tex_flavor = "latex"
 " .cuh extension for CUDA headers
 autocmd BufRead,BufNewFile *.cuh set filetype=cuda
 
-"""}}}Buffer
+"""}}}
 
-"""{{{Indent
+"""{{{ Indent
 
 " Text width
 set textwidth=500
@@ -240,9 +240,9 @@ autocmd BufRead,BufNewFile *.php set smartindent
 " don't align php tags at line beginning
 autocmd FileType php.html setlocal indentexpr=
 
-"""}}}Indent
+"""}}}
 
-"""{{{Motion
+"""{{{ Motion
 
 " Keep column when moving to first/last line
 set nostartofline
@@ -359,9 +359,9 @@ function! <SID>BufcloseCloseIt()
     endif
 endfunction
 
-"""}}}Motion
+"""}}}
 
-"""{{{Legacy status line
+"""{{{ Legacy status line
 
 " Always show the status line
 set laststatus=2
@@ -383,9 +383,9 @@ set statusline+=%2*\ \ %l%*             " line number
 set statusline+=%1*/%L\ %*              " line tot
 set statusline+=%1*(%p%%)%*             " line percentage
 
-"""}}}Legacy status line
+"""}}}
 
-"""{{{Editing
+"""{{{ Editing
 
 " Delete trailing white space
 func! DeleteTrailingWS()
@@ -433,11 +433,11 @@ inoremap <C-v>	<space><backspace><Esc>:call AutoPaste()<cr>a
 " F5 in insert mode
 imap <F5> <esc><F5>
 
-"""}}}Editing
+"""}}}
 
 """"""""""""""""""" Plugin settings
 """"""""
-"""{{{Ultisnips
+"""{{{ Ultisnips
 
 let g:UltiSnipsExpandTrigger="<c-j>"
 " force UltiSnips to use Python 2, for YCM compatibility
@@ -448,7 +448,7 @@ let g:UltiSnipsUsePythonVersion = 2
 
 """}}}
 
-"""{{{YouCompleteMe
+"""{{{ YouCompleteMe
 
 " Completion shortcut
 let g:ycm_key_invoke_completion = '<C-b>'
@@ -512,17 +512,17 @@ set omnifunc=syntaxcomplete#Complete
 " Omni completion function for java completion plugin (conflicts with eclim)
 " autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
-"""}}}YouCompleteMe
+"""}}}
 
-"""{{{ListToggle
+"""{{{ ListToggle
 
 let g:lt_location_list_toggle_map = '<leader><l'
 let g:lt_quickfix_list_toggle_map = '<leader><q'
 let g:lt_height = 10
 
-"""}}}ListToggle
+"""}}}
 
-"""{{{Eclim
+"""{{{ Eclim
 
 let g:EclimCompletionMethod = 'omnifunc'
 
@@ -539,15 +539,15 @@ autocmd FileType java nnoremap <leader>k :JavaCorrect<cr>
 " override weird tab behaviour
 autocmd FileType java silent inoremap <tab> <tab>
 
-"""}}}Eclim
+"""}}}
 
-"""{{{ConqueTerm
+"""{{{ ConqueTerm
 
 let g:ConqueTerm_StartMessages = 0
 
-"""}}}ConqueTerm
+"""}}}
 
-"""{{{Screenshell
+"""{{{ Screenshell
 
 " Chose terminal multiplexer ("GnuScreen" or "Tmux")
 let g:ScreenImpl = "GnuScreen"
@@ -562,9 +562,9 @@ let g:ScreenShellHeight = 16
 let g:ScreenShellInitialFocus = "vim"
 let g:ScreenShellTerminal = "konsole"
 
-"""}}}Screenshell
+"""}}}
 
-"""{{{RainbowParentheses
+"""{{{ RainbowParentheses
 
 let g:rbpt_max = 16
 let g:rbpt_colorpairs = [
@@ -592,7 +592,7 @@ autocmd FileType lisp,racket RainbowParenthesesLoadSquare
 
 """}}}
 
-"""{{{neco-ghc
+"""{{{ neco-ghc
 
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
@@ -602,7 +602,7 @@ let g:haddock_browser="/usr/bin/chromium"
 
 """}}}
 
-"""{{{ghc-mod
+"""{{{ ghc-mod
 
 map <silent> tw :w<cr>:GhcModTypeInsert<CR>
 map <silent> ts :w<cr>:GhcModSplitFunCase<CR>
@@ -611,7 +611,7 @@ map <silent> te :w<cr>:GhcModTypeClear<CR>
 
 """}}}
 
-"""{{{haskell-vim
+"""{{{ haskell-vim
 
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -626,7 +626,7 @@ let hs_highlight_debug = 1
 
 """}}}
 
-"""{{{tabularize
+"""{{{ tabularize
 
 let g:haskell_tabular = 1
 vmap a= :Tabularize /=<CR>
@@ -635,7 +635,7 @@ vmap a- :Tabularize /-><CR>
 
 """}}}
 
-"""{{{Nerdcommenter
+"""{{{ Nerdcommenter
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -660,14 +660,14 @@ let g:NERDTrimTrailingWhitespace = 1
 
 """}}}
 
-"""{{{expand_region
+"""{{{ expand_region
 
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 """}}}
 
-"""{{{vim-go
+"""{{{ vim-go
 
 set autowrite
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
@@ -678,7 +678,7 @@ nnoremap <leader>a :cclose<CR>:lclose<CR>
 
 """}}}
 
-"""{{{NERDTree
+"""{{{ NERDTree
 
 nnoremap <Leader>- :NERDTreeToggle<Enter>
 let NERDTreeMinimalUI = 1
@@ -692,26 +692,26 @@ let NERDTreeQuitOnOpen = 1
 
 """}}}
 
-"""{{{vimtex
+"""{{{ vimtex
 
 let g:vimtex_complete_recursive_bib = 1
 
 """}}}
 
-"""{{{python-syntax
+"""{{{ python-syntax
 
 let g:python_highlight_all = 1
 
 """}}}
 
-"""{{{vim-markdown
+"""{{{ vim-markdown
 
 let g:vim_markdown_math = 1
 " autocmd FileType markdown set conceallevel=2
 
 """}}}
 
-"""{{{auto-pairs
+"""{{{ auto-pairs
 
 let g:AutoPairs = {
             \ '(':')',
@@ -726,13 +726,13 @@ let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 
 """}}}
 
-"""{{{vim-gitgutter
+"""{{{ vim-gitgutter
 
 autocmd FileType c,cpp,cuda,python let g:gitgutter_enabled = 0
 
 """}}}
 
-"""{{{CtrlP
+"""{{{ CtrlP
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -743,7 +743,7 @@ nnoremap è :CtrlPBuffer<cr>
 
 """}}}
 
-"""{{{CtrlSF
+"""{{{ CtrlSF
 
 let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_auto_focus = { "at": "start" }
@@ -759,7 +759,7 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 """}}}
 
-"""{{{vim-multiple-cursors
+"""{{{ vim-multiple-cursors
 
 let g:multi_cursor_start_key = '<Esc>n'
 let g:multi_cursor_select_all_key = 'g<Esc>n'
@@ -769,7 +769,7 @@ let g:multi_cursor_exit_from_visual_mode = 0
 
 """}}}
 
-"""{{{fzf
+"""{{{ fzf
 
 " Mapping selecting mappings
 nnoremap <leader><tab> <plug>(fzf-maps-n)
@@ -785,7 +785,7 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 """}}}
 
-"""{{{Gutentags
+"""{{{ Gutentags
 
 let g:gutentags_cache_dir = '~/.cache/tags'
 let g:gutentags_trace = 0
@@ -797,7 +797,7 @@ nmap <leader>t <c-]>
 
 """}}}
 
-"""{{{Syntastic
+"""{{{ Syntastic
 
 autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
 let g:syntastic_always_populate_loc_list = 1
@@ -832,7 +832,7 @@ let g:syntastic_python_flake8_quiet_messages = {
 
 """}}}
 
-"""{{{lightline
+"""{{{ lightline
 
 set noshowmode
 let g:lightline = {'colorscheme': 'wombat'}
@@ -869,7 +869,7 @@ let g:lightline.tabline = {
 
 """}}}
 
-"""{{{vebugger
+"""{{{ vebugger
 
 let g:vebugger_leader='<leader>V'
 nnoremap <leader>Vk :VBGkill<cr>
@@ -882,7 +882,7 @@ nnoremap <leader>VM :VBGstartMDBG |
 
 """}}}
 
-"""{{{lldb
+"""{{{ lldb
 
 nnoremap <leader>Lh :Lhide
 nnoremap <leader>LH :Lshow
@@ -902,7 +902,7 @@ let g:lldb_map_LpO = "<leader>LO"
 
 """}}}
 
-"""{{{DetectSpellLang
+"""{{{ DetectSpellLang
 
 map <leader>ss :setlocal spell!<cr>
 autocmd FileType tex,markdown set spell
@@ -911,26 +911,26 @@ let g:guesslang_langs = [ 'en_GB', 'sv', 'it' ]
 
 """}}}
 
-"""{{{UndoTree
+"""{{{ UndoTree
 
 nnoremap <F7> :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
 
 """}}}
 
-"""{{{vim-tex-fold
+"""{{{ vim-tex-fold
 
 let g:tex_fold_additional_envs = ['frontmatter']
 
 """}}}
 
-"""{{{vim-prosession
+"""{{{ vim-prosession
 
 let g:prosession_on_startup = 1
 
 """}}}
 
-"""{{{jedi-vim
+"""{{{ jedi-vim
 
 let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "<leader>d"
