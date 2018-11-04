@@ -797,41 +797,6 @@ nmap <leader>t <c-]>
 
 """}}}
 
-"""{{{ Syntastic
-
-autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_jump = 0
-
-let g:syntastic_mode_map = {
-            \ 'mode': 'active',
-            \ 'active_filetypes': [],
-            \ 'passive_filetypes': ['go']
-            \ }
-
-let g:syntastic_tex_chktex_quiet_messages = {
-            \ '!level':  'errors',
-            \ }
-
-let g:syntastic_tex_lacheck_quiet_messages = {
-            \ 'regex': [
-            \     '\mpossible unwanted space at "{"',
-            \     '\mwhitespace before punctation mark in " \."',
-            \     '\mdouble space at',
-            \ ],
-            \ }
-
-let g:syntastic_python_flake8_quiet_messages = {
-            \ 'regex': [
-            \     'W391', 'E501', 'E702',
-            \ ],
-            \ }
-
-"""}}}
-
 """{{{ lightline
 
 set noshowmode
@@ -945,6 +910,40 @@ let g:jedi#rename_command = "<leader>r"
 autocmd FileType python nnoremap
             \ <leader>b <s-o>import pdb; pdb.set_trace()
             \  # XXX BREAKPOINT<esc>
+
+"""}}}
+
+"""{{{ ale
+
+let g:ale_lint_on_text_changed = 'normal' " 'never' to disable
+let g:ale_lint_on_enter = 1
+
+let g:ale_completion_enabled = 0
+let g:ale_sign_error = 'EE'
+let g:ale_sign_warning = 'WW'
+let g:ale_sign_info = 'II'
+let g:ale_sign_style_error = 'SE'
+let g:ale_sign_style_warning = 'SW'
+let g:ale_set_highlights = 1
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_info_str = 'I'
+let g:ale_echo_msg_format = '[%severity%] (%linter%) %[code] %%s'
+
+nnoremap <leader>an <Plug>(ale_next_wrap)
+nnoremap <leader>aN <Plug>(ale_previous_wrap)
+nnoremap <leader>ag :ALEGoToDefinition<cr>
+nnoremap <leader>ah :ALEHover<cr>
+nnoremap <leader>as :ALESymbolSearch<cr>
+nnoremap <leader>af <Plug>(ale_fix)
+
+let g:ale_pattern_options = {
+            \   '.*\.cp\{0,2\}$': {'ale_enabled': 0},
+            \   '.*\.h[xp]\{0,2\}$': {'ale_enabled': 0},
+            \}
+
+let g:ale_python_flake8_options = '--ignore=W391,E501,E702,F403'
 
 """}}}
 

@@ -246,10 +246,6 @@
 	path = bundle/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
 	ignore = dirty
-[submodule "bundle/syntastic"]
-	path = bundle/syntastic
-	url = https://github.com/vim-syntastic/syntastic.git
-	ignore = dirty
 [submodule "bundle/cpsm"]
 	path = bundle/cpsm
 	url = https://github.com/nixprime/cpsm.git
@@ -305,4 +301,8 @@
 [submodule "bundle/jedi-vim"]
 	path = bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+	ignore = dirty
+[submodule "bundle/ale"]
+	path = bundle/ale
+	url = https://github.com/w0rp/ale.git
 	ignore = dirty
