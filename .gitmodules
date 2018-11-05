@@ -306,3 +306,7 @@
 	path = bundle/ale
 	url = https://github.com/w0rp/ale.git
 	ignore = dirty
+[submodule "bundle/splitjoin.vim"]
+	path = bundle/splitjoin.vim
+	url = git@github.com:AndrewRadev/splitjoin.vim.git
+	ignore = dirty
