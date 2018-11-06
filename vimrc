@@ -919,6 +919,10 @@ autocmd FileType python nnoremap
 
 "{{{ ale
 
+let g:ale_linters = {
+            \   'tex': ['chktex'],
+            \ }
+
 let g:ale_lint_on_text_changed = 'normal' " 'never' to disable
 let g:ale_lint_on_enter = 1
 
