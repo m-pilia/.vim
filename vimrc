@@ -169,6 +169,9 @@ let g:tex_flavor = "latex"
 " .cuh extension for CUDA headers
 autocmd BufRead,BufNewFile *.cuh set filetype=cuda
 
+" Jump to error from quickfix window with <cr>
+autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
+
 "}}}
 
 "{{{ Indent
