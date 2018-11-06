@@ -188,9 +188,10 @@ function SetCommentWidth(re)
     endif
     call winrestview(l:winview)
 endfunction
-augroup CommentWidth
+augroup CommentWidth <buffer>
     autocmd!
-    autocmd FileType c,cpp,cuda,java,python autocmd CursorMoved,CursorMovedI *
+    autocmd FileType c,cpp,cuda,java,python
+                \ autocmd CursorMoved,CursorMovedI <buffer>
                 \ :call SetCommentWidth('\v(Comment|doxygen)')
 augroup END
 
