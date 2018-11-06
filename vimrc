@@ -175,7 +175,7 @@ autocmd BufRead,BufNewFile *.cuh set filetype=cuda
 
 " Text width
 set textwidth=500
-autocmd FileType tex,markdown set textwidth=79
+autocmd FileType tex,markdown setlocal textwidth=79
 
 " Set different text width inside comment regions
 function SetCommentWidth(re)
@@ -223,7 +223,7 @@ set si "Smart indent
 set wrap "Wrap lines
 
 " Pseudoindent wrapped lines
-autocmd FileType tex :set showbreak=\ \ \ \ |
+autocmd FileType tex :setlocal showbreak=\ \ \ \ |
 
 " wrap lines in diff
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
@@ -871,8 +871,8 @@ let g:lldb_map_LpO = "<leader>LO"
 "{{{ DetectSpellLang
 
 map <leader>ss :setlocal spell!<cr>
-autocmd FileType tex,markdown set spell
-autocmd FileType bib set nospell
+autocmd FileType tex,markdown setlocal spell
+autocmd FileType bib setlocal nospell
 let g:guesslang_langs = [ 'en_GB', 'sv', 'it' ]
 
 "}}}
