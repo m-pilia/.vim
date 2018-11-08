@@ -725,6 +725,9 @@ let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 
 autocmd FileType c,cpp,cuda,python let g:gitgutter_enabled = 0
 
+nmap <leader>hn <Plug>GitGutterNextHunk
+nmap <leader>hN <Plug>GitGutterPrevHunk
+
 "}}}
 
 "{{{ CtrlP
