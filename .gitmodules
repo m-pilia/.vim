@@ -1,7 +1,3 @@
-[submodule "bundle/CamelCaseMotion"]
-	path = bundle/CamelCaseMotion
-	url = https://github.com/bkad/CamelCaseMotion.git
-	ignore = dirty
 [submodule "bundle/ListToggle"]
 	path = bundle/ListToggle
 	url = https://github.com/Valloric/ListToggle.git
@@ -313,4 +309,8 @@
 [submodule "bundle/vim-speeddating"]
 	path = bundle/vim-speeddating
 	url = https://github.com/tpope/vim-speeddating.git
+	ignore = dirty
+[submodule "bundle/vim-wordmotion"]
+	path = bundle/vim-wordmotion
+	url = https://github.com/chaoren/vim-wordmotion.git
 	ignore = dirty

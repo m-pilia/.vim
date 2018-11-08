@@ -289,17 +289,8 @@ vmap <Down> <nop>
 vmap <Left> <nop>
 vmap <Right> <nop>
 
-" Camel case motion
-map <silent> w <Plug>CamelCaseMotion_w
-map <silent> b <Plug>CamelCaseMotion_b
-map <silent> e <Plug>CamelCaseMotion_e
-map <silent> ge <Plug>CamelCaseMotion_ge
-sunmap w
-sunmap b
-sunmap e
-sunmap ge
-inoremap <C-w> <Esc>:normal db<Cr><Del>i
-inoremap <C-k> <Esc>:normal ww<Cr>h:normal db<Cr>i
+" CamelCase word backspace
+imap <silent> <C-w> <C-o>:set virtualedit+=onemore<cr><C-o>db<C-o>:set virtualedit-=onemore<cr>
 
 " Shortcuts for <home> and <end>
 nmap <leader>h <Home>
