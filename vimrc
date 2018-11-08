@@ -730,11 +730,11 @@ autocmd FileType c,cpp,cuda,python let g:gitgutter_enabled = 0
 "{{{ CtrlP
 
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
 let g:ctrlp_use_caching = 0
-nnoremap è :CtrlPBuffer<cr>
+let g:ctrlp_mruf_relative = 1
 
 "}}}
 
