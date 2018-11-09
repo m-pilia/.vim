@@ -668,10 +668,17 @@ let g:expand_region_text_objects = {
             \ 'i]' : 1,
             \ 'ib' : 1,
             \ 'iB' : 1,
-            \ 'il' : 0,
+            \ 'il' : 1,
             \ 'ip' : 0,
             \ 'ie' : 0,
             \ }
+
+call expand_region#custom_text_objects({
+            \ 'ac': 1,
+            \ 'ic': 1,
+            \ 'af': 1,
+            \ 'if': 1,
+            \ })
 
 "}}}
 
