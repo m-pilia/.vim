@@ -658,7 +658,20 @@ let g:NERDTrimTrailingWhitespace = 1
 "{{{ expand_region
 
 vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+vmap V <Plug>(expand_region_shrink)
+
+let g:expand_region_text_objects = {
+            \ 'iw' : 0,
+            \ 'iW' : 0,
+            \ 'i"' : 0,
+            \ 'i''': 0,
+            \ 'i]' : 1,
+            \ 'ib' : 1,
+            \ 'iB' : 1,
+            \ 'il' : 0,
+            \ 'ip' : 0,
+            \ 'ie' : 0,
+            \ }
 
 "}}}
 
@@ -948,3 +961,17 @@ let g:ale_python_flake8_options = '--ignore=W391,E501,E702,F403,E241'
 
 "}}}
 
+"{{{ vim-wordmotion
+
+" Do not use wordmotion in visual selection (for vim-expand-region)
+let g:wordmotion_mappings = {
+            \ 'w' : 'w',
+            \ 'b' : 'b',
+            \ 'e' : 'e',
+            \ 'ge' : 'ge',
+            \ 'aw' : 'a<M-w>',
+            \ 'iw' : 'i<M-w>',
+            \ '<C-R><C-W>' : '<C-R><C-W>'
+            \ }
+
+"}}}

@@ -314,3 +314,12 @@
 	path = bundle/vim-wordmotion
 	url = https://github.com/chaoren/vim-wordmotion.git
 	ignore = dirty
+[submodule "bundle/vim-textobj-user"]
+	path = bundle/vim-textobj-user
+	url = https://github.com/kana/vim-textobj-user.git
+[submodule "bundle/vim-textobj-line"]
+	path = bundle/vim-textobj-line
+	url = https://github.com/kana/vim-textobj-line.git
+[submodule "bundle/vim-textobj-comment"]
+	path = bundle/vim-textobj-comment
+	url = https://github.com/glts/vim-textobj-comment.git
