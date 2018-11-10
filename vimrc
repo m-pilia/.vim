@@ -961,7 +961,7 @@ nnoremap <leader>as :ALESymbolSearch<cr>
 nnoremap <leader>af <Plug>(ale_fix)
 
 let g:ale_pattern_options = {
-            \ '\v.*\.c|(cpp)|h|(hpp)|(hxx)|(inl)|(cu)|(cuh)$': {'ale_enabled': 0},
+            \ '\v.*\.(c|(cpp)|h|(hpp)|(hxx)|(inl)|(cu)|(cuh))$': {'ale_enabled': 0},
             \ }
 
 let g:ale_python_flake8_options = '--ignore=W391,E501,E702,F403,E241'
