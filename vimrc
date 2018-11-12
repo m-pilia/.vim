@@ -382,20 +382,6 @@ set statusline+=%1*(%p%%)%*             " line percentage
 
 "{{{ Editing
 
-" Delete trailing white space
-func! DeleteTrailingWS()
-    exe "normal mz"
-    %s/\s\+$//ge
-    exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-command Trim :call DeleteTrailingWS()
-
-" Highlight trailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
 " Replace visual selection with yanked ("0P) and yanked or deleted (P) text
 vnoremap <leader>S "_d"0P
 vnoremap <leader>s "_dP
@@ -980,5 +966,12 @@ let g:wordmotion_mappings = {
             \ 'iw' : 'i<M-w>',
             \ '<C-R><C-W>' : '<C-R><C-W>'
             \ }
+
+"}}}
+
+"{{{ vim-better-whitespace
+
+let g:better_whitespace_filetypes_blacklist = ['diff', 'gitcommit', 'unite', 'qf', 'help']
+let g:show_spaces_that_precede_tabs = 1
 
 "}}}

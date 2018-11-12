@@ -334,3 +334,6 @@
 	path = bundle/vader
 	url = https://github.com/junegunn/vader.vim.git
 	ignore = dirty
+[submodule "bundle/vim-better-whitespace"]
+	path = bundle/vim-better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace.git
