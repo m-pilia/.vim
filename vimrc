@@ -2,8 +2,8 @@
 
 " Leader
 nmap <space> <nop>
-let mapleader = " "
-let g:mapleader = " "
+let mapleader = ' '
+let g:mapleader = ' '
 set showcmd
 
 " Esc shortcut
@@ -41,7 +41,7 @@ highlight SpellBad ctermfg=white ctermbg=darkred guifg=white guibg=darkred
 highlight SpellCap ctermfg=white ctermbg=brown guifg=white guibg=brown
 
 " GUI options
-if has("gui_running")
+if has('gui_running')
     set guioptions-=T
     set guioptions+=e
     set t_Co=256
@@ -50,24 +50,27 @@ endif
 
 " Encoding and file type
 set encoding=utf8
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
 
 " Doxygen highlighting
 let g:doxygen_enhanced_color=1
-autocmd FileType c :set syntax=c.doxygen
-autocmd FileType cpp :set syntax=cpp.doxygen
-autocmd FileType java :set syntax=java.doxygen
-autocmd FileType idl :set syntax=idl.doxygen
-autocmd FileType php :set syntax=php.doxygen
+augroup syntax_highlighting
+    autocmd!
+    autocmd FileType c :set syntax=c.doxygen
+    autocmd FileType cpp :set syntax=cpp.doxygen
+    autocmd FileType java :set syntax=java.doxygen
+    autocmd FileType idl :set syntax=idl.doxygen
+    autocmd FileType php :set syntax=php.doxygen
 
-" Syntax highlighting synchronization settings
-" See http://vimdoc.sourceforge.net/htmldoc/syntax.html#:syn-sync
-"
-" Sync file from start (NOTE: slow but very precise)
-autocmd BufEnter * :syntax sync fromstart
+    " Syntax highlighting synchronization settings
+    " See http://vimdoc.sourceforge.net/htmldoc/syntax.html#:syn-sync
+    "
+    " Sync file from start (NOTE: slow but very precise)
+    autocmd BufEnter * :syntax sync fromstart
 
-" PKGBUILD syntax highlighting is horrible
-autocmd FileType PKGBUILD set ft=sh
+    " PKGBUILD syntax highlighting is horrible
+    autocmd FileType PKGBUILD setlocal ft=sh
+augroup END
 
 "}}}
 
@@ -82,7 +85,7 @@ set ruler
 
 set cmdheight=1 " Height of the command bar
 
-set hid " Hide abandoned buffers
+set hidden " Hide abandoned buffers
 
 set backspace=eol,start,indent " Configure backspace
 
@@ -98,7 +101,7 @@ set magic
 set lazyredraw " Don't redraw while executing macros
 
 set showmatch " Blink on matching brackets
-set mat=2 " Matching brackets blink duration
+set matchtime=2 " Matching brackets blink duration
 
 " Grep options
 set grepprg=ack\ --nogroup\ --column\ $*
@@ -108,10 +111,10 @@ set grepformat=%f:%l:%c:%m
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+set timeoutlen=500
 
 " Line numbers
-set nu
+set number
 highlight LineNr ctermfg=grey
 set cursorline
 hi CursorLine term=NONE cterm=NONE
@@ -120,11 +123,23 @@ hi CursorLine term=NONE cterm=NONE
 
 "{{{ Buffer
 
-" Return to last edit position when opening files
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+augroup buffer_auto
+    autocmd!
+    " Return to last edit position when opening files
+    autocmd BufReadPost *
+         \ if line("'\"") > 0 && line("'\"") <= line("$") |
+         \   exe "normal! g`\"" |
+         \ endif
+
+    " Detect filetype on save
+    autocmd BufWritePost * if &filetype == '' | filetype detect |  endif
+
+    " .cuh extension for CUDA headers
+    autocmd BufRead,BufNewFile *.cuh setlocal filetype=cuda
+
+    " Jump to error from quickfix window with <cr>
+    autocmd FileType qf nmap <buffer> <cr> :.ll<cr>:lclose<cr>
+augroup END
 
 " Views
 set viewdir=$HOME/.vim/views
@@ -133,7 +148,7 @@ set viewoptions-=options
 " Read files after changes from outside
 set autoread
 " Trigger autoread
-autocmd FocusGained,BufEnter * :silent! !
+autocmd buffer_auto FocusGained,BufEnter * :silent! !
 
 " Modeline settings
 set nomodeline
@@ -142,15 +157,12 @@ set modelines=0
 " Save file
 nnoremap <Leader>w :w<CR>
 
-" Detect filetype on save
-autocmd BufWritePost * if &filetype == '' | filetype detect |  endif
-
 " Number of commands in vim history
 set history=5000
 
 " Disable backups
 set nobackup
-set nowb
+set nowritebackup
 set noswapfile
 
 " Persistent undo
@@ -164,13 +176,7 @@ let g:auto_persistent_undo = 0
 set updatetime=200
 
 " Tex file flavor
-let g:tex_flavor = "latex"
-
-" .cuh extension for CUDA headers
-autocmd BufRead,BufNewFile *.cuh set filetype=cuda
-
-" Jump to error from quickfix window with <cr>
-autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
+let g:tex_flavor = 'latex'
 
 "}}}
 
@@ -178,12 +184,11 @@ autocmd FileType qf nmap <cr> :.ll<cr>:lclose<cr>
 
 " Text width
 set textwidth=500
-autocmd FileType tex,markdown setlocal textwidth=79
 
 " Set different text width inside comment regions
 function SetCommentWidth(re)
     let l:winview = winsaveview()
-    let l:region = synIDattr(synID(line("."), col("."), 0), "name")
+    let l:region = synIDattr(synID(line('.'), col('.'), 0), 'name')
     if match(region, a:re) >= 0
         setlocal textwidth=72
     else
@@ -199,7 +204,7 @@ augroup CommentWidth <buffer>
 augroup END
 
 " Automatic line break
-set lbr
+set linebreak
 
 " Tab settings
 set expandtab
@@ -207,46 +212,62 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Short tab width for functional languages and some markup languages
-autocmd FileType ocaml,sml,racket,haskell,yaml setlocal shiftwidth=2
-autocmd FileType ocaml,sml,racket,haskell,yaml setlocal tabstop=2
-
-" Don't expand tab in bash
-autocmd FileType sh set noexpandtab
-
-" Disable cindent (which removes Python comment indent)
-autocmd FileType python set cindent
-
 " tab lines without losing selection
 vnoremap <s-tab> <gv
 vnoremap <tab> >gv
 
-set ai "Auto indent
-set si "Smart indent
+set autoindent "Auto indent
+set smartindent "Smart indent
 set wrap "Wrap lines
 
-" Pseudoindent wrapped lines
-autocmd FileType tex :setlocal showbreak=\ \ \ \ |
-
-" wrap lines in diff
-autocmd FilterWritePre * if &diff | setlocal wrap< | endif
-
-" Fold based on syntax
-setlocal foldmethod=syntax " Careful, may be slow
-autocmd Filetype vim setlocal foldmethod=marker
+" Fold settings
 set foldlevel=99
+setlocal foldmethod=syntax " Careful, may be slow
 
-" PHP settings
-" enable html snippets in php files
-autocmd BufRead,BufNewFile *.php set ft=php.html
-" smartindent for php files
-autocmd BufRead,BufNewFile *.php set smartindent
-" don't align php tags at line beginning
-autocmd FileType php.html setlocal indentexpr=
+augroup indentation
+    autocmd!
+
+    " Text width
+    autocmd FileType tex,markdown setlocal textwidth=79
+
+    " Short tab width for functional languages and some markup languages
+    autocmd FileType ocaml,sml,racket,haskell,yaml setlocal shiftwidth=2
+    autocmd FileType ocaml,sml,racket,haskell,yaml setlocal tabstop=2
+
+    " Don't expand tab in bash
+    autocmd FileType sh set noexpandtab
+
+    " Disable cindent (which removes Python comment indent)
+    autocmd FileType python set cindent
+
+    " Pseudoindent wrapped lines
+    autocmd FileType tex :setlocal showbreak=\ \ \ \ |
+
+    " Wrap lines in diff
+    autocmd FilterWritePre * if &diff | setlocal wrap< | endif
+
+    " Fold for viml
+    autocmd Filetype vim setlocal foldmethod=marker
+
+    " PHP settings
+    " enable html snippets in php files
+    autocmd BufRead,BufNewFile *.php set ft=php.html
+    " smartindent for php files
+    autocmd BufRead,BufNewFile *.php set smartindent
+    " don't align php tags at line beginning
+    autocmd FileType php.html setlocal indentexpr=
+augroup END
 
 "}}}
 
 "{{{ Motion
+
+augroup motion
+    autocmd!
+
+    " Keep current line in the middle of the window
+    autocmd CursorMoved,BufReadPost * exe "normal! zz"
+augroup END
 
 " Keep column when moving to first/last line
 set nostartofline
@@ -259,9 +280,6 @@ map k gk
 
 " Lines around the cursor
 set scrolloff=7
-
-" Keep current line in the middle of the window
-autocmd CursorMoved,BufReadPost * exe "normal! zz"
 
 " Disable arrows
 map <C-Up> <nop>
@@ -329,15 +347,15 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Specify the behavior when switching between buffers
 try
     set switchbuf=useopen,usetab,newtab
-    set stal=2
+    set showtabline=2
 catch
 endtry
 
 " Don't close window when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-    let l:currentBufNum = bufnr("%")
-    let l:alternateBufNum = bufnr("#")
+    let l:currentBufNum = bufnr('%')
+    let l:alternateBufNum = bufnr('#')
 
     if buflisted(l:alternateBufNum)
         buffer #
@@ -345,12 +363,12 @@ function! <SID>BufcloseCloseIt()
         bnext
     endif
 
-    if bufnr("%") == l:currentBufNum
+    if bufnr('%') == l:currentBufNum
         new
     endif
 
     if buflisted(l:currentBufNum)
-        execute("bdelete! ".l:currentBufNum)
+        execute('bdelete! '.l:currentBufNum)
     endif
 endfunction
 
@@ -420,7 +438,7 @@ imap <F5> <esc><F5>
 
 "{{{ Ultisnips
 
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger='<c-j>'
 " force UltiSnips to use Python 2, for YCM compatibility
 let g:UltiSnipsUsePythonVersion = 2
 "let g:UltiSnipsJumpForwardTrigger="<c-n>"
@@ -450,24 +468,28 @@ set completeopt-=preview
 let g:ycm_key_list_previous_completion = ['<S-Tab>']
 let g:ycm_key_list_select_completion = ['<Tab>']
 
-" Goto declaration/definition
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g <silent> <leader><g
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g :YcmCompleter GoTo<cr>
-
 " Pass diagnostic data to vim
 let g:ycm_always_populate_location_list = 1
 
-" Goto next/prev warning/error
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><n :lnext<cr>
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><N :lprevious<cr>
+augroup ycm
+    autocmd!
 
-" Commands
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><f :YcmCompleter FixIt<cr>
-autocmd FileType cs,objc,objcpp nnoremap <leader><r :YcmCompleter RefactorRename
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><d :YcmCompleter GetDoc<cr>
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><p :YcmCompleter GetParent<cr>
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><t :YcmCompleter GetType<cr>
-autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><e :YcmShowDetailedDiagnostic<cr>
+    " Goto declaration/definition
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g <silent> <leader><g
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g :YcmCompleter GoTo<cr>
+
+    " Goto next/prev warning/error
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><n :lnext<cr>
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><N :lprevious<cr>
+
+    " Commands
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><f :YcmCompleter FixIt<cr>
+    autocmd FileType cs,objc,objcpp nnoremap <leader><r :YcmCompleter RefactorRename
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><d :YcmCompleter GetDoc<cr>
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><p :YcmCompleter GetParent<cr>
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><t :YcmCompleter GetType<cr>
+    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><e :YcmShowDetailedDiagnostic<cr>
+augroup END
 
 " File type blacklist
 let g:ycm_filetype_blacklist = {
@@ -512,13 +534,17 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 " Create eclim project if absent when opening file
 "autocmd FileType java silent :call eclimproject#CreateEclimProject()
-"
-" map shortcut for import
-autocmd FileType java nnoremap <leader>i <Esc>:JavaImport<cr>
-" map shortcut to suggest a correction
-autocmd FileType java nnoremap <leader>k :JavaCorrect<cr>
-" override weird tab behaviour
-autocmd FileType java silent inoremap <tab> <tab>
+
+augroup eclim
+    autocmd!
+
+    " map shortcut for import
+    autocmd FileType java nnoremap <leader>i <Esc>:JavaImport<cr>
+    " map shortcut to suggest a correction
+    autocmd FileType java nnoremap <leader>k :JavaCorrect<cr>
+    " override weird tab behaviour
+    autocmd FileType java silent inoremap <tab> <tab>
+augroup END
 
 "}}}
 
@@ -530,8 +556,8 @@ let g:ConqueTerm_StartMessages = 0
 
 "{{{ Screenshell
 
-" Chose terminal multiplexer ("GnuScreen" or "Tmux")
-let g:ScreenImpl = "GnuScreen"
+" Chose terminal multiplexer ('GnuScreen' or 'Tmux')
+let g:ScreenImpl = 'GnuScreen'
 
 " Create shell session into a new terminal window
 let g:ScreenShellExternal = 1
@@ -539,9 +565,9 @@ let g:ScreenShellExternal = 1
 " Height of the screenshell screen
 let g:ScreenShellHeight = 16
 
-" Set initial focus ("vim" or "shell")
-let g:ScreenShellInitialFocus = "vim"
-let g:ScreenShellTerminal = "konsole"
+" Set initial focus ('vim' or 'shell')
+let g:ScreenShellInitialFocus = 'vim'
+let g:ScreenShellTerminal = 'konsole'
 
 "}}}
 
@@ -567,9 +593,13 @@ let g:rbpt_colorpairs = [
     \ ['red',         'firebrick3'],
     \ ]
 "    \ ['black',       'SeaGreen3'],
-autocmd FileType lisp,racket RainbowParenthesesToggle
-autocmd FileType lisp,racket RainbowParenthesesLoadRound
-autocmd FileType lisp,racket RainbowParenthesesLoadSquare
+
+augroup rainbow_parentheses
+    autocmd!
+    autocmd FileType lisp,racket RainbowParenthesesToggle
+    autocmd FileType lisp,racket RainbowParenthesesLoadRound
+    autocmd FileType lisp,racket RainbowParenthesesLoadSquare
+augroup END
 
 "}}}
 
@@ -577,9 +607,13 @@ autocmd FileType lisp,racket RainbowParenthesesLoadSquare
 
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:necoghc_enable_detailed_browse = 1
-let g:haddock_browser="/usr/bin/chromium"
+let g:haddock_browser='/usr/bin/chromium'
+
+augroup neco_ghc
+    autocmd!
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+augroup END
 
 "}}}
 
@@ -652,11 +686,15 @@ call expand_region#custom_text_objects({
 "{{{ vim-go
 
 set autowrite
-autocmd FileType go nmap <leader>b  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>:lclose<CR>
+
+augroup vim_go
+    autocmd!
+    autocmd FileType go nmap <leader>b  <Plug>(go-build)
+    autocmd FileType go nmap <leader>r  <Plug>(go-run)
+augroup END
 
 "}}}
 
@@ -703,17 +741,24 @@ let g:AutoPairs = {
             \ '"':'"',
             \ '`':'`',
             \ }
-autocmd FileType tex let g:AutoPairs['$'] = '$'
 let g:AutoPairsShortcutFastWrap = '<C-S-e>'
+
+augroup autopairs
+    autocmd!
+    autocmd FileType tex let g:AutoPairs['$'] = '$'
+augroup END
 
 "}}}
 
 "{{{ vim-gitgutter
 
-autocmd FileType c,cpp,cuda,python let g:gitgutter_enabled = 0
-
 nmap <leader>hn <Plug>GitGutterNextHunk
 nmap <leader>hN <Plug>GitGutterPrevHunk
+
+augroup gitgutter
+    autocmd!
+    autocmd FileType c,cpp,cuda,python let g:gitgutter_enabled = 0
+augroup END
 
 "}}}
 
@@ -731,7 +776,7 @@ let g:ctrlp_mruf_relative = 1
 "{{{ CtrlSF
 
 let g:ctrlsf_search_mode = 'async'
-let g:ctrlsf_auto_focus = { "at": "start" }
+let g:ctrlsf_auto_focus = { 'at': 'start' }
 let g:ctrlsf_selected_line_hl = 'op'
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
@@ -838,26 +883,30 @@ nnoremap <leader>Lh :Lhide
 nnoremap <leader>LH :Lshow
 nnoremap <leader>La :Lattach
 nnoremap <leader>Lt :Ltarget
-let g:lldb_map_Ldetach = "<leader>Ld"
-let g:lldb_map_Lrun = "<leader>Lr"
-let g:lldb_map_Lstart = "<leader>LR"
-let g:lldb_map_Lcontinue = "<leader>Lc"
-let g:lldb_map_Lstep = "<leader>Ls"
-let g:lldb_map_Lnext = "<leader>Ln"
-let g:lldb_map_Lfinish = "<leader>Lf"
-let g:lldb_map_Lbreakpoint = "<leader>Lb"
-let g:lldb_map_Lprint = "<leader>Lp"
-let g:lldb_map_Lpo = "<leader>Lo"
-let g:lldb_map_LpO = "<leader>LO"
+let g:lldb_map_Ldetach = '<leader>Ld'
+let g:lldb_map_Lrun = '<leader>Lr'
+let g:lldb_map_Lstart = '<leader>LR'
+let g:lldb_map_Lcontinue = '<leader>Lc'
+let g:lldb_map_Lstep = '<leader>Ls'
+let g:lldb_map_Lnext = '<leader>Ln'
+let g:lldb_map_Lfinish = '<leader>Lf'
+let g:lldb_map_Lbreakpoint = '<leader>Lb'
+let g:lldb_map_Lprint = '<leader>Lp'
+let g:lldb_map_Lpo = '<leader>Lo'
+let g:lldb_map_LpO = '<leader>LO'
 
 "}}}
 
 "{{{ DetectSpellLang
 
 map <leader>ss :setlocal spell!<cr>
-autocmd FileType tex,markdown setlocal spell
-autocmd FileType bib setlocal nospell
 let g:guesslang_langs = [ 'en_GB', 'sv', 'it' ]
+
+augroup detect_spell_lang
+    autocmd!
+    autocmd FileType tex,markdown setlocal spell
+    autocmd FileType bib setlocal nospell
+augroup END
 
 "}}}
 
@@ -883,18 +932,22 @@ let g:prosession_on_startup = 1
 "{{{ jedi-vim
 
 let g:jedi#completions_enabled = 0
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
+let g:jedi#goto_command = '<leader>d'
+let g:jedi#goto_assignments_command = '<leader>g'
+let g:jedi#goto_definitions_command = ''
+let g:jedi#documentation_command = 'K'
+let g:jedi#usages_command = '<leader>n'
+let g:jedi#completions_command = '<C-Space>'
+let g:jedi#rename_command = '<leader>r'
 
 " Insert breakpoint
-autocmd FileType python nnoremap
-            \ <leader>b <s-o>import pdb; pdb.set_trace()
-            \  # XXX BREAKPOINT<esc>
+
+augroup jedi_vim
+    autocmd!
+    autocmd FileType python nnoremap
+                \ <leader>b <s-o>import pdb; pdb.set_trace()
+                \  # XXX BREAKPOINT<esc>
+augroup END
 
 "}}}
 
