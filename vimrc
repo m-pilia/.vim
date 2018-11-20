@@ -743,11 +743,6 @@ let g:AutoPairs = {
             \ }
 let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 
-augroup autopairs
-    autocmd!
-    autocmd FileType tex let g:AutoPairs['$'] = '$'
-augroup END
-
 "}}}
 
 "{{{ vim-gitgutter

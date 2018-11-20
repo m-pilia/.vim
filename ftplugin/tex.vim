@@ -1,3 +1,7 @@
+" Match dollar signs
+let b:AutoPairs = g:AutoPairs
+let b:AutoPairs['$'] = '$'
+
 " Shell command for TeX word count from stdin
 function! TeXWCcommand()
     return 'perl -X `command -v texcount` - | ' .
