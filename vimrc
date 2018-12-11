@@ -206,6 +206,9 @@ augroup END
 " Automatic line break
 set linebreak
 
+" No double spaces on join
+set nojoinspaces
+
 " Tab settings
 set expandtab
 set smarttab
