@@ -764,6 +764,7 @@ augroup END
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
 let g:ctrlp_use_caching = 0
@@ -953,6 +954,7 @@ augroup END
 
 let g:ale_linters = {
             \   'tex': ['chktex'],
+            \   'python': ['pep8', 'flake8'],
             \ }
 
 let g:ale_lint_on_text_changed = 'normal' " 'never' to disable
@@ -982,7 +984,7 @@ let g:ale_pattern_options = {
             \ '\v.*\.(c|(cpp)|h|(hpp)|(hxx)|(inl)|(cu)|(cuh))$': {'ale_enabled': 0},
             \ }
 
-let g:ale_python_flake8_options = '--ignore=W391,E501,E702,F403,E241'
+let g:ale_gitcommit_gitlint_options = '--config ~/.config/gitlint'
 
 "}}}
 
