@@ -957,6 +957,11 @@ let g:ale_linters = {
             \   'python': ['pep8', 'flake8'],
             \ }
 
+let g:ale_extra_linters = {
+            \   'tex': ['alex', 'proselint', 'redpen', 'vale', 'write-good'],
+            \   'python': ['pylint'],
+            \ }
+
 let g:ale_lint_on_text_changed = 'normal' " 'never' to disable
 let g:ale_lint_on_enter = 1
 
@@ -985,6 +990,23 @@ let g:ale_pattern_options = {
             \ }
 
 let g:ale_gitcommit_gitlint_options = '--config ~/.config/gitlint'
+
+" Toggle extra linters
+function! ToggleExtraLinters()
+    if !has_key(g:ale_extra_linters, &filetype)
+        return
+    endif
+    for linter in g:ale_extra_linters[&filetype]
+        let l:i = index(g:ale_linters[&filetype], linter)
+        if l:i >= 0
+            call remove(g:ale_linters[&filetype], l:i)
+        else
+            call add(g:ale_linters[&filetype], linter)
+        endif
+    endfor
+endfunction
+
+command! ToggleExtraLinters call ToggleExtraLinters()
 
 "}}}
 

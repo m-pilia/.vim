@@ -32,20 +32,3 @@ endfunction
 command! TeXWC call TeXWC()
 command! TeXWCdetailed call TeXWCdetailed()
 command! -range TeXWCrange <line1>,<line2>call TeXWCRange()
-
-" Enable/disable prose linters
-function! TeXToggleProseLinters()
-    let prose_linters = ['alex', 'proselint', 'redpen', 'vale', 'write-good']
-    if index(g:ale_linters.tex, prose_linters[0]) >= 0
-        for linter in prose_linters
-            let i = index(g:ale_linters.tex, linter)
-            if i >= 0
-                call remove(g:ale_linters.tex, i)
-            endif
-        endfor
-    else
-        let g:ale_linters.tex += prose_linters
-    endif
-endfunction
-
-command! TeXToggleProseLinters call TeXToggleProseLinters()
