@@ -238,7 +238,7 @@ augroup indentation
     autocmd FileType ocaml,sml,racket,haskell,yaml setlocal tabstop=2
 
     " Don't expand tab in bash
-    autocmd FileType sh set noexpandtab
+    autocmd FileType sh setlocal noexpandtab
 
     " Disable cindent (which removes Python comment indent)
     autocmd FileType python set cindent
