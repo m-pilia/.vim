@@ -955,7 +955,7 @@ augroup END
 let g:ale_linters = {
             \   'tex': ['chktex'],
             \   'markdown': ['markdownlint', 'mdl', 'remark_lint'],
-            \   'python': ['pep8', 'flake8'],
+            \   'python': ['pep8', 'flake8', 'pyre'],
             \ }
 
 let s:text_linters = ['alex', 'proselint', 'redpen', 'vale', 'write-good']
