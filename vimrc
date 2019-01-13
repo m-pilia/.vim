@@ -183,7 +183,7 @@ let g:tex_flavor = 'latex'
 "{{{ Indent
 
 " Text width
-set textwidth=500
+set textwidth=2000
 
 " Set different text width inside comment regions
 function SetCommentWidth(re)
@@ -903,7 +903,7 @@ let g:guesslang_langs = [ 'en_GB', 'sv', 'it' ]
 
 augroup detect_spell_lang
     autocmd!
-    autocmd FileType tex,markdown setlocal spell
+    autocmd FileType tex,markdown,mediawiki setlocal spell
     autocmd FileType bib setlocal nospell
 augroup END
 
@@ -955,6 +955,7 @@ augroup END
 let g:ale_linters = {
             \   'tex': ['chktex'],
             \   'markdown': ['markdownlint', 'mdl', 'remark_lint'],
+            \   'mediawiki': [],
             \   'python': ['pep8', 'flake8', 'pyre'],
             \ }
 
@@ -962,6 +963,7 @@ let s:text_linters = ['alex', 'proselint', 'redpen', 'vale', 'write-good']
 let g:ale_extra_linters = {
             \   'tex': s:text_linters,
             \   'markdown': s:text_linters,
+            \   'mediawiki': s:text_linters,
             \   'python': ['pylint'],
             \ }
 
