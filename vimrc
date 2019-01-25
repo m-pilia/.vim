@@ -956,7 +956,7 @@ let g:ale_linters = {
             \   'tex': ['chktex'],
             \   'markdown': ['markdownlint', 'mdl', 'remark_lint'],
             \   'mediawiki': [],
-            \   'python': ['pep8', 'flake8', 'pyre'],
+            \   'python': ['pep8', 'flake8', 'pyre', 'mypy'],
             \ }
 
 let s:text_linters = ['alex', 'proselint', 'redpen', 'vale', 'write-good']
@@ -995,6 +995,7 @@ let g:ale_pattern_options = {
             \ }
 
 let g:ale_gitcommit_gitlint_options = '--config ~/.config/gitlint'
+let g:ale_python_mypy_options = '-ignore-missing-imports'
 
 " Toggle extra linters
 function! ToggleExtraLinters()
