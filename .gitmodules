@@ -348,3 +348,6 @@
 [submodule "bundle/vim-mediawiki-editor"]
 	path = bundle/vim-mediawiki-editor
 	url = https://github.com/m-pilia/vim-mediawiki-editor.git
+[submodule "bundle/vim-syntax-extra"]
+	path = bundle/vim-syntax-extra
+	url = https://github.com/justinmk/vim-syntax-extra.git
