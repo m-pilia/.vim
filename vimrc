@@ -1037,3 +1037,10 @@ let g:better_whitespace_filetypes_blacklist = ['diff', 'gitcommit', 'unite', 'qf
 let g:show_spaces_that_precede_tabs = 1
 
 "}}}
+
+
+"{{{ editorconfig-vim
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+"}}}
