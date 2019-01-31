@@ -956,7 +956,7 @@ let g:ale_linters = {
             \   'tex': ['chktex'],
             \   'markdown': ['markdownlint', 'mdl', 'remark_lint'],
             \   'mediawiki': [],
-            \   'python': ['pep8', 'flake8', 'pyre', 'mypy'],
+            \   'python': ['pep8', 'flake8', 'pyre', 'mypy', 'bandit'],
             \ }
 
 let s:text_linters = ['alex', 'proselint', 'redpen', 'vale', 'write-good']
