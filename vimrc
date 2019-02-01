@@ -964,7 +964,7 @@ let g:ale_extra_linters = {
             \   'tex': s:text_linters,
             \   'markdown': s:text_linters,
             \   'mediawiki': s:text_linters,
-            \   'python': ['pylint'],
+            \   'python': ['pylint', 'pycodestyle', 'pydocstyle'],
             \ }
 
 let g:ale_lint_on_text_changed = 'normal' " 'never' to disable
