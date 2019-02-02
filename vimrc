@@ -736,6 +736,10 @@ let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 
 "{{{ vim-gitgutter
 
+highlight GitGutterAdd ctermbg=black ctermfg=green
+highlight GitGutterChange ctermbg=black ctermfg=yellow
+highlight GitGutterDelete ctermbg=black ctermfg=red
+highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 nmap <leader>hn <Plug>GitGutterNextHunk
 nmap <leader>hN <Plug>GitGutterPrevHunk
 
