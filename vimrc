@@ -437,6 +437,20 @@ imap <F5> <esc><F5>
 
 "}}}
 
+"{{{ termdebug
+
+packadd termdebug
+nmap <leader>qb :Break<cr>
+nmap <leader>qB :Clear<cr>
+nmap <leader>qs :Step<cr>
+nmap <leader>qo :Over<cr>
+nmap <leader>qf :Finish<cr>
+nmap <leader>qc :Continue<cr>
+nmap <leader>qS :Stop<cr>
+nmap <leader>qe :Evaluate<cr>
+
+"}}}
+
 """"""""""""""""""" Plugin settings
 
 "{{{ Ultisnips
