@@ -442,27 +442,14 @@ imap <F5> <esc><F5>
 "{{{ Ultisnips
 
 let g:UltiSnipsExpandTrigger='<c-j>'
-" force UltiSnips to use Python 2, for YCM compatibility
-let g:UltiSnipsUsePythonVersion = 2
-"let g:UltiSnipsJumpForwardTrigger="<c-n>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-p>"
-"let g:UltiSnipsListSnippets="<c-e>"
+let g:UltiSnipsUsePythonVersion = 2 " YCM compatibility
 
 "}}}
 
 "{{{ YouCompleteMe
 
-" Completion shortcut
-let g:ycm_key_invoke_completion = '<C-b>'
-
 " Use ultisnips suggestions
 let g:ycm_use_ultisnips_completer = 1
-
-" Default (fallback) extra conf file
-" let g:ycm_global_ycm_extra_conf = "~/Cryptbox/Configs/.ycm_extra_conf.py"
-
-" Whitelist/blacklist for extra conf files
-" let g:ycm_extra_conf_globlist = ['~/Dropbox/*', '~/Cryptbox/*']
 
 " Disable preview on complete
 set completeopt-=preview
@@ -595,7 +582,6 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
-"    \ ['black',       'SeaGreen3'],
 
 augroup rainbow_parentheses
     autocmd!
@@ -996,6 +982,7 @@ let g:ale_pattern_options = {
 
 let g:ale_gitcommit_gitlint_options = '--config ~/.config/gitlint'
 let g:ale_python_mypy_options = '-ignore-missing-imports'
+let g:ale_alex_executable='alexjs'
 
 " Toggle extra linters
 function! ToggleExtraLinters()
