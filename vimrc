@@ -853,19 +853,6 @@ let g:lightline.tabline = {
 
 "}}}
 
-"{{{ vebugger
-
-let g:vebugger_leader='<leader>V'
-nnoremap <leader>Vk :VBGkill<cr>
-nnoremap <leader>VG :VBGstartGDB |
-nnoremap <leader>VL :VBGstartLLDB |
-nnoremap <leader>VJ :VBGstartJDB |
-nnoremap <leader>VR :VBGstartRDB |
-nnoremap <leader>VP :VBGstartPDB |
-nnoremap <leader>VM :VBGstartMDBG |
-
-"}}}
-
 "{{{ lldb
 
 nnoremap <leader>Lh :Lhide

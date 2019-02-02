@@ -314,11 +314,6 @@
 	url = https://github.com/itchyny/lightline.vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-vebugger"]
-	path = bundle/vim-vebugger
-	url = git@github.com:idanarye/vim-vebugger.git
-	ignore = dirty
-	branch = develop
 [submodule "bundle/vim-lldb"]
 	path = bundle/vim-lldb
 	url = git@github.com:gilligan/vim-lldb.git
