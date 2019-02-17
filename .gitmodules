@@ -449,3 +449,8 @@
 	url = https://github.com/pangloss/vim-javascript.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/typescript-vim"]
+	path = bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+	ignore = dirty
+	branch = master
