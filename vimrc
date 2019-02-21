@@ -820,6 +820,8 @@ inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
 inoremap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+" Fuzzy search of commands
+nnoremap <leader>. :Commands<cr>
 
 "}}}
 
