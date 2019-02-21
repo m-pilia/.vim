@@ -320,7 +320,7 @@ vmap <leader>h <Home>
 vmap <leader>l <End>
 
 " Remove search highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr> <bar> :CtrlSFClearHL<cr>
+map <silent> <leader><cr> :noh <bar> :CtrlSFClearHL<cr>
 
 " Cycle through buffers
 nnoremap <Leader>f :bn<CR>
