@@ -783,10 +783,14 @@ let g:ctrlsf_search_mode = 'async'
 let g:ctrlsf_auto_focus = { 'at': 'start' }
 let g:ctrlsf_selected_line_hl = 'op'
 nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordPath
+vmap     <C-F>N <Plug>CtrlSFVwordPath
+vmap     <C-F>n <Plug>CtrlSFVwordExec
+nmap     <C-F>N <Plug>CtrlSFCwordPath
+nmap     <C-F>n <Plug>CtrlSFCwordExec
+nmap     <C-F>C <Plug>CtrlSFCCwordPath
+nmap     <C-F>c <Plug>CtrlSFCCwordExec
+nmap     <C-F>P <Plug>CtrlSFPwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordExec
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
