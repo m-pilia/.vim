@@ -689,11 +689,6 @@ call expand_region#custom_text_objects({
 
 "{{{ vim-go
 
-set autowrite
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>:lclose<CR>
-
 augroup vim_go
     autocmd!
     autocmd FileType go nmap <leader>b  <Plug>(go-build)
