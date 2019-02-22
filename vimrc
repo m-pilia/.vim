@@ -822,9 +822,12 @@ nnoremap <leader>. :Commands<cr>
 
 "{{{ Gutentags
 
-let g:gutentags_cache_dir = '~/.cache/tags'
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_project_root = ['.git', '.hg', '.bzr']
+let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_trace = 0
 let g:gutentags_generate_on_empty_buffer = 1
+let g:gutentags_plus_switch = 1 " Change focus to quickfix window after search
 
 " Tag search
 nnoremap <leader>T :Tags<cr>
