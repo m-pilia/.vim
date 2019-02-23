@@ -18,11 +18,7 @@ filetype indent on
 
 " Load plugins with pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-let g:pathogen_disabled = [
-            \ 'restore_view',
-            \ 'complete_parentheses',
-            \ 'toggle_comments',
-            \ ]
+let g:pathogen_disabled = []
 call pathogen#infect()
 
 "}}}
@@ -170,9 +166,8 @@ set undofile                " Save undo's after file closes
 set undodir=$HOME/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
-let g:auto_persistent_undo = 0
 
-" time (ms) between automatic updates
+" Time (ms) between automatic updates
 set updatetime=200
 
 " Tex file flavor
@@ -313,11 +308,23 @@ vmap <Right> <nop>
 " CamelCase word backspace
 imap <silent> <C-w> <C-o>:set virtualedit+=onemore<cr><C-o>db<C-o>:set virtualedit-=onemore<cr>
 
+" Smart home/end keys
+nmap <silent><Home> :call smarthome#SmartHome('n')<cr>
+nmap <silent><End> :call smarthome#SmartEnd('n')<cr>
+imap <silent><Home> <C-r>=smarthome#SmartHome('i')<cr>
+imap <silent><End> <C-r>=smarthome#SmartEnd('i')<cr>
+vmap <silent><Home> <Esc>:call smarthome#SmartHome('v')<cr>
+vmap <silent><End> <Esc>:call smarthome#SmartEnd('v')<cr>
+
 " Shortcuts for <home> and <end>
 nmap <leader>h <Home>
 nmap <leader>l <End>
 vmap <leader>h <Home>
 vmap <leader>l <End>
+
+" Search for visual selection
+vnoremap <silent> * <esc>/<c-r>*<cr>
+vnoremap <silent> # <esc>?<c-r>*<cr>
 
 " Remove search highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh <bar> :CtrlSFClearHL<cr>
@@ -432,6 +439,17 @@ function AutoPaste()
 endfunction
 inoremap <C-v>	<space><backspace><Esc>:call AutoPaste()<cr>a
 
+" Move current line up and down
+nnoremap <C-S-j> :m .+1<CR>==
+nnoremap <C-S-k> :m .-2<CR>==
+inoremap <C-S-j> <Esc>:m .+1<CR>==gi
+inoremap <C-S-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-S-j> :m '>+1<CR>gv=gv
+vnoremap <C-S-k> :m '<-2<CR>gv=gv
+
+" Twiddle case
+vnoremap ~ y:call setreg('', twiddlecase#TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
 " F5 in insert mode
 imap <F5> <esc><F5>
 
@@ -517,9 +535,6 @@ let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 " Omni completion
 set omnifunc=syntaxcomplete#Complete
 
-" Omni completion function for java completion plugin (conflicts with eclim)
-" autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-
 "}}}
 
 "{{{ ListToggle
@@ -533,12 +548,6 @@ let g:lt_height = 10
 "{{{ Eclim
 
 let g:EclimCompletionMethod = 'omnifunc'
-
-" Launch eclim when opening a java file, only when it is not running yet
-" autocmd FileType java silent !if [[ `ps x | grep 'org\.eclim\.application' | grep -v 'grep'` == '' ]]; then /usr/lib/eclipse/eclimd > /dev/null & fi
-
-" Create eclim project if absent when opening file
-"autocmd FileType java silent :call eclimproject#CreateEclimProject()
 
 augroup eclim
     autocmd!
@@ -726,7 +735,6 @@ let g:python_highlight_all = 1
 "{{{ vim-markdown
 
 let g:vim_markdown_math = 1
-" autocmd FileType markdown set conceallevel=2
 
 "}}}
 
@@ -1017,24 +1025,29 @@ command! ToggleExtraLinters call ToggleExtraLinters()
 
 " Do not use wordmotion in visual selection (for vim-expand-region)
 let g:wordmotion_mappings = {
-            \ 'w' : 'w',
-            \ 'b' : 'b',
-            \ 'e' : 'e',
-            \ 'ge' : 'ge',
-            \ 'aw' : 'a<M-w>',
-            \ 'iw' : 'i<M-w>',
-            \ '<C-R><C-W>' : '<C-R><C-W>'
+            \   'w' : 'w',
+            \   'b' : 'b',
+            \   'e' : 'e',
+            \   'ge' : 'ge',
+            \   'aw' : 'a<M-w>',
+            \   'iw' : 'i<M-w>',
+            \   '<C-R><C-W>' : '<C-R><C-W>'
             \ }
 
 "}}}
 
 "{{{ vim-better-whitespace
 
-let g:better_whitespace_filetypes_blacklist = ['diff', 'gitcommit', 'unite', 'qf', 'help']
 let g:show_spaces_that_precede_tabs = 1
+let g:better_whitespace_filetypes_blacklist = [
+            \   'diff',
+            \   'gitcommit',
+            \   'unite',
+            \   'qf',
+            \   'help',
+            \ ]
 
 "}}}
-
 
 "{{{ editorconfig-vim
 
