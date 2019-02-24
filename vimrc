@@ -135,6 +135,9 @@ augroup buffer_auto
 
     " Jump to error from quickfix window with <cr>
     autocmd FileType qf nmap <buffer> <cr> :.ll<cr>:lclose<cr>
+
+    " Close help and quickfix with q
+    autocmd FileType help,qf nmap <buffer> q :q<cr>
 augroup END
 
 " Views
