@@ -263,6 +263,14 @@ augroup END
 
 "{{{ Motion
 
+" Map to [ and ]
+nmap ò [
+nmap à ]
+omap ò [
+omap à ]
+xmap ò [
+xmap à ]
+
 augroup motion
     autocmd!
 
@@ -502,10 +510,6 @@ augroup ycm
     " Goto declaration/definition
     autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g <silent> <leader><g
     autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g :YcmCompleter GoTo<cr>
-
-    " Goto next/prev warning/error
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><n :lnext<cr>
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><N :lprevious<cr>
 
     " Commands
     autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><f :YcmCompleter FixIt<cr>
@@ -761,8 +765,8 @@ highlight GitGutterAdd ctermbg=black ctermfg=green
 highlight GitGutterChange ctermbg=black ctermfg=yellow
 highlight GitGutterDelete ctermbg=black ctermfg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
-nmap <leader>hn <Plug>GitGutterNextHunk
-nmap <leader>hN <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 
 augroup gitgutter
     autocmd!
