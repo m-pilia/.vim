@@ -1010,21 +1010,7 @@ let g:ale_python_mypy_options = '-ignore-missing-imports'
 let g:ale_alex_executable='alexjs'
 
 " Toggle extra linters
-function! ToggleExtraLinters()
-    if !has_key(g:ale_extra_linters, &filetype)
-        return
-    endif
-    for linter in g:ale_extra_linters[&filetype]
-        let l:i = index(g:ale_linters[&filetype], linter)
-        if l:i >= 0
-            call remove(g:ale_linters[&filetype], l:i)
-        else
-            call add(g:ale_linters[&filetype], linter)
-        endif
-    endfor
-endfunction
-
-command! ToggleExtraLinters call ToggleExtraLinters()
+command! ToggleExtraLinters call aux#toggle_extra_linters()
 
 "}}}
 
@@ -1059,5 +1045,21 @@ let g:better_whitespace_filetypes_blacklist = [
 "{{{ editorconfig-vim
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+"}}}
+
+"{{{ vim-lsp
+
+if executable('cquery')
+    augroup vim_lsp
+        autocmd User lsp_setup call lsp#register_server({
+                    \ 'name': 'cquery',
+                    \ 'cmd': {server_info -> ['cquery']},
+                    \ 'root_uri': {server_info -> aux#find_root('compile_commands.json')},
+                    \ 'initialization_options': {'cacheDirectory': '/tmp/cquery/cache'},
+                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+                    \ })
+    augroup END
+endif
 
 "}}}
