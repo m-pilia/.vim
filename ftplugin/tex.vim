@@ -1,3 +1,6 @@
+" Tex file flavor
+let g:tex_flavor = 'latex'
+
 " Match dollar signs
 let b:AutoPairs = g:AutoPairs
 let b:AutoPairs['$'] = '$'

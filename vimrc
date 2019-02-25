@@ -133,9 +133,6 @@ augroup buffer_auto
     " .cuh extension for CUDA headers
     autocmd BufRead,BufNewFile *.cuh setlocal filetype=cuda
 
-    " Jump to error from quickfix window with <cr>
-    autocmd FileType qf nmap <buffer> <cr> :.ll<cr>:lclose<cr>
-
     " Close help and quickfix with q
     autocmd FileType help,qf nmap <buffer> q :q<cr>
 augroup END
@@ -173,9 +170,6 @@ set undoreload=10000        " number of lines to save for undo
 " Time (ms) between automatic updates
 set updatetime=200
 
-" Tex file flavor
-let g:tex_flavor = 'latex'
-
 "}}}
 
 "{{{ Indent
@@ -184,7 +178,7 @@ let g:tex_flavor = 'latex'
 set textwidth=2000
 
 " Set different text width inside comment regions
-function SetCommentWidth(re)
+function! SetCommentWidth(re) abort
     let l:winview = winsaveview()
     let l:region = synIDattr(synID(line('.'), col('.'), 0), 'name')
     if match(region, a:re) >= 0
@@ -374,7 +368,7 @@ endtry
 
 " Don't close window when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt() abort
     let l:currentBufNum = bufnr('%')
     let l:alternateBufNum = bufnr('#')
 
@@ -437,7 +431,7 @@ vmap <Leader>P "+P
 map <leader>pp :setlocal paste!<cr>
 
 " auto switch paste mode when pasting (requires +clipboard)
-function AutoPaste()
+function! AutoPaste() abort
     let nopaste = 0
 	if (!&paste)
 		set paste
@@ -556,23 +550,6 @@ let g:lt_height = 10
 
 let g:EclimCompletionMethod = 'omnifunc'
 
-augroup eclim
-    autocmd!
-
-    " map shortcut for import
-    autocmd FileType java nnoremap <leader>i <Esc>:JavaImport<cr>
-    " map shortcut to suggest a correction
-    autocmd FileType java nnoremap <leader>k :JavaCorrect<cr>
-    " override weird tab behaviour
-    autocmd FileType java silent inoremap <tab> <tab>
-augroup END
-
-"}}}
-
-"{{{ ConqueTerm
-
-let g:ConqueTerm_StartMessages = 0
-
 "}}}
 
 "{{{ Screenshell
@@ -623,53 +600,6 @@ augroup END
 
 "}}}
 
-"{{{ neco-ghc
-
-" Disable haskell-vim omnifunc
-let g:haskellmode_completion_ghc = 0
-let g:necoghc_enable_detailed_browse = 1
-let g:haddock_browser='/usr/bin/chromium'
-
-augroup neco_ghc
-    autocmd!
-    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-augroup END
-
-"}}}
-
-"{{{ ghc-mod
-
-map <silent> tw :w<cr>:GhcModTypeInsert<CR>
-map <silent> ts :w<cr>:GhcModSplitFunCase<CR>
-map <silent> tq :w<cr>:GhcModType<CR>
-map <silent> te :w<cr>:GhcModTypeClear<CR>
-
-"}}}
-
-"{{{ haskell-vim
-
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-
-" haskell syntax highlight
-let hs_highlight_boolean = 1
-let hs_highlight_debug = 1
-
-"}}}
-
-"{{{ tabularize
-
-let g:haskell_tabular = 1
-vmap a= :Tabularize /=<CR>
-vmap a; :Tabularize /::<CR>
-vmap a- :Tabularize /-><CR>
-
-"}}}
-
 "{{{ tcomment
 
 let g:tcomment#rstrip_on_uncomment = 0
@@ -700,16 +630,6 @@ call expand_region#custom_text_objects({
             \ 'af': 1,
             \ 'if': 1,
             \ })
-
-"}}}
-
-"{{{ vim-go
-
-augroup vim_go
-    autocmd!
-    autocmd FileType go nmap <leader>b  <Plug>(go-build)
-    autocmd FileType go nmap <leader>r  <Plug>(go-run)
-augroup END
 
 "}}}
 
@@ -767,11 +687,6 @@ highlight GitGutterDelete ctermbg=black ctermfg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
-
-augroup gitgutter
-    autocmd!
-    autocmd FileType c,cpp,cuda,python let g:gitgutter_enabled = 0
-augroup END
 
 "}}}
 
@@ -949,15 +864,6 @@ let g:jedi#documentation_command = 'K'
 let g:jedi#usages_command = '<leader>n'
 let g:jedi#completions_command = '<C-Space>'
 let g:jedi#rename_command = '<leader>r'
-
-" Insert breakpoint
-
-augroup jedi_vim
-    autocmd!
-    autocmd FileType python nnoremap
-                \ <leader>b <s-o>import pdb; pdb.set_trace()
-                \  # XXX BREAKPOINT<esc>
-augroup END
 
 "}}}
 
