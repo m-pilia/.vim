@@ -485,6 +485,11 @@ let g:UltiSnipsUsePythonVersion = 2 " YCM compatibility
 
 "{{{ YouCompleteMe
 
+" Do not load YCM in vimdiff
+if &diff
+    let g:loaded_youcompleteme = 1
+endif
+
 " Use ultisnips suggestions
 let g:ycm_use_ultisnips_completer = 1
 
@@ -868,6 +873,11 @@ let g:jedi#rename_command = '<leader>r'
 "}}}
 
 "{{{ ale
+
+" Do not load ALE in vimdiff
+if &diff
+    let g:ale_enabled = 0
+endif
 
 let g:ale_linters = {
             \   'tex': ['chktex'],
