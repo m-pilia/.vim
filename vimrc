@@ -559,7 +559,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 
 "{{{ Screenshell
 
-" Chose terminal multiplexer ('GnuScreen' or 'Tmux')
+" Choose terminal multiplexer ('GnuScreen' or 'Tmux')
 let g:ScreenImpl = 'GnuScreen'
 
 " Create shell session into a new terminal window
@@ -571,6 +571,23 @@ let g:ScreenShellHeight = 16
 " Set initial focus ('vim' or 'shell')
 let g:ScreenShellInitialFocus = 'vim'
 let g:ScreenShellTerminal = 'konsole'
+
+let g:screenshell_commands = {
+            \ 'erlang': 'erl',
+            \ 'haskell': 'ghci -cpp',
+            \ 'java': 'jshell',
+            \ 'javascript': 'js52',
+            \ 'julia': 'julia',
+            \ 'matlab': '_matlab -nodesktop',
+            \ 'ocaml': 'rlwrap ocaml',
+            \ 'python': 'python',
+            \ 'racket': 'racket',
+            \ 'sml': 'rlwrap poly',
+            \ }
+
+nnoremap <C-c><C-x> :call aux#screenshell_quit()<cr>
+nnoremap <C-c><C-c> :call aux#screenshell_call()<cr>
+vnoremap <C-c><C-c> :call aux#screenshell_send()<cr>gv
 
 "}}}
 

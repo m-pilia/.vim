@@ -24,3 +24,30 @@ endfunction
 function! aux#is_loclist() abort
     return getwininfo(win_getid())[0]['loclist']
 endfunction
+
+" Send current line if the shell is active, otherwise start it
+function! aux#screenshell_call() abort
+    if g:ScreenShellActive
+        call g:ScreenShellSend(trim(getline('.')))
+    else
+        if has_key(g:screenshell_commands, &filetype)
+            execute 'ScreenShell ' . g:screenshell_commands[&filetype]
+        else
+            ScreenShell
+        endif
+    endif
+endfunction
+
+" Send visual selection buffer to the shell
+function! aux#screenshell_send() abort
+    if g:ScreenShellActive
+        call g:ScreenShellSend(@*)
+    endif
+endfunction
+
+" Quit the shell
+function! aux#screenshell_quit() abort
+    if g:ScreenShellActive
+        ScreenQuit
+    endif
+endfunction
