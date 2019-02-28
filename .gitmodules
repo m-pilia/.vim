@@ -113,11 +113,6 @@
 	url = https://github.com/tomtom/tlib_vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-twiddle-case"]
-	path = bundle/vim-twiddle-case
-	url = https://github.com/m-pilia/vim-twiddle-case.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git

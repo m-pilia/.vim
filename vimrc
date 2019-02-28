@@ -178,21 +178,11 @@ set updatetime=200
 set textwidth=2000
 
 " Set different text width inside comment regions
-function! SetCommentWidth(re) abort
-    let l:winview = winsaveview()
-    let l:region = synIDattr(synID(line('.'), col('.'), 0), 'name')
-    if match(region, a:re) >= 0
-        setlocal textwidth=72
-    else
-        setlocal textwidth=120
-    endif
-    call winrestview(l:winview)
-endfunction
-augroup CommentWidth <buffer>
+augroup comment_width <buffer>
     autocmd!
     autocmd FileType c,cpp,cuda,java,python
                 \ autocmd CursorMoved,CursorMovedI <buffer>
-                \ :call SetCommentWidth('\v(Comment|doxygen)')
+                \ :call aux#set_text_width('\v(Comment|doxygen)', 72, 120)
 augroup END
 
 " Automatic line break
@@ -346,12 +336,12 @@ nmap <silent> <Right> :wincmd l<CR>
 
 " Move between tabs
 " (use `sed -n l` to check how input is mapped into terminal)
-imap <Esc>[1;3C <esc>:tabprevious<cr>
-vmap <Esc>[1;3C <esc>:tabprevious<cr>
-map <Esc>[1;3C :tabprevious<cr>
-imap <Esc>[1;3D <esc>:tabnext<cr>
-vmap <Esc>[1;3D <esc>:tabnext<cr>
-nmap <Esc>[1;3D :tabnext<cr>
+imap <Esc>[1;3D <esc>:tabprevious<cr>
+vmap <Esc>[1;3D <esc>:tabprevious<cr>
+map  <Esc>[1;3D :tabprevious<cr>
+imap <Esc>[1;3C <esc>:tabnext<cr>
+vmap <Esc>[1;3C <esc>:tabnext<cr>
+nmap <Esc>[1;3C :tabnext<cr>
 
 " Open a new tab with the current buffer's path
 map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
@@ -359,33 +349,11 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers
-try
-    set switchbuf=useopen,usetab,newtab
-    set showtabline=2
-catch
-endtry
+" Behavior when switching between buffers
+set switchbuf=useopen,usetab,newtab
 
-" Don't close window when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt() abort
-    let l:currentBufNum = bufnr('%')
-    let l:alternateBufNum = bufnr('#')
-
-    if buflisted(l:alternateBufNum)
-        buffer #
-    else
-        bnext
-    endif
-
-    if bufnr('%') == l:currentBufNum
-        new
-    endif
-
-    if buflisted(l:currentBufNum)
-        execute('bdelete! '.l:currentBufNum)
-    endif
-endfunction
+" Always show tab line
+set showtabline=2
 
 "}}}
 
@@ -431,18 +399,7 @@ vmap <Leader>P "+P
 map <leader>pp :setlocal paste!<cr>
 
 " auto switch paste mode when pasting (requires +clipboard)
-function! AutoPaste() abort
-    let nopaste = 0
-	if (!&paste)
-		set paste
-        let nopaste = 1
-    endif
-    normal! "+p
-	if nopaste
-		set nopaste
-    endif
-endfunction
-inoremap <C-v>	<space><backspace><Esc>:call AutoPaste()<cr>a
+inoremap <silent> <C-v> <space><backspace><Esc>:call aux#auto_paste()<cr>a
 
 " Move current line up and down
 nnoremap <C-S-j> :m .+1<CR>==
@@ -453,7 +410,10 @@ vnoremap <C-S-j> :m '>+1<CR>gv=gv
 vnoremap <C-S-k> :m '<-2<CR>gv=gv
 
 " Twiddle case
-vnoremap ~ y:call setreg('', twiddlecase#TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+vnoremap <silent> ~ :call aux#twiddle_case()<cr>
+
+" Convert between forward and backslash in visual selection
+vnoremap <silent> <leader>\ :call aux#convert_path()<cr>
 
 " F5 in insert mode
 imap <F5> <esc><F5>

@@ -51,3 +51,51 @@ function! aux#screenshell_quit() abort
         ScreenQuit
     endif
 endfunction
+
+" Toggle between forward slash and backslash in visual selection
+function! aux#convert_path() abort
+    if match(@*, '/') >= 0
+        execute 's:\%V/:\\:g'
+    elseif match(@*, '\') >= 0
+        execute ':s:\%V\\:/:g'
+    endif
+    normal! gv
+endfunction
+
+" Auto switch paste mode when pasting (requires +clipboard)
+function! aux#auto_paste() abort
+    let l:nopaste = 0
+    if (!&paste)
+        set paste
+        let l:nopaste = 1
+    endif
+    normal! "+p
+    if nopaste
+        set nopaste
+    endif
+endfunction
+
+" Commute between upper, lower, and title case in visual selection
+function! aux#twiddle_case() abort
+    let l:selection = @*
+    if l:selection ==# toupper(l:selection)
+        normal! gvu
+    elseif l:selection ==# tolower(l:selection)
+        execute ':s:\%V\v(<\w+>):\u\1:g'
+    else
+        normal! gvU
+    endif
+    normal! gv
+endfunction
+
+" Set different text width according to the syntax region
+function! aux#set_text_width(re, tw, cw) abort
+    let l:winview = winsaveview()
+    let l:region = synIDattr(synID(line('.'), col('.'), 0), 'name')
+    if match(l:region, a:re) >= 0
+        execute 'setlocal textwidth=' . a:tw
+    else
+        execute 'setlocal textwidth=' . a:cw
+    endif
+    call winrestview(l:winview)
+endfunction
