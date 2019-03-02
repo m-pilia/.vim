@@ -1,8 +1,18 @@
-" Find LSP root given a marker file
-function! aux#find_root(mark) abort
+" Find LSP root given a list of marker files
+function! aux#find_root(markers) abort
     let l:path = lsp#utils#get_buffer_path()
-    let l:parent = lsp#utils#find_nearest_parent_file_directory(l:path, a:mark)
-    return lsp#utils#path_to_uri(l:parent)
+    for l:m in a:markers
+        let l:uri = lsp#utils#find_nearest_parent_file_directory(l:path, l:m)
+        if l:uri !=# ''
+            return lsp#utils#path_to_uri(l:uri)
+        endif
+    endfor
+    return ''
+endfunction
+
+" Find the root of a CQuery project
+function! aux#find_cquery_root() abort
+    return aux#find_root(['compile_commands.json', '.cquery'])
 endfunction
 
 " Toggle extra ALE linters

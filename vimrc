@@ -133,8 +133,8 @@ augroup buffer_auto
     " .cuh extension for CUDA headers
     autocmd BufRead,BufNewFile *.cuh setlocal filetype=cuda
 
-    " Close help and quickfix with q
-    autocmd FileType help,qf nmap <buffer> q :q<cr>
+    " Close some windows with q
+    autocmd FileType help,qf,markdown.lsp-hover nmap <buffer> q :q<cr>
 augroup END
 
 " Views
@@ -350,7 +350,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Behavior when switching between buffers
-set switchbuf=useopen,usetab,newtab
+set switchbuf=useopen
 
 " Always show tab line
 set showtabline=2
@@ -463,21 +463,14 @@ let g:ycm_key_list_select_completion = ['<Tab>']
 " Pass diagnostic data to vim
 let g:ycm_always_populate_location_list = 1
 
-augroup ycm
-    autocmd!
-
-    " Goto declaration/definition
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g <silent> <leader><g
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><g :YcmCompleter GoTo<cr>
-
-    " Commands
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><f :YcmCompleter FixIt<cr>
-    autocmd FileType cs,objc,objcpp nnoremap <leader><r :YcmCompleter RefactorRename
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><d :YcmCompleter GetDoc<cr>
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><p :YcmCompleter GetParent<cr>
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><t :YcmCompleter GetType<cr>
-    autocmd FileType c,cpp,python,cs,objc,objcpp nnoremap <leader><e :YcmShowDetailedDiagnostic<cr>
-augroup END
+nnoremap <leader><g <silent> <leader><g
+nnoremap <leader><g :YcmCompleter GoTo<cr>
+nnoremap <leader><f :YcmCompleter FixIt<cr>
+nnoremap <leader><r :YcmCompleter RefactorRename<cr>
+nnoremap <leader><d :YcmCompleter GetDoc<cr>
+nnoremap <leader><p :YcmCompleter GetParent<cr>
+nnoremap <leader><t :YcmCompleter GetType<cr>
+nnoremap <leader><e :YcmShowDetailedDiagnostic<cr>
 
 " File type blacklist
 let g:ycm_filetype_blacklist = {
@@ -943,16 +936,40 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 "{{{ vim-lsp
 
-if executable('cquery')
+let g:lsp_preview_keep_focus = 0
+
+nmap <leader>,ca <plug>(lsp-code-action)
+nmap <leader>,gD <plug>(lsp-declaration)
+nmap <leader>,gd <plug>(lsp-definition)
+nmap <leader>,ds <plug>(lsp-document-symbol)
+nmap <leader>,dd <plug>(lsp-document-diagnostics)
+nmap <leader>,h  <plug>(lsp-hover)
+nmap <leader>,e  <plug>(lsp-next-error)
+nmap <leader>,E  <plug>(lsp-previous-error)
+nmap <leader>,rf <plug>(lsp-references)
+nmap <leader>,r  <plug>(lsp-rename)
+nmap <leader>,ws <plug>(lsp-workspace-symbol)
+nmap <leader>,df <plug>(lsp-document-format)
+nmap <leader>,i  <plug>(lsp-implementation)
+nmap <leader>,td <plug>(lsp-type-definition)
+nmap <leader>,s  <plug>(lsp-status)
+
+if executable('cquery') && aux#find_cquery_root() !=# ''
+    let s:cquery_options = {'cacheDirectory': '/tmp/cquery/cache'}
     augroup vim_lsp
         autocmd User lsp_setup call lsp#register_server({
-                    \ 'name': 'cquery',
-                    \ 'cmd': {server_info -> ['cquery']},
-                    \ 'root_uri': {server_info -> aux#find_root('compile_commands.json')},
-                    \ 'initialization_options': {'cacheDirectory': '/tmp/cquery/cache'},
-                    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-                    \ })
+            \ 'name': 'cquery',
+            \ 'cmd': {server_info -> ['cquery']},
+            \ 'root_uri': {server_info -> aux#find_cquery_root()},
+            \ 'initialization_options': s:cquery_options,
+            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+            \ })
     augroup END
+
+    nnoremap <leader>,de :LspCqueryDerived<cr>
+    nnoremap <leader>,cc :LspCqueryCallers<cr>
+    nnoremap <leader>,b :LspCqueryBase<cr>
+    nnoremap <leader>,v :LspCqueryVars<cr>
 endif
 
 "}}}
