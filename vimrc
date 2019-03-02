@@ -954,22 +954,17 @@ nmap <leader>,i  <plug>(lsp-implementation)
 nmap <leader>,td <plug>(lsp-type-definition)
 nmap <leader>,s  <plug>(lsp-status)
 
-if executable('cquery') && aux#find_cquery_root() !=# ''
-    let s:cquery_options = {'cacheDirectory': '/tmp/cquery/cache'}
+if executable('ccls') && aux#find_ccls_root() !=# ''
+    let s:ccls_options = {'cacheDirectory': '/tmp/ccls/cache'}
     augroup vim_lsp
         autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'cquery',
-            \ 'cmd': {server_info -> ['cquery']},
-            \ 'root_uri': {server_info -> aux#find_cquery_root()},
-            \ 'initialization_options': s:cquery_options,
+            \ 'name': 'ccls',
+            \ 'cmd': {server_info -> ['ccls']},
+            \ 'root_uri': {server_info -> aux#find_ccls_root()},
+            \ 'initialization_options': s:ccls_options,
             \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
             \ })
     augroup END
-
-    nnoremap <leader>,de :LspCqueryDerived<cr>
-    nnoremap <leader>,cc :LspCqueryCallers<cr>
-    nnoremap <leader>,b :LspCqueryBase<cr>
-    nnoremap <leader>,v :LspCqueryVars<cr>
 endif
 
 "}}}

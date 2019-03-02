@@ -10,9 +10,9 @@ function! aux#find_root(markers) abort
     return ''
 endfunction
 
-" Find the root of a CQuery project
-function! aux#find_cquery_root() abort
-    return aux#find_root(['compile_commands.json', '.cquery'])
+" Find the root of a ccls project
+function! aux#find_ccls_root() abort
+    return aux#find_root(['compile_commands.json', '.ccls'])
 endfunction
 
 " Toggle extra ALE linters

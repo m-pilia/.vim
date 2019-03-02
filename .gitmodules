@@ -428,8 +428,3 @@
 	url = https://github.com/prabirshrestha/vim-lsp.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-lsp-cquery"]
-	path = bundle/vim-lsp-cquery
-	url = https://github.com/pdavydov108/vim-lsp-cquery.git
-	ignore = dirty
-	branch = master
