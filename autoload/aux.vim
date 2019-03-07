@@ -53,6 +53,7 @@ function! aux#screenshell_send() abort
     if g:ScreenShellActive
         call g:ScreenShellSend(@*)
     endif
+    normal! gv
 endfunction
 
 " Quit the shell

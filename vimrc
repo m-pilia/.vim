@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 "{{{ Fundamentals
 
 " Leader
@@ -44,8 +47,7 @@ if has('gui_running')
     set guitablabel=%M\ %t
 endif
 
-" Encoding and file type
-set encoding=utf8
+" File EOL formats
 set fileformats=unix,dos,mac
 
 " Doxygen highlighting
@@ -402,12 +404,12 @@ map <leader>pp :setlocal paste!<cr>
 inoremap <silent> <C-v> <space><backspace><Esc>:call aux#auto_paste()<cr>a
 
 " Move current line up and down
-nnoremap <C-S-j> :m .+1<CR>==
-nnoremap <C-S-k> :m .-2<CR>==
-inoremap <C-S-j> <Esc>:m .+1<CR>==gi
-inoremap <C-S-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-S-j> :m '>+1<CR>gv=gv
-vnoremap <C-S-k> :m '<-2<CR>gv=gv
+nnoremap <silent> <C-S-j> :m .+1<CR>==
+nnoremap <silent> <C-S-k> :m .-2<CR>==
+inoremap <silent> <C-S-j> <Esc>:m .+1<CR>==gi
+inoremap <silent> <C-S-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <C-S-j> :m '>+1<CR>gv=gv
+vnoremap <silent> <C-S-k> :m '<-2<CR>gv=gv
 
 " Twiddle case
 vnoremap <silent> ~ :call aux#twiddle_case()<cr>
@@ -538,9 +540,9 @@ let g:screenshell_commands = {
             \ 'sml': 'rlwrap poly',
             \ }
 
-nnoremap <C-c><C-x> :call aux#screenshell_quit()<cr>
-nnoremap <C-c><C-c> :call aux#screenshell_call()<cr>
-vnoremap <C-c><C-c> :call aux#screenshell_send()<cr>gv
+nnoremap <silent> <C-c><C-x> :call aux#screenshell_quit()<cr>
+nnoremap <silent> <C-c><C-c> :call aux#screenshell_call()<cr>
+vnoremap <silent> <C-c><C-c> :call aux#screenshell_send()<cr>
 
 "}}}
 
