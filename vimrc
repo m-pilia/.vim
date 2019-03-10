@@ -214,35 +214,12 @@ setlocal foldmethod=syntax " Careful, may be slow
 augroup indentation
     autocmd!
 
-    " Text width
-    autocmd FileType tex,markdown setlocal textwidth=79
-
     " Short tab width for functional languages and some markup languages
     autocmd FileType ocaml,sml,racket,haskell,yaml setlocal shiftwidth=2
     autocmd FileType ocaml,sml,racket,haskell,yaml setlocal tabstop=2
 
-    " Don't expand tab in bash
-    autocmd FileType sh setlocal noexpandtab
-
-    " Disable cindent (which removes Python comment indent)
-    autocmd FileType python set cindent
-
-    " Pseudoindent wrapped lines
-    autocmd FileType tex :setlocal showbreak=\ \ \ \ |
-
     " Wrap lines in diff
     autocmd FilterWritePre * if &diff | setlocal wrap< | endif
-
-    " Fold for viml
-    autocmd Filetype vim setlocal foldmethod=marker
-
-    " PHP settings
-    " enable html snippets in php files
-    autocmd BufRead,BufNewFile *.php set ft=php.html
-    " smartindent for php files
-    autocmd BufRead,BufNewFile *.php set smartindent
-    " don't align php tags at line beginning
-    autocmd FileType php.html setlocal indentexpr=
 augroup END
 
 "}}}
