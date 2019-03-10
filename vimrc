@@ -136,7 +136,7 @@ augroup buffer_auto
     autocmd BufRead,BufNewFile *.cuh setlocal filetype=cuda
 
     " Close some windows with q
-    autocmd FileType help,qf,markdown.lsp-hover nmap <buffer> q :q<cr>
+    autocmd FileType help,qf,markdown.lsp-hover nmap <buffer> <silent> q :q<cr>
 augroup END
 
 " Views
