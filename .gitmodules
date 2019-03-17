@@ -433,3 +433,8 @@
 	url = https://github.com/Shougo/neco-vim.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/vim-lsp-ccls"]
+	path = bundle/vim-lsp-ccls
+	url = git@github.com:m-pilia/vim-lsp-ccls.git
+	ignore = dirty
+	branch = master
