@@ -467,6 +467,7 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_semantic_triggers = {
       \ 'haskell' : ['.'],
       \ 'typescript' : ['.'],
+      \ 'vim': ['.', ':', '(']
       \ }
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
