@@ -172,6 +172,9 @@ set undoreload=10000        " number of lines to save for undo
 " Time (ms) between automatic updates
 set updatetime=200
 
+" Close buffer without closing window
+command! Bd b# | bd #
+
 "}}}
 
 "{{{ Indent
