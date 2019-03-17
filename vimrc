@@ -429,6 +429,9 @@ if &diff
     let g:loaded_youcompleteme = 1
 endif
 
+" Use clangd
+let g:ycm_use_clangd = 0
+
 " Use ultisnips suggestions
 let g:ycm_use_ultisnips_completer = 1
 
