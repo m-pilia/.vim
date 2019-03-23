@@ -922,6 +922,7 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 "{{{ vim-lsp
 
+let g:lsp_diagnostics_enabled = 0
 let g:lsp_preview_keep_focus = 0
 
 nmap <leader>,ca <plug>(lsp-code-action)
