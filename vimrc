@@ -954,4 +954,14 @@ if executable('ccls') && aux#find_ccls_root() !=# ''
     augroup END
 endif
 
+if executable('clangd')
+    augroup vim_lsp
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'clangd',
+            \ 'cmd': {server_info -> ['clangd']},
+            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+            \ })
+    augroup END
+endif
+
 "}}}
