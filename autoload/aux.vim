@@ -1,20 +1,3 @@
-" Find LSP root given a list of marker files
-function! aux#find_root(markers) abort
-    let l:path = lsp#utils#get_buffer_path()
-    for l:m in a:markers
-        let l:uri = lsp#utils#find_nearest_parent_file_directory(l:path, l:m)
-        if l:uri !=# ''
-            return lsp#utils#path_to_uri(l:uri)
-        endif
-    endfor
-    return ''
-endfunction
-
-" Find the root of a ccls project
-function! aux#find_ccls_root() abort
-    return aux#find_root(['compile_commands.json', '.ccls'])
-endfunction
-
 " Toggle extra ALE linters
 function! aux#toggle_extra_linters() abort
     if !has_key(g:ale_extra_linters, &filetype)

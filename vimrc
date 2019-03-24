@@ -941,27 +941,4 @@ nmap <leader>,i  <plug>(lsp-implementation)
 nmap <leader>,td <plug>(lsp-type-definition)
 nmap <leader>,s  <plug>(lsp-status)
 
-if executable('ccls') && aux#find_ccls_root() !=# ''
-    let s:ccls_options = {'cacheDirectory': '/tmp/ccls/cache'}
-    augroup vim_lsp
-        autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'ccls',
-            \ 'cmd': {server_info -> ['ccls']},
-            \ 'root_uri': {server_info -> aux#find_ccls_root()},
-            \ 'initialization_options': s:ccls_options,
-            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-            \ })
-    augroup END
-endif
-
-if executable('clangd')
-    augroup vim_lsp
-        autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'clangd',
-            \ 'cmd': {server_info -> ['clangd']},
-            \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-            \ })
-    augroup END
-endif
-
 "}}}
