@@ -365,6 +365,9 @@ set statusline+=%1*(%p%%)%*             " line percentage
 
 "{{{ Editing
 
+" Completion options
+set completeopt=menuone,noselect
+
 " Replace visual selection with yanked ("0P) and yanked or deleted (P) text
 vnoremap <leader>S "_d"0P
 vnoremap <leader>s "_dP
@@ -438,9 +441,6 @@ let g:ycm_use_clangd = 0
 " Use ultisnips suggestions
 let g:ycm_use_ultisnips_completer = 1
 
-" Disable preview on complete
-set completeopt-=preview
-
 " Completion keys
 let g:ycm_key_list_previous_completion = ['<S-Tab>']
 let g:ycm_key_list_select_completion = ['<Tab>']
@@ -456,6 +456,9 @@ nnoremap <leader><d :YcmCompleter GetDoc<cr>
 nnoremap <leader><p :YcmCompleter GetParent<cr>
 nnoremap <leader><t :YcmCompleter GetType<cr>
 nnoremap <leader><e :YcmShowDetailedDiagnostic<cr>
+
+" To not disable YCM on gitcommit files
+let g:ycm_filetype_specific_completion_to_disable = {}
 
 " File type blacklist
 let g:ycm_filetype_blacklist = {
@@ -473,7 +476,8 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_semantic_triggers = {
       \ 'haskell' : ['.'],
       \ 'typescript' : ['.'],
-      \ 'vim': ['.', ':', '(']
+      \ 'vim': ['.', ':', '('],
+      \ 'gitcommit': ['#'],
       \ }
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
