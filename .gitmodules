@@ -433,3 +433,13 @@
 	url = https://github.com/m-pilia/vim-lsp-ccls.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/vim-accordion"]
+	path = bundle/vim-accordion
+	url = https://github.com/mattboehm/vim-accordion.git
+	ignore = dirty
+	branch = master
+[submodule "bundle/vim-unstack"]
+	path = bundle/vim-unstack
+	url = https://github.com/mattboehm/vim-unstack.git
+	ignore = dirty
+	branch = master

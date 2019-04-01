@@ -946,3 +946,11 @@ nmap <leader>,td <plug>(lsp-type-definition)
 nmap <leader>,s  <plug>(lsp-status)
 
 "}}}
+
+"{{{ vim-unstack
+
+let g:unstack_populate_quickfix = 1
+nnoremap <silent> <F10> :UnstackFromClipboard<cr>
+
+"}}}
+
