@@ -273,11 +273,6 @@
 	url = https://github.com/itchyny/lightline.vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-lldb"]
-	path = bundle/vim-lldb
-	url = https://github.com/gilligan/vim-lldb.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/detectindent"]
 	path = bundle/detectindent
 	url = https://github.com/roryokane/detectindent.git
