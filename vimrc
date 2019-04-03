@@ -212,7 +212,7 @@ set wrap "Wrap lines
 
 " Fold settings
 set foldlevel=99
-setlocal foldmethod=syntax " Careful, may be slow
+set foldmethod=syntax " Careful, may be slow
 
 augroup indentation
     autocmd!
