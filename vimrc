@@ -950,6 +950,7 @@ nmap <leader>,s  <plug>(lsp-status)
 "{{{ vim-unstack
 
 let g:unstack_populate_quickfix = 1
+let g:unstack_mapkey = '<leader>u'
 nnoremap <silent> <F10> :UnstackFromClipboard<cr>
 
 "}}}
