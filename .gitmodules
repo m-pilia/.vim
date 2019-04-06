@@ -443,3 +443,8 @@
 	url = https://github.com/mattboehm/vim-unstack.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/vim-gh-complete"]
+	path = bundle/vim-gh-complete
+	url = https://github.com/m-pilia/vim-gh-complete.git
+	ignore = dirty
+	branch = master
