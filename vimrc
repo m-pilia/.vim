@@ -920,7 +920,11 @@ let g:better_whitespace_filetypes_blacklist = [
 
 "{{{ editorconfig-vim
 
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_exclude_patterns = [
+            \ 'fugitive://.*',
+            \ 'scp://.*',
+            \ '.*/.git/.*',
+            \ ]
 
 "}}}
 
