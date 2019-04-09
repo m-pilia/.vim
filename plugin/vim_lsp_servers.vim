@@ -16,7 +16,7 @@ function! s:find_ccls_root() abort
 endfunction
 
 if executable('ccls') && s:find_ccls_root() !=# ''
-    let s:ccls_options = {'cache': {'directory': '/tmp/ccls/cache'}}
+    let s:ccls_options = {'cache': {'directory': expand('~/.cache/ccls')}}
     augroup vim_lsp
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'ccls',
