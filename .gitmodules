@@ -193,11 +193,6 @@
 	url = https://github.com/plasticboy/vim-markdown
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-multiple-cursors"]
-	path = bundle/vim-multiple-cursors
-	url = https://github.com/terryma/vim-multiple-cursors
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-perl"]
 	path = bundle/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
