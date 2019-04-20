@@ -3,11 +3,6 @@
 	url = https://github.com/Valloric/ListToggle.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/YouCompleteMe"]
-	path = bundle/YouCompleteMe
-	url = https://github.com/Valloric/YouCompleteMe.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/auto-pairs"]
 	path = bundle/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs
@@ -33,19 +28,9 @@
 	url = https://github.com/junegunn/fzf.vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/ghcmod-vim"]
-	path = bundle/ghcmod-vim
-	url = https://github.com/eagletmt/ghcmod-vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/haskell-vim"]
 	path = bundle/haskell-vim
 	url = https://github.com/neovimhaskell/haskell-vim.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/haskellmode-vim"]
-	path = bundle/haskellmode-vim
-	url = https://github.com/lukerandall/haskellmode-vim.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/hexmode"]
@@ -56,16 +41,6 @@
 [submodule "bundle/julia-vim"]
 	path = bundle/julia-vim
 	url = https://github.com/JuliaLang/julia-vim.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/neco-ghc"]
-	path = bundle/neco-ghc
-	url = https://github.com/eagletmt/neco-ghc.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/nerdcommenter"]
-	path = bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/nerdtree-git-plugin"]
@@ -108,11 +83,6 @@
 	url = https://github.com/godlygeek/tabular.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/tlib_vim"]
-	path = bundle/tlib_vim
-	url = https://github.com/tomtom/tlib_vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
@@ -141,11 +111,6 @@
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/vim-erlang-omnicomplete"]
-	path = bundle/vim-erlang-omnicomplete
-	url = https://github.com/vim-erlang/vim-erlang-omnicomplete.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/vim-erlang-runtime"]
@@ -238,11 +203,6 @@
 	url = https://github.com/m-pilia/vim-vis.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vrod"]
-	path = bundle/vrod
-	url = https://github.com/MicahElliott/vrod.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-git"]
 	path = bundle/vim-git
 	url = https://github.com/tpope/vim-git.git
@@ -306,11 +266,6 @@
 [submodule "bundle/vim-python-pep8-indent"]
 	path = bundle/vim-python-pep8-indent
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/jedi-vim"]
-	path = bundle/jedi-vim
-	url = https://github.com/davidhalter/jedi-vim.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/ale"]
@@ -408,16 +363,6 @@
 	url = https://github.com/tpope/vim-unimpaired.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/async.vim"]
-	path = bundle/async.vim
-	url = https://github.com/prabirshrestha/async.vim.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/vim-lsp"]
-	path = bundle/vim-lsp
-	url = https://github.com/prabirshrestha/vim-lsp.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/neco-vim"]
 	path = bundle/neco-vim
 	url = https://github.com/Shougo/neco-vim.git
@@ -441,5 +386,10 @@
 [submodule "bundle/vim-gh-complete"]
 	path = bundle/vim-gh-complete
 	url = https://github.com/m-pilia/vim-gh-complete.git
+	ignore = dirty
+	branch = master
+[submodule "bundle/coc.nvim"]
+	path = bundle/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
 	ignore = dirty
 	branch = master

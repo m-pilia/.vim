@@ -428,75 +428,11 @@ let g:UltiSnipsUsePythonVersion = 2 " YCM compatibility
 
 "}}}
 
-"{{{ YouCompleteMe
-
-" Do not load YCM in vimdiff
-if &diff
-    let g:loaded_youcompleteme = 1
-endif
-
-" Use clangd
-let g:ycm_use_clangd = 0
-
-" Use ultisnips suggestions
-let g:ycm_use_ultisnips_completer = 1
-
-" Completion keys
-let g:ycm_key_list_previous_completion = ['<S-Tab>']
-let g:ycm_key_list_select_completion = ['<Tab>']
-
-" Pass diagnostic data to vim
-let g:ycm_always_populate_location_list = 1
-
-nnoremap <leader><g <silent> <leader><g
-nnoremap <leader><g :YcmCompleter GoTo<cr>
-nnoremap <leader><f :YcmCompleter FixIt<cr>
-nnoremap <leader><r :YcmCompleter RefactorRename<cr>
-nnoremap <leader><d :YcmCompleter GetDoc<cr>
-nnoremap <leader><p :YcmCompleter GetParent<cr>
-nnoremap <leader><t :YcmCompleter GetType<cr>
-nnoremap <leader><e :YcmShowDetailedDiagnostic<cr>
-
-" To not disable YCM on gitcommit files
-let g:ycm_filetype_specific_completion_to_disable = {}
-
-" File type blacklist
-let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'qf' : 1,
-      \ 'notes' : 1,
-      \ 'markdown' : 1,
-      \ 'unite' : 1,
-      \ 'text' : 1,
-      \ 'vimwiki' : 1,
-      \ 'pandoc' : 1,
-      \ 'infolog' : 1,
-      \ 'mail' : 1,
-      \ }
-let g:ycm_semantic_triggers = {
-      \ 'haskell' : ['.'],
-      \ 'typescript' : ['.'],
-      \ 'vim': ['.', ':', '('],
-      \ 'gitcommit': ['#'],
-      \ }
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
-
-" Omni completion
-set omnifunc=syntaxcomplete#Complete
-
-"}}}
-
 "{{{ ListToggle
 
 let g:lt_location_list_toggle_map = '<leader><l'
 let g:lt_quickfix_list_toggle_map = '<leader><q'
 let g:lt_height = 10
-
-"}}}
-
-"{{{ Eclim
-
-let g:EclimCompletionMethod = 'omnifunc'
 
 "}}}
 
@@ -670,8 +606,8 @@ let g:ctrlp_mruf_relative = 1
 "{{{ CtrlSF
 
 let g:ctrlsf_search_mode = 'async'
-let g:ctrlsf_auto_focus = { 'at': 'start' }
-let g:ctrlsf_selected_line_hl = 'op'
+let g:ctrlsf_auto_focus = {'at': 'start'}
+let g:ctrlsf_selected_line_hl = 'p'
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>N <Plug>CtrlSFVwordPath
 vmap     <C-F>n <Plug>CtrlSFVwordExec
@@ -703,13 +639,16 @@ let g:multi_cursor_exit_from_visual_mode = 0
 nnoremap <leader><tab> <plug>(fzf-maps-n)
 xnoremap <leader><tab> <plug>(fzf-maps-x)
 onoremap <leader><tab> <plug>(fzf-maps-o)
+
 " Insert mode completion
 inoremap <c-x><c-k> <plug>(fzf-complete-word)
 inoremap <c-x><c-f> <plug>(fzf-complete-path)
 inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
 inoremap <c-x><c-l> <plug>(fzf-complete-line)
+
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
 " Fuzzy search of commands
 nnoremap <leader>. :Commands<cr>
 
@@ -717,11 +656,12 @@ nnoremap <leader>. :Commands<cr>
 
 "{{{ Gutentags
 
+let g:gutentags_exclude_filetypes = ['c', 'cpp', 'cuda', 'python']
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 let g:gutentags_project_root = ['.git', '.hg', '.bzr']
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_trace = 0
-let g:gutentags_generate_on_empty_buffer = 1
+let g:gutentags_generate_on_empty_buffer = 0
 let g:gutentags_plus_switch = 1 " Change focus to quickfix window after search
 
 " Tag search
@@ -764,26 +704,6 @@ let g:lightline.tabline = {
             \ 'left': [ [ 'tabs' ] ],
             \ 'right': [],
             \ }
-
-"}}}
-
-"{{{ lldb
-
-nnoremap <leader>Lh :Lhide
-nnoremap <leader>LH :Lshow
-nnoremap <leader>La :Lattach
-nnoremap <leader>Lt :Ltarget
-let g:lldb_map_Ldetach = '<leader>Ld'
-let g:lldb_map_Lrun = '<leader>Lr'
-let g:lldb_map_Lstart = '<leader>LR'
-let g:lldb_map_Lcontinue = '<leader>Lc'
-let g:lldb_map_Lstep = '<leader>Ls'
-let g:lldb_map_Lnext = '<leader>Ln'
-let g:lldb_map_Lfinish = '<leader>Lf'
-let g:lldb_map_Lbreakpoint = '<leader>Lb'
-let g:lldb_map_Lprint = '<leader>Lp'
-let g:lldb_map_Lpo = '<leader>Lo'
-let g:lldb_map_LpO = '<leader>LO'
 
 "}}}
 
@@ -840,6 +760,8 @@ if &diff
 endif
 
 let g:ale_linters = {
+            \   'c': [],
+            \   'cpp': [],
             \   'tex': ['chktex'],
             \   'markdown': ['markdownlint', 'mdl', 'remark_lint'],
             \   'mediawiki': [],
@@ -876,10 +798,6 @@ nnoremap <leader>ag :ALEGoToDefinition<cr>
 nnoremap <leader>ah :ALEHover<cr>
 nnoremap <leader>as :ALESymbolSearch<cr>
 nnoremap <leader>af <Plug>(ale_fix)
-
-let g:ale_pattern_options = {
-            \ '\v.*\.(c|(cpp)|h|(hpp)|(hxx)|(inl)|(cu)|(cuh))$': {'ale_enabled': 0},
-            \ }
 
 let g:ale_gitcommit_gitlint_options = '--config ~/.config/gitlint'
 let g:ale_python_mypy_options = '-ignore-missing-imports'
@@ -928,26 +846,15 @@ let g:EditorConfig_exclude_patterns = [
 
 "}}}
 
-"{{{ vim-lsp
+"{{{ vim-lsp-ccls
 
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_preview_keep_focus = 0
+let g:lsp_ccls_close_on_jump = v:true
 
-nmap <leader>,ca <plug>(lsp-code-action)
-nmap <leader>,gD <plug>(lsp-declaration)
-nmap <leader>,gd <plug>(lsp-definition)
-nmap <leader>,ds <plug>(lsp-document-symbol)
-nmap <leader>,dd <plug>(lsp-document-diagnostics)
-nmap <leader>,h  <plug>(lsp-hover)
-nmap <leader>,e  <plug>(lsp-next-error)
-nmap <leader>,E  <plug>(lsp-previous-error)
-nmap <leader>,rf <plug>(lsp-references)
-nmap <leader>,r  <plug>(lsp-rename)
-nmap <leader>,ws <plug>(lsp-workspace-symbol)
-nmap <leader>,df <plug>(lsp-document-format)
-nmap <leader>,i  <plug>(lsp-implementation)
-nmap <leader>,td <plug>(lsp-type-definition)
-nmap <leader>,s  <plug>(lsp-status)
+nnoremap <leader>,ch :LspCclsCallHierarchy<cr>
+nnoremap <leader>,cH :LspCclsCalleeHierarchy<cr>
+nnoremap <leader>,bh :LspCclsBaseHierarchy<cr>
+nnoremap <leader>,dh :LspCclsDerivedHierarchy<cr>
+nnoremap <leader>,mh :LspCclsMemberHierarchy<cr>
 
 "}}}
 
@@ -956,6 +863,95 @@ nmap <leader>,s  <plug>(lsp-status)
 let g:unstack_populate_quickfix = 1
 let g:unstack_mapkey = '<leader>u'
 nnoremap <silent> <F10> :UnstackFromClipboard<cr>
+
+"}}}
+
+"{{{ coc
+
+" Do not load in vimdiff
+if &diff
+    let g:did_coc_loaded = 1
+endif
+
+call coc#add_extension('coc-snippets', 'coc-omni')
+
+let g:coc_user_config = {
+\   'coc': {
+\       'preferences': {
+\           'diagnostic': {
+\               'displayByAle': v:true,
+\           },
+\           'timeout': 500,
+\       },
+\       'source': {
+\           'omni': {
+\               'filetypes': ['vim'],
+\           },
+\       },
+\   },
+\   'languageserver': {
+\       'ccls': {
+\           'command': 'ccls',
+\           'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
+\           'rootPatterns': [
+\               '.ccls',
+\               'compile_commands.json',
+\               '.git/',
+\               '.hg/',
+\           ],
+\           'initializationOptions': {
+\               'cache': {
+\                   'directory': expand('~/.cache/ccls'),
+\               }
+\           }
+\       },
+\       'clangd': {
+\           'command': 'clangd',
+\           'filetypes': ['cuda'],
+\           'rootPatterns': [
+\               'compile_flags.txt',
+\               'compile_commands.json',
+\               '.git/',
+\               '.hg/',
+\           ],
+\       },
+\       'pyls': {
+\           'command': 'pyls',
+\           'filetypes': ['python'],
+\       },
+\   }
+\ }
+
+" Mappings
+nmap <leader>,ca <plug>(coc-code-action)
+vmap <leader>,ca <plug>(coc-code-action-selected)
+nmap <leader>,cl <plug>(coc-codelens-action)
+nmap <leader>,gD <plug>(coc-declaration)
+nmap <leader>,gd <plug>(coc-definition)
+nmap <leader>,h  :call CocAction('doHover')<cr>
+nmap <leader>,o  <plug>(coc-open-link)
+nmap <leader>,e  <plug>(coc-diagnostic-next)
+nmap <leader>,E  <plug>(coc-diagnostic-prev)
+nmap <leader>,rf <plug>(coc-references)
+nmap <leader>,r  <plug>(coc-rename)
+nmap <leader>,f  <plug>(coc-fix-current)
+nmap <leader>,df <plug>(coc-format)
+vmap <leader>,df <plug>(coc-format-selected)
+nmap <leader>,i  <plug>(coc-implementation)
+nmap <leader>,td <plug>(coc-type-definition)
+
+" Completion mappings
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <C-@> <C-x><C-o>
+
+" Reference highlight
+highlight link CocHighlightText CursorColumn
+augroup coc_highlight
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 
 "}}}
 
