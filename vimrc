@@ -765,10 +765,11 @@ endif
 let g:ale_linters = {
             \   'c': [],
             \   'cpp': [],
-            \   'tex': ['chktex'],
             \   'markdown': ['markdownlint', 'mdl', 'remark_lint'],
             \   'mediawiki': [],
             \   'python': ['pep8', 'flake8', 'pyre', 'mypy', 'bandit'],
+            \   'tex': ['chktex'],
+            \   'typescript': ['tslint', 'typecheck'],
             \ }
 
 let s:text_linters = ['alex', 'proselint', 'redpen', 'vale', 'write-good']
@@ -876,7 +877,12 @@ if &diff
     let g:did_coc_loaded = 1
 endif
 
-call coc#add_extension('coc-snippets', 'coc-omni')
+call coc#add_extension(
+\   'coc-json',
+\   'coc-omni',
+\   'coc-snippets',
+\   'coc-tsserver',
+\   )
 
 let g:coc_user_config = {
 \   'coc': {
@@ -891,6 +897,9 @@ let g:coc_user_config = {
 \               'filetypes': ['vim'],
 \           },
 \       },
+\   },
+\   'suggest': {
+\       'snippetIndicator': '►',
 \   },
 \   'languageserver': {
 \       'ccls': {
@@ -922,7 +931,16 @@ let g:coc_user_config = {
 \           'command': 'pyls',
 \           'filetypes': ['python'],
 \       },
-\   }
+\       'jls': {
+\           'command': 'jls',
+\           'filetypes': ['julia'],
+\       },
+\       'haskell': {
+\           'command': 'hie-wrapper',
+\           'rootPatterns': ['.stack.yaml', 'cabal.config', 'package.yaml'],
+\           'filetypes': ['hs', 'lhs', 'haskell'],
+\       },
+\   },
 \ }
 
 " Mappings
@@ -931,7 +949,7 @@ vmap <leader>,ca <plug>(coc-code-action-selected)
 nmap <leader>,cl <plug>(coc-codelens-action)
 nmap <leader>,gD <plug>(coc-declaration)
 nmap <leader>,gd <plug>(coc-definition)
-nmap <leader>,h  :call CocAction('doHover')<cr>
+nnoremap <leader>,h  :call CocActionAsync('doHover')<cr>
 nmap <leader>,o  <plug>(coc-open-link)
 nmap <leader>,e  <plug>(coc-diagnostic-next)
 nmap <leader>,E  <plug>(coc-diagnostic-prev)
@@ -946,14 +964,14 @@ nmap <leader>,td <plug>(coc-type-definition)
 " Completion mappings
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <C-@> <C-x><C-o>
 
 " Reference highlight
 highlight link CocHighlightText CursorColumn
 augroup coc_highlight
     autocmd!
-    autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd CursorMoved * silent call CocActionAsync('highlight')
+    autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
 augroup END
 
 "}}}
