@@ -175,6 +175,9 @@ set updatetime=200
 " Close buffer without closing window
 command! Bd b# | bd #
 
+" Diff options
+set diffopt+=vertical
+
 "}}}
 
 "{{{ Indent
