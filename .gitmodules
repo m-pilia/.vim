@@ -368,11 +368,6 @@
 	url = https://github.com/Shougo/neco-vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-lsp-ccls"]
-	path = bundle/vim-lsp-ccls
-	url = https://github.com/m-pilia/vim-lsp-ccls.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-accordion"]
 	path = bundle/vim-accordion
 	url = https://github.com/mattboehm/vim-accordion.git
@@ -392,4 +387,8 @@
 	path = bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
 	ignore = dirty
+	branch = master
+[submodule "bundle/vim-ccls"]
+	path = bundle/vim-ccls
+	url = https://github.com/m-pilia/vim-ccls
 	branch = master

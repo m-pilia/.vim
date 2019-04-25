@@ -850,15 +850,21 @@ let g:EditorConfig_exclude_patterns = [
 
 "}}}
 
-"{{{ vim-lsp-ccls
+"{{{ vim-ccls
 
-let g:lsp_ccls_close_on_jump = v:true
+let g:ccls_close_on_jump = v:true
 
-nnoremap <leader>,ch :LspCclsCallHierarchy<cr>
-nnoremap <leader>,cH :LspCclsCalleeHierarchy<cr>
-nnoremap <leader>,bh :LspCclsBaseHierarchy<cr>
-nnoremap <leader>,dh :LspCclsDerivedHierarchy<cr>
-nnoremap <leader>,mh :LspCclsMemberHierarchy<cr>
+nnoremap <leader>,cc :CclsCallers<cr>
+nnoremap <leader>,cC :CclsCallees<cr>
+nnoremap <leader>,bb :CclsBaseHierarchy<cr>
+nnoremap <leader>,dd :CclsDerivedHierarchy<cr>
+nnoremap <leader>,mm :CclsMemberHierarchy<cr>
+
+nnoremap <leader>,ch :CclsCallHierarchy<cr>
+nnoremap <leader>,cH :CclsCalleeHierarchy<cr>
+nnoremap <leader>,bh :CclsBaseHierarchy<cr>
+nnoremap <leader>,dh :CclsDerivedHierarchy<cr>
+nnoremap <leader>,mh :CclsMemberHierarchy<cr>
 
 "}}}
 
