@@ -284,23 +284,21 @@ vmap <Up> <nop>
 vmap <Down> <nop>
 vmap <Left> <nop>
 vmap <Right> <nop>
+map <Home> <nop>
+map <End> <nop>
+map <PageUp> <nop>
+map <PageDown> <nop>
+imap <Home> <nop>
+imap <End> <nop>
+imap <PageUp> <nop>
+imap <PageDown> <nop>
+vmap <Home> <nop>
+vmap <End> <nop>
+vmap <PageUp> <nop>
+vmap <PageDown> <nop>
 
 " CamelCase word backspace
 imap <silent> <C-w> <C-o>:set virtualedit+=onemore<cr><C-o>db<C-o>:set virtualedit-=onemore<cr>
-
-" Smart home/end keys
-nmap <silent><Home> :call smarthome#SmartHome('n')<cr>
-nmap <silent><End> :call smarthome#SmartEnd('n')<cr>
-imap <silent><Home> <C-r>=smarthome#SmartHome('i')<cr>
-imap <silent><End> <C-r>=smarthome#SmartEnd('i')<cr>
-vmap <silent><Home> <Esc>:call smarthome#SmartHome('v')<cr>
-vmap <silent><End> <Esc>:call smarthome#SmartEnd('v')<cr>
-
-" Shortcuts for <home> and <end>
-nmap <leader>h <Home>
-nmap <leader>l <End>
-vmap <leader>h <Home>
-vmap <leader>l <End>
 
 " Search for visual selection
 vnoremap <silent> * <esc>/<c-r>*<cr>

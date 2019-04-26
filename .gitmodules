@@ -68,11 +68,6 @@
 	url = https://github.com/ervandew/screen.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-smarthome"]
-	path = bundle/vim-smarthome
-	url = https://github.com/m-pilia/vim-smarthome.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/swapstrings"]
 	path = bundle/swapstrings
 	url = https://github.com/m-pilia/swapstrings.git
