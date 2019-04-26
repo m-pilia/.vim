@@ -406,6 +406,9 @@ vnoremap <silent> <leader>\ :call aux#convert_path()<cr>
 " F5 in insert mode
 imap <F5> <esc><F5>
 
+" Write as sudo
+cnoremap w!! w !sudo tee % >/dev/null
+
 "}}}
 
 "{{{ termdebug
