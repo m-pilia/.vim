@@ -427,8 +427,7 @@ nmap <leader>qe :Evaluate<cr>
 
 "{{{ Ultisnips
 
-let g:UltiSnipsExpandTrigger='<c-j>'
-let g:UltiSnipsUsePythonVersion = 2 " YCM compatibility
+let g:UltiSnipsExpandTrigger='<not_needed>'
 
 "}}}
 
@@ -970,6 +969,7 @@ nmap <leader>,td <plug>(coc-type-definition)
 " Completion mappings
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <c-j>   pumvisible() ? "\<C-y>" : ""
 inoremap <C-@> <C-x><C-o>
 
 " Reference highlight
