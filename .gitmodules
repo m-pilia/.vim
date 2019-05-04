@@ -348,11 +348,6 @@
 	url = https://github.com/leafgarland/typescript-vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/gutentags_plus"]
-	path = bundle/gutentags_plus
-	url = https://github.com/skywind3000/gutentags_plus.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-unimpaired"]
 	path = bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
