@@ -404,8 +404,8 @@ vnoremap <silent> ~ :call aux#twiddle_case()<cr>
 " Convert between forward and backslash in visual selection
 vnoremap <silent> <leader>\ :call aux#convert_path()<cr>
 
-" F5 in insert mode
-imap <F5> <esc><F5>
+" F5 to run make
+nnoremap <silent> <F5> :!make<cr>
 
 " Write as sudo
 cnoremap w!! w !sudo tee % >/dev/null
