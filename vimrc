@@ -66,8 +66,8 @@ augroup syntax_highlighting
     " Sync file from start (NOTE: slow but very precise)
     autocmd BufEnter * :syntax sync fromstart
 
-    " PKGBUILD syntax highlighting is horrible
-    autocmd FileType PKGBUILD setlocal ft=sh
+    " Suppress PKGBUILD.vim from Arch development tools
+    autocmd BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
 augroup END
 
 "}}}
