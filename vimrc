@@ -556,7 +556,7 @@ let NERDTreeQuitOnOpen = 1
 
 "{{{ vimtex
 
-let g:vimtex_complete_recursive_bib = 1
+let g:vimtex_complete_enabled = 0
 
 "}}}
 
@@ -898,7 +898,7 @@ let g:coc_user_config = {
 \           'diagnostic': {
 \               'displayByAle': v:true,
 \           },
-\           'timeout': 500,
+\           'timeout': 5000,
 \       },
 \       'source': {
 \           'omni': {
@@ -953,6 +953,11 @@ let g:coc_user_config = {
 \           'command': 'bash-language-server',
 \           'filetypes': ['sh'],
 \           'ignoredRootPaths': ['~'],
+\       },
+\       'latex': {
+\           'command': 'java',
+\           'args': ['-jar', '/usr/share/java/texlab/texlab.jar'],
+\           'filetypes': ['tex', 'plaintex', 'contex'],
 \       },
 \   },
 \ }
