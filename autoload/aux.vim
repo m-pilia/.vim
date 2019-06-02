@@ -93,3 +93,12 @@ function! aux#set_text_width(re, tw, cw) abort
     endif
     call winrestview(l:winview)
 endfunction
+
+" Get search query for the word under cursor
+function! aux#vimhelp() abort
+    let l:word = expand('<cword>')
+    if match(strpart(getline('.'), col('.')), '^\i*(') >= 0
+        let l:word .= '()'
+    endif
+    return l:word
+endfunction

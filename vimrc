@@ -338,6 +338,9 @@ set switchbuf=useopen
 " Always show tab line
 set showtabline=2
 
+" Show help for the word under cursor
+nnoremap <silent> <leader>h :help <c-r>=aux#vimhelp()<cr><cr>
+
 "}}}
 
 "{{{ Legacy status line
