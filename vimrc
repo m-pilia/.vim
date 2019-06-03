@@ -899,6 +899,7 @@ let g:coc_user_config = {
 \               'displayByAle': v:true,
 \           },
 \           'timeout': 5000,
+\           'noselect': v:true,
 \       },
 \       'source': {
 \           'omni': {
@@ -984,6 +985,7 @@ nmap <leader>,td <plug>(coc-type-definition)
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <c-j>   pumvisible() ? "\<C-y>" : ""
+inoremap <expr> <cr>    pumvisible() ? "\<C-x><C-e><cr>" : "\<cr>"
 inoremap <C-@> <C-x><C-o>
 
 " Reference highlight
