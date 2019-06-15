@@ -878,7 +878,7 @@ nnoremap <silent> <F10> :UnstackFromClipboard<cr>
 
 "}}}
 
-"{{{ coc
+"{{{ coc.nvim
 
 " Do not load in vimdiff
 if &diff
@@ -959,6 +959,11 @@ let g:coc_user_config = {
 \           'command': 'java',
 \           'args': ['-jar', '/usr/share/java/texlab/texlab.jar'],
 \           'filetypes': ['tex', 'plaintex', 'contex'],
+\       },
+\       'groovy': {
+\           'command': 'java',
+\           'args': ['-jar', '/usr/share/java/groovy-language-server/groovy-language-server-all.jar'],
+\           'filetypes': ['groovy'],
 \       },
 \   },
 \ }
