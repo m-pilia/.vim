@@ -208,16 +208,6 @@
 	url = https://github.com/itchyny/lightline.vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/detectindent"]
-	path = bundle/detectindent
-	url = https://github.com/roryokane/detectindent.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/vim-DetectSpellLang"]
-	path = bundle/vim-DetectSpellLang
-	url = https://github.com/Konfekt/vim-DetectSpellLang.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/FastFold"]
 	path = bundle/FastFold
 	url = https://github.com/Konfekt/FastFold.git

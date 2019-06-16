@@ -7,6 +7,9 @@ setlocal textwidth=79
 " Pseudoindent wrapped lines
 setlocal showbreak=\ \ \ \ |
 
+" Enable spell
+setlocal spell
+
 " Match dollar signs
 let b:AutoPairs = g:AutoPairs
 let b:AutoPairs['$'] = '$'
