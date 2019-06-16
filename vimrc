@@ -890,6 +890,7 @@ call coc#add_extension(
 \   'coc-omni',
 \   'coc-snippets',
 \   'coc-tsserver',
+\   'coc-vimlsp',
 \   )
 
 let g:coc_user_config = {
@@ -900,11 +901,6 @@ let g:coc_user_config = {
 \           },
 \           'timeout': 5000,
 \           'noselect': v:true,
-\       },
-\       'source': {
-\           'omni': {
-\               'filetypes': ['vim'],
-\           },
 \       },
 \   },
 \   'suggest': {

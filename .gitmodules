@@ -348,11 +348,6 @@
 	url = https://github.com/tpope/vim-unimpaired.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/neco-vim"]
-	path = bundle/neco-vim
-	url = https://github.com/Shougo/neco-vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-accordion"]
 	path = bundle/vim-accordion
 	url = https://github.com/mattboehm/vim-accordion.git
