@@ -34,8 +34,8 @@ command! SyntaxRegionName echo synIDattr(synID(line("."), col("."), 0), "name")
 " Color scheme
 colorscheme desert
 set background=dark
-highlight comment ctermfg=lightblue
-highlight constant ctermfg=red
+highlight comment ctermfg=lightblue guifg=lightblue
+highlight constant ctermfg=red guifg=red
 highlight SpellBad ctermfg=white ctermbg=darkred guifg=white guibg=darkred
 highlight SpellCap ctermfg=white ctermbg=brown guifg=white guibg=brown
 
@@ -113,9 +113,9 @@ set timeoutlen=500
 
 " Line numbers
 set number
-highlight LineNr ctermfg=grey
+highlight LineNr ctermfg=grey guifg=grey
 set cursorline
-hi CursorLine term=NONE cterm=NONE
+hi CursorLine term=NONE cterm=NONE guibg=NONE
 
 "}}}
 
@@ -349,9 +349,9 @@ nnoremap <silent> <leader>h :help <c-r>=aux#vimhelp()<cr><cr>
 set laststatus=2
 
 " colours for status line
-hi User1 ctermfg=darkgrey ctermbg=grey
-hi User2 ctermfg=darkgrey ctermbg=grey
-hi User3 ctermfg=darkmagenta ctermbg=grey
+hi User1 ctermfg=darkgrey ctermbg=grey guifg=darkgrey guibg=grey
+hi User2 ctermfg=darkgrey ctermbg=grey guifg=darkgrey guibg=grey
+hi User3 ctermfg=darkmagenta ctermbg=grey guifg=darkmagenta guibg=grey
 " Format the status line
 set statusline=%1*[%n]%*                " buffer number
 set statusline+=%1*\ %y%*               " filetype
@@ -588,10 +588,10 @@ let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 
 "{{{ vim-gitgutter
 
-highlight GitGutterAdd ctermbg=black ctermfg=green
-highlight GitGutterChange ctermbg=black ctermfg=yellow
-highlight GitGutterDelete ctermbg=black ctermfg=red
-highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow
+highlight GitGutterAdd ctermbg=black ctermfg=green guibg=black guifg=green
+highlight GitGutterChange ctermbg=black ctermfg=yellow guibg=black guifg=yellow
+highlight GitGutterDelete ctermbg=black ctermfg=red guibg=black guifg=red
+highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=yellow
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
