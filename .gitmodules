@@ -108,11 +108,6 @@
 	url = https://github.com/vim-erlang/vim-erlang-runtime.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-expand-region"]
-	path = bundle/vim-expand-region
-	url = https://github.com/terryma/vim-expand-region.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
@@ -263,11 +258,6 @@
 	url = https://github.com/kana/vim-textobj-user.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-textobj-line"]
-	path = bundle/vim-textobj-line
-	url = https://github.com/kana/vim-textobj-line.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-textobj-comment"]
 	path = bundle/vim-textobj-comment
 	url = https://github.com/glts/vim-textobj-comment.git
@@ -351,5 +341,20 @@
 [submodule "bundle/vim-pkgbuild"]
 	path = bundle/vim-pkgbuild
 	url = https://github.com/m-pilia/vim-pkgbuild.git
+	ignore = dirty
+	branch = master
+[submodule "bundle/vim-textobj-parameter"]
+	path = bundle/vim-textobj-parameter
+	url = https://github.com/sgur/vim-textobj-parameter.git
+	ignore = dirty
+	branch = master
+[submodule "bundle/vim-textobj-functioncall"]
+	path = bundle/vim-textobj-functioncall
+	url = https://github.com/machakann/vim-textobj-functioncall
+	ignore = dirty
+	branch = master
+[submodule "bundle/vim-textobj-python"]
+	path = bundle/vim-textobj-python
+	url = https://github.com/bps/vim-textobj-python.git
 	ignore = dirty
 	branch = master

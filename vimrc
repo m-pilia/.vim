@@ -510,33 +510,7 @@ augroup END
 "{{{ tcomment
 
 let g:tcomment#rstrip_on_uncomment = 0
-
-"}}}
-
-"{{{ expand_region
-
-vmap v <Plug>(expand_region_expand)
-vmap V <Plug>(expand_region_shrink)
-
-let g:expand_region_text_objects = {
-            \ 'iw' : 0,
-            \ 'iW' : 0,
-            \ 'i"' : 0,
-            \ 'i''': 0,
-            \ 'i]' : 1,
-            \ 'ib' : 1,
-            \ 'iB' : 1,
-            \ 'il' : 1,
-            \ 'ip' : 0,
-            \ 'ie' : 0,
-            \ }
-
-call expand_region#custom_text_objects({
-            \ 'ac': 1,
-            \ 'ic': 1,
-            \ 'af': 1,
-            \ 'if': 1,
-            \ })
+let g:tcomment_textobject_inlinecomment = 'Ic'
 
 "}}}
 
@@ -949,3 +923,30 @@ augroup END
 
 "}}}
 
+"{{{ vim-textobj-parameter
+
+let g:vim_textobj_parameter_mapping = 'a'
+
+"}}}
+
+"{{{ vim-textobj-function
+
+let g:textobj_function_no_default_key_mappings = 1
+
+xmap if <Plug>(textobj-function-i)
+omap if <Plug>(textobj-function-i)
+xmap af <Plug>(textobj-function-A)
+omap af <Plug>(textobj-function-A)
+
+"}}}
+
+"{{{ vim-textobj-functioncall
+
+let g:textobj_functioncall_no_default_key_mappings = 1
+
+xmap iF <Plug>(textobj-functioncall-i)
+omap iF <Plug>(textobj-functioncall-i)
+xmap aF <Plug>(textobj-functioncall-a)
+omap aF <Plug>(textobj-functioncall-a)
+
+"}}}
