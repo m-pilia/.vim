@@ -23,11 +23,6 @@
 	url = https://github.com/rickhowe/diffchar.vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/fzf.vim"]
-	path = bundle/fzf.vim
-	url = https://github.com/junegunn/fzf.vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/haskell-vim"]
 	path = bundle/haskell-vim
 	url = https://github.com/neovimhaskell/haskell-vim.git
@@ -183,11 +178,6 @@
 	url = git://github.com/tpope/vim-surround.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vimproc.vim"]
-	path = bundle/vimproc.vim
-	url = https://github.com/Shougo/vimproc.vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vimtex"]
 	path = bundle/vimtex
 	url = https://github.com/lervag/vimtex
@@ -206,11 +196,6 @@
 [submodule "bundle/vim-pathogen"]
 	path = bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/vim-gutentags"]
-	path = bundle/vim-gutentags
-	url = https://github.com/ludovicchabant/vim-gutentags.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/cpsm"]

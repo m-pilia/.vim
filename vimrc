@@ -639,42 +639,6 @@ let g:multi_cursor_exit_from_visual_mode = 0
 
 "}}}
 
-"{{{ fzf
-
-" Mapping selecting mappings
-nnoremap <leader><tab> <plug>(fzf-maps-n)
-xnoremap <leader><tab> <plug>(fzf-maps-x)
-onoremap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-inoremap <c-x><c-k> <plug>(fzf-complete-word)
-inoremap <c-x><c-f> <plug>(fzf-complete-path)
-inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
-inoremap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Advanced customization using autoload functions
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
-
-" Fuzzy search of commands
-nnoremap <leader>. :Commands<cr>
-
-"}}}
-
-"{{{ Gutentags
-
-let g:gutentags_exclude_filetypes = ['c', 'cpp', 'cuda', 'python']
-let g:gutentags_modules = ['ctags']
-let g:gutentags_project_root = ['.git', '.hg', '.bzr']
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-let g:gutentags_trace = 0
-let g:gutentags_generate_on_empty_buffer = 0
-
-" Tag search
-nnoremap <leader>T :Tags<cr>
-nmap <leader>t <c-]>
-
-"}}}
-
 "{{{ lightline
 
 set noshowmode
@@ -887,6 +851,7 @@ endif
 
 call coc#add_extension(
 \   'coc-json',
+\   'coc-lists',
 \   'coc-omni',
 \   'coc-snippets',
 \   'coc-tsserver',
@@ -993,6 +958,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <c-j>   pumvisible() ? "\<C-y>" : ""
 inoremap <expr> <cr>    pumvisible() ? "\<C-x><C-e><cr>" : "\<cr>"
 inoremap <C-@> <C-x><C-o>
+
+" Lists
+nnoremap <leader>. :CocList vimcommands<cr>
 
 " Reference highlight
 highlight link CocHighlightText CursorColumn
