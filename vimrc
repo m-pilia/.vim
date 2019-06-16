@@ -861,6 +861,9 @@ call coc#add_extension(
 let g:coc_user_config = {
 \   'coc': {
 \       'preferences': {
+\           'codeLens': {
+\               'enable': v:false,
+\           },
 \           'diagnostic': {
 \               'displayByAle': v:true,
 \           },
@@ -966,7 +969,7 @@ nnoremap <leader>. :CocList vimcommands<cr>
 highlight link CocHighlightText CursorColumn
 augroup coc_highlight
     autocmd!
-    autocmd CursorMoved * silent call CocActionAsync('highlight')
+    autocmd CursorHold * silent call CocActionAsync('highlight')
     autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
 augroup END
 
