@@ -1,8 +1,3 @@
-[submodule "bundle/ListToggle"]
-	path = bundle/ListToggle
-	url = https://github.com/Valloric/ListToggle.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/auto-pairs"]
 	path = bundle/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs

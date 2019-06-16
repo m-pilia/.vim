@@ -117,6 +117,9 @@ highlight LineNr ctermfg=grey guifg=grey
 set cursorline
 hi CursorLine term=NONE cterm=NONE guibg=NONE
 
+" Open location list
+nnoremap <leader><l :lopen<cr>
+
 "}}}
 
 "{{{ Buffer
@@ -431,14 +434,6 @@ nmap <leader>qe :Evaluate<cr>
 "{{{ Ultisnips
 
 let g:UltiSnipsExpandTrigger='<not_needed>'
-
-"}}}
-
-"{{{ ListToggle
-
-let g:lt_location_list_toggle_map = '<leader><l'
-let g:lt_quickfix_list_toggle_map = '<leader><q'
-let g:lt_height = 10
 
 "}}}
 
