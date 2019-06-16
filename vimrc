@@ -965,6 +965,11 @@ let g:coc_user_config = {
 \           'args': ['-jar', '/usr/share/java/groovy-language-server/groovy-language-server-all.jar'],
 \           'filetypes': ['groovy'],
 \       },
+\       'r': {
+\           'command': 'R',
+\           'args': ['--slave', '-e', 'languageserver::run()'],
+\           'filetypes': ['r'],
+\       },
 \   },
 \ }
 
