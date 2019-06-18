@@ -812,6 +812,7 @@ let g:coc_user_config = {
 \           },
 \           'timeout': 5000,
 \           'noselect': v:true,
+\           'previewAutoClose': v:false,
 \       },
 \   },
 \   'suggest': {
