@@ -598,16 +598,6 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 "}}}
 
-"{{{ vim-multiple-cursors
-
-let g:multi_cursor_start_key = '<Esc>n'
-let g:multi_cursor_select_all_key = 'g<Esc>n'
-let g:ctrlsf_default_view_mode = 'compact'
-let g:multi_cursor_exit_from_insert_mode = 0
-let g:multi_cursor_exit_from_visual_mode = 0
-
-"}}}
-
 "{{{ lightline
 
 set noshowmode
