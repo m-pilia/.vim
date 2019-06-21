@@ -901,11 +901,14 @@ nnoremap <leader>. :CocList vimcommands<cr>
 
 " Reference highlight
 highlight link CocHighlightText CursorColumn
-augroup coc_highlight
-    autocmd!
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-    autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
-augroup END
+if ! &diff
+    augroup coc_highlight
+        autocmd!
+        autocmd CursorHold * silent call aux#matchdelete('CocHighlightText') |
+        \                           call CocActionAsync('highlight')
+        autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
+    augroup END
+endif
 
 "}}}
 

@@ -94,6 +94,15 @@ function! aux#set_text_width(re, tw, cw) abort
     call winrestview(l:winview)
 endfunction
 
+" Delete all matches from a certain group
+function! aux#matchdelete(group) abort
+    for l:match in getmatches()
+        if l:match.group =~ a:group
+            call matchdelete(l:match.id)
+        endif
+    endfor
+endfunction
+
 " Get search query for the word under cursor
 function! aux#vimhelp() abort
     let l:word = expand('<cword>')
