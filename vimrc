@@ -594,38 +594,40 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 "{{{ lightline
 
-set noshowmode
-let g:lightline = {'colorscheme': 'wombat'}
+let g:lightline = {
+\   'colorscheme': 'wombat',
+\   'component': {
+\       'lineinfo': '%l/%L:%-v',
+\       'filename': '%<%f %m',
+\       'gitbranch': aux#lightline#git_status(),
+\   },
+\   'component_function': {
+\       'fileformatandencoding': 'aux#lightline#file_info',
+\   },
+\   'tab_component': {
+\       'filename': '%f %m',
+\   },
+\   'active': {
+\       'left': [
+\           ['mode', 'paste'],
+\           ['gitbranch', 'readonly', 'filename'],
+\       ],
+\       'right': [
+\           ['percent'],
+\           ['lineinfo'],
+\           ['fileformatandencoding', 'filetype'],
+\       ],
+\   },
+\   'tabline': {
+\       'left': [ [ 'tabs' ] ],
+\       'right': [],
+\   },
+\ }
 
-let g:lightline.component_function = {
-            \ 'gitbranch': 'aux#git_status',
-            \ }
-
-let g:lightline.component = {
-            \ 'lineinfo': '%l/%L:%-v',
-            \ 'filename': '%<%f %m',
-            \ }
-
-let g:lightline.tab_component = {
-            \ 'filename': '%f %m',
-            \ }
-
-let g:lightline.active = {
-            \ 'left': [
-            \     [ 'mode', 'paste' ],
-            \     [ 'gitbranch', 'readonly', 'filename' ],
-            \ ],
-            \ 'right': [
-            \     [ 'percent' ],
-            \     [ 'lineinfo' ],
-            \     [ 'fileformat', 'fileencoding', 'filetype' ],
-            \ ],
-            \ }
-
-let g:lightline.tabline = {
-            \ 'left': [ [ 'tabs' ] ],
-            \ 'right': [],
-            \ }
+augroup lightline_settings
+    autocmd!
+    autocmd BufWinEnter * call aux#lightline#colours('green', 'yellow', 'red')
+augroup END
 
 "}}}
 

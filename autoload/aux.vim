@@ -111,13 +111,3 @@ function! aux#vimhelp() abort
     endif
     return l:word
 endfunction
-
-" Get git branch and file status
-function! aux#git_status() abort
-    let l:result = get(g:, 'coc_git_status', '')
-    let l:status = substitute(get(b:, 'coc_git_status', ''), '\s', '', 'g')
-    if l:status !=? ''
-        let l:result .= ' (' . l:status . ')'
-    endif
-    return l:result
-endfunction
