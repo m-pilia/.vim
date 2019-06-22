@@ -84,10 +84,12 @@ set wildmenu
 set wildmode=longest:full
 set wildignore=*.o,*~,*.pyc
 
+set guicursor=
+set mouse=
+set noshowmode
 set ruler
-
+set signcolumn=yes
 set cmdheight=1 " Height of the command bar
-
 set hidden " Hide abandoned buffers
 
 set backspace=eol,start,indent " Configure backspace
@@ -120,10 +122,13 @@ set timeoutlen=500
 set number
 highlight LineNr ctermfg=grey guifg=grey
 set cursorline
-hi CursorLine term=NONE cterm=NONE guibg=NONE
+highlight CursorLine term=NONE cterm=NONE guibg=NONE
 
 " Open location list
 nnoremap <leader><l :lopen<cr>
+
+" Popup menu
+highlight Pmenu ctermbg=darkgray guibg=darkgray
 
 "}}}
 
