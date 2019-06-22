@@ -38,6 +38,11 @@ highlight comment ctermfg=lightblue guifg=lightblue
 highlight constant ctermfg=red guifg=red
 highlight SpellBad ctermfg=white ctermbg=darkred guifg=white guibg=darkred
 highlight SpellCap ctermfg=white ctermbg=brown guifg=white guibg=brown
+highlight SignColumn ctermbg=black guibg=black
+highlight GitGutterAdd ctermbg=black ctermfg=green guibg=black guifg=green
+highlight GitGutterChange ctermbg=black ctermfg=yellow guibg=black guifg=yellow
+highlight GitGutterDelete ctermbg=black ctermfg=red guibg=black guifg=red
+highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=yellow
 
 " GUI options
 if has('gui_running')
@@ -555,17 +560,6 @@ let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 
 "}}}
 
-"{{{ vim-gitgutter
-
-highlight GitGutterAdd ctermbg=black ctermfg=green guibg=black guifg=green
-highlight GitGutterChange ctermbg=black ctermfg=yellow guibg=black guifg=yellow
-highlight GitGutterDelete ctermbg=black ctermfg=red guibg=black guifg=red
-highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=yellow
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-
-"}}}
-
 "{{{ CtrlP
 
 let g:ctrlp_map = '<c-p>'
@@ -604,7 +598,7 @@ set noshowmode
 let g:lightline = {'colorscheme': 'wombat'}
 
 let g:lightline.component_function = {
-            \ 'gitbranch': 'fugitive#head',
+            \ 'gitbranch': 'aux#git_status',
             \ }
 
 let g:lightline.component = {
@@ -784,6 +778,7 @@ endif
 
 call coc#add_extension(
 \   'coc-json',
+\   'coc-git',
 \   'coc-lists',
 \   'coc-omni',
 \   'coc-snippets',
@@ -807,6 +802,13 @@ let g:coc_user_config = {
 \   },
 \   'suggest': {
 \       'snippetIndicator': '►',
+\   },
+\   'git': {
+\       'addedSign': {'hlGroup': 'GitGutterAdd'},
+\       'changedSign': {'hlGroup': 'GitGutterChange'},
+\       'removedSign': {'hlGroup': 'GitGutterDelete'},
+\       'topRemovedSign': {'hlGroup': 'GitGutterDelete'},
+\       'changeRemovedSign': {'hlGroup': 'GitGutterChangeDelete'},
 \   },
 \   'languageserver': {
 \       'ccls': {
@@ -896,7 +898,12 @@ inoremap <expr> <c-j>   pumvisible() ? "\<C-y>" : ""
 inoremap <expr> <cr>    pumvisible() ? "\<C-x><C-e><cr>" : "\<cr>"
 inoremap <C-@> <C-x><C-o>
 
-" Lists
+" Git mappings
+nmap ]h <Plug>(coc-git-nextchunk)
+nmap [h <Plug>(coc-git-prevchunk)
+nmap <leader>gi <Plug>(coc-git-chunkinfo)
+
+" List mappings
 nnoremap <leader>. :CocList vimcommands<cr>
 
 " Reference highlight
