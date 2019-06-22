@@ -714,14 +714,20 @@ command! ToggleExtraLinters call aux#toggle_extra_linters()
 
 "{{{ vim-wordmotion
 
-" Do not use wordmotion in visual selection (for vim-expand-region)
+nnoremap W w
+vnoremap W w
+vnoremap iW iw
+vnoremap aW aw
+omap iW :normal ViW<cr>
+omap aW :normal VaW<cr>
+
 let g:wordmotion_mappings = {
             \   'w' : 'w',
             \   'b' : 'b',
             \   'e' : 'e',
             \   'ge' : 'ge',
-            \   'aw' : 'a<M-w>',
-            \   'iw' : 'i<M-w>',
+            \   'aw' : 'aw',
+            \   'iw' : 'iw',
             \   '<C-R><C-W>' : '<C-R><C-W>'
             \ }
 
