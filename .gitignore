@@ -1,6 +1,7 @@
-undo/*
-views/*
-session/*
-spell/*.spl
+/undo/*
+/views/*
+/session/*
+/sessions/*
+/spell/*.spl
 .netrwhist
 
