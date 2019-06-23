@@ -731,14 +731,6 @@ nnoremap <leader>,mh :CclsMemberHierarchy<cr>
 
 "}}}
 
-"{{{ vim-unstack
-
-let g:unstack_populate_quickfix = 1
-let g:unstack_mapkey = '<leader>u'
-nnoremap <silent> <F10> :UnstackFromClipboard<cr>
-
-"}}}
-
 "{{{ coc.nvim
 
 " Do not load in vimdiff
