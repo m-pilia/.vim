@@ -321,28 +321,11 @@ vnoremap <silent> # <esc>?<c-r>*<cr>
 map <silent> <leader><cr> :noh <bar> :CtrlSFClearHL<cr>
 
 " Cycle through buffers
-nnoremap <Leader>f :bn<CR>
-nnoremap <Leader>F :bp<CR>
+nnoremap <leader>f :bn<CR>
+nnoremap <leader>F :bp<CR>
+nnoremap <leader>b :ls<CR>:b<space>
 
-" Navigate windows with arrows
-nmap <silent> <Up> :wincmd k<CR>
-nmap <silent> <Down> :wincmd j<CR>
-nmap <silent> <Left> :wincmd h<CR>
-nmap <silent> <Right> :wincmd l<CR>
-
-" Move between tabs
-" (use `sed -n l` to check how input is mapped into terminal)
-imap <Esc>[1;3D <esc>:tabprevious<cr>
-vmap <Esc>[1;3D <esc>:tabprevious<cr>
-map  <Esc>[1;3D :tabprevious<cr>
-imap <Esc>[1;3C <esc>:tabnext<cr>
-vmap <Esc>[1;3C <esc>:tabnext<cr>
-nmap <Esc>[1;3C :tabnext<cr>
-
-" Open a new tab with the current buffer's path
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
+" Cd to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Behavior when switching between buffers
