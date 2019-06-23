@@ -3,11 +3,6 @@
 	url = https://github.com/jiangmiao/auto-pairs
 	ignore = dirty
 	branch = master
-[submodule "bundle/ctrlp.vim"]
-	path = bundle/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/ctrlsf.vim"]
 	path = bundle/ctrlsf.vim
 	url = https://github.com/dyng/ctrlsf.vim.git
@@ -181,11 +176,6 @@
 [submodule "bundle/vim-pathogen"]
 	path = bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/cpsm"]
-	path = bundle/cpsm
-	url = https://github.com/nixprime/cpsm.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/lightline.vim"]

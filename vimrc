@@ -565,23 +565,6 @@ let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 
 "}}}
 
-"{{{ CtrlP
-
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_working_path_mode = 'a'
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:ctrlp_user_command = 'fd --type f --color=never "" %s'
-let g:ctrlp_use_caching = 0
-let g:ctrlp_mruf_relative = 1
-
-let g:ctrlp_status_func = {
-\   'main': 'aux#lightline#CtrlPStatusFunc_1',
-\   'prog': 'aux#lightline#CtrlPStatusFunc_2',
-\ }
-
-"}}}
-
 "{{{ CtrlSF
 
 let g:ctrlsf_search_mode = 'async'
@@ -828,6 +811,15 @@ let g:coc_user_config = {
 \       'topRemovedSign': {'hlGroup': 'GitGutterDelete'},
 \       'changeRemovedSign': {'hlGroup': 'GitGutterChangeDelete'},
 \   },
+\   'list': {
+\       'limitLines': 30000,
+\       'source': {
+\           'files': {
+\               'command': 'fd',
+\               'args': ['--type', 'f', '--color=never'],
+\           },
+\       },
+\   },
 \   'languageserver': {
 \       'ccls': {
 \           'command': 'ccls',
@@ -923,6 +915,7 @@ nmap <leader>gi <Plug>(coc-git-chunkinfo)
 
 " List mappings
 nnoremap <leader>. :CocList vimcommands<cr>
+nnoremap <silent> <C-p> :CocList files<cr>
 
 " Reference highlight
 highlight link CocHighlightText CursorColumn
