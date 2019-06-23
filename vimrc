@@ -519,20 +519,6 @@ let g:tcomment_textobject_inlinecomment = 'Ic'
 
 "}}}
 
-"{{{ NERDTree
-
-nnoremap <Leader>- :NERDTreeToggle<Enter>
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-
-" Delete the buffer of a file just deleted with NerdTree
-let NERDTreeAutoDeleteBuffer = 1
-
-" Quit when opening a file
-let NERDTreeQuitOnOpen = 1
-
-"}}}
-
 "{{{ vimtex
 
 let g:vimtex_complete_enabled = 0

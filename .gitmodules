@@ -28,16 +28,6 @@
 	url = https://github.com/JuliaLang/julia-vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/nerdtree-git-plugin"]
-	path = bundle/nerdtree-git-plugin
-	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/nerdtree"]
-	path = bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/python-syntax"]
 	path = bundle/python-syntax
 	url = https://github.com/vim-python/python-syntax.git
