@@ -59,3 +59,13 @@ function! aux#lightline#file_info() abort
     endif
     return l:result
 endfunction
+
+" Statusline for CtrlP
+function! aux#lightline#CtrlPStatusFunc_1(focus, byfname, regex, prev, item, next, marked) abort
+    return lightline#statusline(0)
+endfunction
+
+" Statusline for CtrlP
+function! aux#lightline#CtrlPStatusFunc_2(str) abort
+    return lightline#statusline(0)
+endfunction
