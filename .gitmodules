@@ -68,16 +68,6 @@
 	url = https://github.com/tpope/vim-abolish.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-addon-mw-utils"]
-	path = bundle/vim-addon-mw-utils
-	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/vim-dispatch"]
-	path = bundle/vim-dispatch
-	url = https://github.com/tpope/vim-dispatch
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
@@ -206,11 +196,6 @@
 [submodule "bundle/ale"]
 	path = bundle/ale
 	url = https://github.com/w0rp/ale.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/splitjoin.vim"]
-	path = bundle/splitjoin.vim
-	url = https://github.com/AndrewRadev/splitjoin.vim.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/vim-speeddating"]
