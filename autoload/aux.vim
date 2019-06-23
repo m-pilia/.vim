@@ -1,3 +1,15 @@
+" Get visual selection
+function! aux#visual_selection()
+    let l:tmp = ''
+    try
+        let l:tmp = @a
+        normal! gv"ay
+        return @a
+    finally
+        let @a = l:tmp
+    endtry
+endfunction
+
 " Toggle extra ALE linters
 function! aux#toggle_extra_linters() abort
     if !has_key(g:ale_extra_linters, &filetype)
@@ -34,7 +46,7 @@ endfunction
 " Send visual selection buffer to the shell
 function! aux#screenshell_send() abort
     if g:ScreenShellActive
-        call g:ScreenShellSend(@*)
+        call g:ScreenShellSend(aux#visual_selection())
     endif
     normal! gv
 endfunction
@@ -48,9 +60,10 @@ endfunction
 
 " Toggle between forward slash and backslash in visual selection
 function! aux#convert_path() abort
-    if match(@*, '/') >= 0
+    let l:visual_selection = aux#visual_selection()
+    if match(l:visual_selection, '/') >= 0
         execute 's:\%V/:\\:g'
-    elseif match(@*, '\') >= 0
+    elseif match(l:visual_selection, '\') >= 0
         execute ':s:\%V\\:/:g'
     endif
     normal! gv
@@ -71,7 +84,8 @@ endfunction
 
 " Commute between upper, lower, and title case in visual selection
 function! aux#twiddle_case() abort
-    let l:selection = @*
+    let l:selection = aux#visual_selection()
+    echom l:selection
     if l:selection ==# toupper(l:selection)
         normal! gvu
     elseif l:selection ==# tolower(l:selection)
