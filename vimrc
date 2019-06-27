@@ -525,15 +525,8 @@ let g:vim_markdown_math = 1
 
 "{{{ auto-pairs
 
-let g:AutoPairs = {
-            \ '(':')',
-            \ '[':']',
-            \ '{':'}',
-            \ "'":"'",
-            \ '"':'"',
-            \ '`':'`',
-            \ }
 let g:AutoPairsShortcutFastWrap = '<C-S-e>'
+let g:AutoPairsMultilineClose = v:false
 
 "}}}
 
