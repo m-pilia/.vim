@@ -562,6 +562,14 @@ let g:lightline = {
 \   'component_function': {
 \       'fileformatandencoding': 'aux#lightline#file_info',
 \   },
+\   'component_expand': {
+\       'ale_warning': 'aux#lightline#ale_warning',
+\       'ale_error': 'aux#lightline#ale_error',
+\   },
+\   'component_type': {
+\       'ale_warning': 'warning',
+\       'ale_error': 'error',
+\   },
 \   'tab_component': {
 \       'filename': '%f %m',
 \   },
@@ -574,6 +582,7 @@ let g:lightline = {
 \           ['percent'],
 \           ['lineinfo'],
 \           ['fileformatandencoding', 'filetype'],
+\           ['ale_warning', 'ale_error'],
 \       ],
 \   },
 \   'tabline': {
@@ -585,6 +594,10 @@ let g:lightline = {
 augroup lightline_settings
     autocmd!
     autocmd BufWinEnter * call aux#lightline#colours('green', 'yellow', 'red')
+    autocmd User ALEFixPre   call lightline#update()
+    autocmd User ALEFixPost  call lightline#update()
+    autocmd User ALELintPre  call lightline#update()
+    autocmd User ALELintPost call lightline#update()
 augroup END
 
 "}}}

@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 " Get git branch and status summary for the current file
 function! aux#lightline#git_status() abort
     let l:result  = '%{get(g:, "coc_git_status", "") == "" ? "no repo" : g:coc_git_status}'
@@ -58,4 +60,19 @@ function! aux#lightline#file_info() abort
         let l:result .= &fileencoding
     endif
     return l:result
+endfunction
+
+" ALE status
+function! aux#lightline#ale_warning() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? '' : printf('%d ⚠', all_non_errors)
+endfunction
+
+function! aux#lightline#ale_error() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
 endfunction
