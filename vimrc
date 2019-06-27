@@ -43,6 +43,7 @@ highlight GitGutterAdd ctermbg=black ctermfg=green guibg=black guifg=green
 highlight GitGutterChange ctermbg=black ctermfg=yellow guibg=black guifg=yellow
 highlight GitGutterDelete ctermbg=black ctermfg=red guibg=black guifg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=yellow
+highlight! link QuickFixLine Normal
 
 " GUI options
 if has('gui_running')
