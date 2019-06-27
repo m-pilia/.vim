@@ -102,6 +102,9 @@ set smartcase
 set hlsearch " Highlight search results
 set incsearch " Incremental search
 set magic
+if has('nvim')
+    set inccommand=nosplit
+endif
 
 set lazyredraw " Don't redraw while executing macros
 
