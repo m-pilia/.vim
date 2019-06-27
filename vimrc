@@ -875,7 +875,6 @@ nmap <leader>,td <plug>(coc-type-definition)
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <c-j>   pumvisible() ? "\<C-y>" : ""
-inoremap <expr> <cr>    pumvisible() ? "\<C-x><C-e><cr>" : "\<cr>"
 inoremap <C-@> <C-x><C-o>
 
 " Git mappings
@@ -925,5 +924,13 @@ xmap iF <Plug>(textobj-functioncall-i)
 omap iF <Plug>(textobj-functioncall-i)
 xmap aF <Plug>(textobj-functioncall-a)
 omap aF <Plug>(textobj-functioncall-a)
+
+"}}}
+
+"{{{ vim-endwise
+
+let g:endwise_no_mappings = 1
+imap <C-x><cr> <cr><plug>AlwaysEnd
+imap <cr> <cr><plug>DiscretionaryEnd
 
 "}}}

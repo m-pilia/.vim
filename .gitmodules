@@ -298,3 +298,8 @@
 	url = https://github.com/bps/vim-textobj-python.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/vim-endwise"]
+	path = bundle/vim-endwise
+	url = https://github.com/tpope/vim-endwise.git
+	ignore = dirty
+	branch = master
