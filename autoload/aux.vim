@@ -1,5 +1,5 @@
 " Get visual selection
-function! aux#visual_selection()
+function! aux#visual_selection() abort
     let l:tmp = ''
     try
         let l:tmp = @a
@@ -111,4 +111,15 @@ function! aux#vimhelp() abort
         let l:word .= '()'
     endif
     return l:word
+endfunction
+
+" Map a list of keys to <nop>
+function! aux#disable_keys(keys) abort
+    for l:key in a:keys
+        for l:map in ['nnoremap', 'inoremap', 'vnoremap']
+            for l:modifier in ['', 'C-', 'S-']
+                silent exec l:map . ' <' . l:modifier . l:key . '> <nop>'
+            endfor
+        endfor
+    endfor
 endfunction

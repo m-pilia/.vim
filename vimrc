@@ -1,30 +1,9 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-"{{{ Fundamentals
-
 " Leader
 nmap <space> <nop>
-let mapleader = ' '
 let g:mapleader = ' '
-set showcmd
-
-" Esc shortcut
-imap jk <esc>
-imap JK <esc>
-vmap <leader>jk <esc>
-vmap <leader>JK <esc>
-
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
-
-" Load plugins with pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-let g:pathogen_disabled = []
-call pathogen#infect()
-
-"}}}
 
 "{{{ Colors
 
@@ -43,37 +22,23 @@ highlight GitGutterAdd ctermbg=black ctermfg=green guibg=black guifg=green
 highlight GitGutterChange ctermbg=black ctermfg=yellow guibg=black guifg=yellow
 highlight GitGutterDelete ctermbg=black ctermfg=red guibg=black guifg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=yellow
-highlight! link QuickFixLine Normal
-
-" GUI options
-if has('gui_running')
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
+highlight link QuickFixLine Normal
+highlight Pmenu ctermbg=darkgray guibg=darkgray
+highlight LineNr ctermfg=grey guifg=grey
+highlight CursorLine term=NONE cterm=NONE guibg=NONE
 
 " File EOL formats
 set fileformats=unix,dos,mac
 
 " Doxygen highlighting
 let g:doxygen_enhanced_color=1
+
 augroup syntax_highlighting
     autocmd!
-    autocmd FileType c :set syntax=c.doxygen
-    autocmd FileType cpp :set syntax=cpp.doxygen
-    autocmd FileType java :set syntax=java.doxygen
-    autocmd FileType idl :set syntax=idl.doxygen
-    autocmd FileType php :set syntax=php.doxygen
 
     " Syntax highlighting synchronization settings
-    " See http://vimdoc.sourceforge.net/htmldoc/syntax.html#:syn-sync
-    "
     " Sync file from start (NOTE: slow but very precise)
     autocmd BufEnter * :syntax sync fromstart
-
-    " Suppress PKGBUILD.vim from Arch development tools
-    autocmd BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
 augroup END
 
 "}}}
@@ -91,6 +56,7 @@ set noshowmode
 set ruler
 set signcolumn=yes
 set cmdheight=1 " Height of the command bar
+set showcmd
 set hidden " Hide abandoned buffers
 
 set backspace=eol,start,indent " Configure backspace
@@ -124,19 +90,17 @@ set timeoutlen=500
 
 " Line numbers
 set number
-highlight LineNr ctermfg=grey guifg=grey
 set cursorline
-highlight CursorLine term=NONE cterm=NONE guibg=NONE
 
 " Open location list
-nnoremap <leader><l :lopen<cr>
-
-" Popup menu
-highlight Pmenu ctermbg=darkgray guibg=darkgray
+nnoremap <leader>l :lopen<cr>
 
 "}}}
 
 "{{{ Buffer
+
+" Enable filetype plugins and indentation
+filetype plugin indent on
 
 augroup buffer_auto
     autocmd!
@@ -234,20 +198,13 @@ set wrap "Wrap lines
 set foldlevel=99
 set foldmethod=syntax " Careful, may be slow
 
-augroup indentation
-    autocmd!
-
-    " Short tab width for functional languages and some markup languages
-    autocmd FileType ocaml,sml,racket,haskell,yaml setlocal shiftwidth=2
-    autocmd FileType ocaml,sml,racket,haskell,yaml setlocal tabstop=2
-
-    " Wrap lines in diff
-    autocmd FilterWritePre * if &diff | setlocal wrap< | endif
-augroup END
-
 "}}}
 
 "{{{ Motion
+
+" Esc shortcut
+imap jk <esc>
+vmap <leader>jk <esc>
 
 " Map to [ and ]
 nmap ò [
@@ -257,9 +214,11 @@ omap à ]
 xmap ò [
 xmap à ]
 
+" Lines around the cursor
+set scrolloff=7
+
 augroup motion
     autocmd!
-
     " Keep current line in the middle of the window
     autocmd CursorMoved,BufReadPost * exe "normal! zz"
 augroup END
@@ -273,53 +232,15 @@ set viminfo^=% " Remember info about open buffers on close
 map j gj
 map k gk
 
-" Lines around the cursor
-set scrolloff=7
-
-" Disable arrows
-map <C-Up> <nop>
-map <C-Down> <nop>
-map <C-Left> <nop>
-map <C-Right> <nop>
-imap <C-Up> <nop>
-imap <C-Down> <nop>
-imap <C-Left> <nop>
-imap <C-Right> <nop>
-vmap <C-Up> <nop>
-vmap <C-Down> <nop>
-vmap <C-Left> <nop>
-vmap <C-Right> <nop>
-map <Up> <nop>
-map <Down> <nop>
-map <Left> <nop>
-map <Right> <nop>
-imap <Up> <nop>
-imap <Down> <nop>
-imap <Left> <nop>
-imap <Right> <nop>
-vmap <Up> <nop>
-vmap <Down> <nop>
-vmap <Left> <nop>
-vmap <Right> <nop>
-map <Home> <nop>
-map <End> <nop>
-map <PageUp> <nop>
-map <PageDown> <nop>
-imap <Home> <nop>
-imap <End> <nop>
-imap <PageUp> <nop>
-imap <PageDown> <nop>
-vmap <Home> <nop>
-vmap <End> <nop>
-vmap <PageUp> <nop>
-vmap <PageDown> <nop>
+" Disable unconvenient keys
+call aux#disable_keys(['Up', 'Down', 'Left', 'Right', 'Home', 'End', 'PageUp', 'PageDown'])
 
 " CamelCase word backspace
 imap <silent> <C-w> <C-o>:setlocal virtualedit+=onemore<cr><C-o>db<C-o>:setlocal virtualedit-=onemore<cr>
 
 " Search for visual selection
-vnoremap <silent> * <esc>/<c-r>*<cr>
-vnoremap <silent> # <esc>?<c-r>*<cr>
+vnoremap <silent> * <esc>/\V<c-r>=escape(aux#visual_selection(), '/\')<cr><cr>
+vnoremap <silent> # <esc>?\V<c-r>=escape(aux#visual_selection(), '/\')<cr><cr>
 
 " Remove search highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh <bar> :CtrlSFClearHL<cr>
@@ -330,7 +251,7 @@ nnoremap <leader>F :bp<CR>
 nnoremap <leader>b :ls<CR>:b<space>
 
 " Cd to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+nnoremap <silent> <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Behavior when switching between buffers
 set switchbuf=useopen
@@ -419,6 +340,14 @@ nmap <leader>qe :Evaluate<cr>
 "}}}
 
 """"""""""""""""""" Plugin settings
+
+"{{{ pathogen
+
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+let g:pathogen_disabled = []
+call pathogen#infect()
+
+"}}}
 
 "{{{ Ultisnips
 
@@ -927,5 +856,14 @@ omap aF <Plug>(textobj-functioncall-a)
 let g:endwise_no_mappings = 1
 imap <C-x><cr> <cr><plug>AlwaysEnd
 imap <cr> <cr><plug>DiscretionaryEnd
+
+"}}}
+
+"{{{ vim-pkgbuild
+
+" Suppress PKGBUILD.vim from Arch development tools
+augroup _vim_pkgbuild
+    autocmd BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
+augroup END
 
 "}}}

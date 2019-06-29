@@ -1,3 +1,5 @@
+setlocal syntax=php.doxygen
+
 " Smartindent for php files
 setlocal smartindent
 
