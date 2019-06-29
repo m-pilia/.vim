@@ -315,7 +315,7 @@ vmap <PageUp> <nop>
 vmap <PageDown> <nop>
 
 " CamelCase word backspace
-imap <silent> <C-w> <C-o>:set virtualedit+=onemore<cr><C-o>db<C-o>:set virtualedit-=onemore<cr>
+imap <silent> <C-w> <C-o>:setlocal virtualedit+=onemore<cr><C-o>db<C-o>:setlocal virtualedit-=onemore<cr>
 
 " Search for visual selection
 vnoremap <silent> * <esc>/<c-r>*<cr>
@@ -376,27 +376,19 @@ set completeopt=menuone,noselect
 vnoremap <leader>S "_d"0P
 vnoremap <leader>s "_dP
 
-" Copy-paste to system clipboard
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
-
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
-" auto switch paste mode when pasting (requires +clipboard)
-inoremap <silent> <C-v> <space><backspace><Esc>:call aux#auto_paste()<cr>a
+" Copy-paste using system clipboard
+vnoremap <leader>y "+y
+vnoremap <leader>d "+d
+nnoremap <leader>P "+P
+nnoremap <leader>p "+p
 
 " Move current line up and down
-nnoremap <silent> <C-S-j> :m .+1<CR>==
-nnoremap <silent> <C-S-k> :m .-2<CR>==
-inoremap <silent> <C-S-j> <Esc>:m .+1<CR>==gi
-inoremap <silent> <C-S-k> <Esc>:m .-2<CR>==gi
-vnoremap <silent> <C-S-j> :m '>+1<CR>gv=gv
-vnoremap <silent> <C-S-k> :m '<-2<CR>gv=gv
+nnoremap <silent> @sj :m .+1<CR>==
+nnoremap <silent> @sk :m .-2<CR>==
+inoremap <silent> @sj <Esc>:m .+1<CR>==gi
+inoremap <silent> @sk <Esc>:m .-2<CR>==gi
+vnoremap <silent> @sj :m '>+1<CR>gv=gv
+vnoremap <silent> @sk :m '<-2<CR>gv=gv
 
 " Twiddle case
 vnoremap <silent> ~ :call aux#twiddle_case()<cr>

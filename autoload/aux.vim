@@ -69,19 +69,6 @@ function! aux#convert_path() abort
     normal! gv
 endfunction
 
-" Auto switch paste mode when pasting (requires +clipboard)
-function! aux#auto_paste() abort
-    let l:nopaste = 0
-    if (!&paste)
-        set paste
-        let l:nopaste = 1
-    endif
-    normal! "+p
-    if nopaste
-        set nopaste
-    endif
-endfunction
-
 " Commute between upper, lower, and title case in visual selection
 function! aux#twiddle_case() abort
     let l:selection = aux#visual_selection()
