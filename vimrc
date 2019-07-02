@@ -26,6 +26,13 @@ highlight link QuickFixLine Normal
 highlight Pmenu ctermbg=darkgray guibg=darkgray
 highlight LineNr ctermfg=grey guifg=grey
 highlight CursorLine term=NONE cterm=NONE guibg=NONE
+highlight link CocHighlightText CursorColumn
+highlight CclsSkippedRegion ctermfg=darkgray guifg=darkgray
+
+" Text properties
+if has('textprop')
+    call prop_type_add('ccls_skipped_region', {'highlight': 'CclsSkippedRegion'})
+endif
 
 " File EOL formats
 set fileformats=unix,dos,mac
@@ -725,8 +732,11 @@ let g:coc_user_config = {
 \           'initializationOptions': {
 \               'cache': {
 \                   'directory': expand('~/.cache/ccls'),
-\               }
-\           }
+\               },
+\               'highlight': {
+\                   'lsRanges': v:true,
+\               },
+\           },
 \       },
 \       'clangd': {
 \           'command': 'clangd',
@@ -811,13 +821,15 @@ nnoremap <leader>. :CocList vimcommands<cr>
 nnoremap <silent> <C-p> :CocList files<cr>
 
 " Reference highlight
-highlight link CocHighlightText CursorColumn
 if ! &diff
     augroup coc_highlight
         autocmd!
         autocmd CursorHold * silent call aux#matchdelete('CocHighlightText') |
         \                           call CocActionAsync('highlight')
         autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
+        autocmd User CocNvimInit call CocRegistNotification('ccls',
+        \                                                   '$ccls/publishSkippedRanges',
+        \                                                   function('aux#skipped_regions'))
     augroup END
 endif
 
