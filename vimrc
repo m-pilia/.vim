@@ -311,6 +311,10 @@ vnoremap <leader>d "+d
 nnoremap <leader>P "+P
 nnoremap <leader>p "+p
 
+" Yank file name
+nnoremap <silent> <leader>cp :let @" = expand('%')<cr><bar>:let @+ = expand('%')<cr>
+nnoremap <silent> <leader>cP :let @" = expand('%:p')<cr><bar>:let @+ = expand('%:p')<cr>
+
 " Move current line up and down
 nnoremap <silent> @sj :m .+1<CR>==
 nnoremap <silent> @sk :m .-2<CR>==

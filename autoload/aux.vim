@@ -164,3 +164,9 @@ else
         endfor
     endfunction
 endif
+
+" Yank the current file name as a C include directive
+function! aux#yank_header() abort
+    let @" = '#include "' . expand('%') . '"'
+    let @+ = '#include "' . expand('%') . '"'
+endfunction
