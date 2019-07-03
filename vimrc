@@ -161,7 +161,7 @@ set undoreload=10000        " number of lines to save for undo
 set updatetime=200
 
 " Close buffer without closing window
-command! Bd b# | bd #
+command! Bd bp | bd#
 
 " Diff options
 set diffopt+=vertical
@@ -253,6 +253,7 @@ vnoremap <silent> # <esc>?\V<c-r>=escape(aux#visual_selection(), '/\')<cr><cr>
 map <silent> <leader><cr> :noh <bar> :CtrlSFClearHL<cr>
 
 " Cycle through buffers
+nnoremap <leader>g :b#<CR>
 nnoremap <leader>f :bn<CR>
 nnoremap <leader>F :bp<CR>
 nnoremap <leader>b :ls<CR>:b<space>
@@ -819,6 +820,7 @@ nmap <leader>gi <Plug>(coc-git-chunkinfo)
 " List mappings
 nnoremap <leader>. :CocList vimcommands<cr>
 nnoremap <silent> <C-p> :CocList files<cr>
+nnoremap <silent> <C-k> :CocList buffers<cr>
 
 " Reference highlight
 if ! &diff
