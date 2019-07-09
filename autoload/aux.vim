@@ -170,3 +170,16 @@ function! aux#yank_header() abort
     let @" = '#include "' . expand('%') . '"'
     let @+ = '#include "' . expand('%') . '"'
 endfunction
+
+" Run a sequence of keys in normal mode after temporarily setting onemore
+function! aux#onemored(keys) abort
+    let l:has_onemore = &virtualedit =~# 'onemore'
+    silent setlocal virtualedit+=onemore
+    try
+        silent execute 'normal! ' . a:keys
+    finally
+        if !l:has_onemore
+            silent setlocal virtualedit-=onemore
+        endif
+    endtry
+endfunction

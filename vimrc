@@ -302,14 +302,16 @@ set statusline+=%1*(%p%%)%*             " line percentage
 set completeopt=menuone,noselect
 
 " Replace visual selection with yanked ("0P) and yanked or deleted (P) text
-vnoremap <leader>S "_d"0P
-vnoremap <leader>s "_dP
+vnoremap <leader>S <esc>:call aux#onemored('gv"_d"0P')<cr>
+vnoremap <leader>s <esc>:call aux#onemored('gv"_dP')<cr>
 
-" Copy-paste using system clipboard
+" Yank to system clipboard
 vnoremap <leader>y "+y
 vnoremap <leader>d "+d
-nnoremap <leader>P "+P
-nnoremap <leader>p "+p
+
+" Put line
+nnoremap <leader>p :put<cr>
+nnoremap <leader>P :put!<cr>
 
 " Yank file name
 nnoremap <silent> <leader>cp :let @" = expand('%')<cr><bar>:let @+ = expand('%')<cr>
