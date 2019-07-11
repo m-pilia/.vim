@@ -691,6 +691,7 @@ call coc#add_extension(
 \   'coc-snippets',
 \   'coc-tsserver',
 \   'coc-vimlsp',
+\   'coc-yank',
 \   )
 
 let g:coc_user_config = {
@@ -725,6 +726,9 @@ let g:coc_user_config = {
 \               'args': ['--type', 'f', '--color=never'],
 \           },
 \       },
+\   },
+\   'yank': {
+\       'highlight': {'enable': v:false},
 \   },
 \   'languageserver': {
 \       'ccls': {
@@ -827,6 +831,7 @@ nmap <leader>gi <Plug>(coc-git-chunkinfo)
 nnoremap <leader>. :CocList vimcommands<cr>
 nnoremap <silent> <C-p> :CocList files<cr>
 nnoremap <silent> <C-k> :CocList buffers<cr>
+nnoremap <silent> <C-j> :CocList yank<cr>
 
 " Reference highlight
 if ! &diff
