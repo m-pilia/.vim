@@ -86,7 +86,7 @@ set showmatch " Blink on matching brackets
 set matchtime=2 " Matching brackets blink duration
 
 " Grep options
-set grepprg=ack\ --nogroup\ --column\ $*
+set grepprg=rg\ --vimgrep\ --no-heading\ --column\ $*
 set grepformat=%f:%l:%c:%m
 
 " No sound on errors
