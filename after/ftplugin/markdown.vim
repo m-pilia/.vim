@@ -1,4 +1,4 @@
-" display the rendered markdown in your browser
-if executable('grip')
-    nnoremap <buffer><space>m :Dispatch! grip -b %<cr>
-endif
+let g:vim_markdown_auto_insert_bullets = v:false
+let g:vim_markdown_new_list_item_indent = 0
+
+setlocal formatoptions-=l
