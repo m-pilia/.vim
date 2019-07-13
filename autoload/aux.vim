@@ -108,6 +108,7 @@ endfunction
 function! aux#vimhelp() abort
     let l:word = expand('<cword>')
     if match(strpart(getline('.'), col('.')), '^\i*(') >= 0
+    \  && l:word[strlen(l:word) - 1] !=# ')'
         let l:word .= '()'
     endif
     return l:word
