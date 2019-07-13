@@ -1,4 +1,6 @@
 # My vim configuration
+[![Travis CI Build Status](https://travis-ci.org/m-pilia/.vim.svg?branch=master)](https://travis-ci.org/m-pilia/.vim)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/m-pilia/.vim/blob/master/LICENSE)
 
 This repository hosts my vim configuration. All the code here should be
 compatible with vim 8.1+ and neovim 0.4+.
