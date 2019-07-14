@@ -884,11 +884,3 @@ imap <cr> <cr><plug>DiscretionaryEnd
 
 "}}}
 
-"{{{ vim-pkgbuild
-
-" Suppress PKGBUILD.vim from Arch development tools
-augroup _vim_pkgbuild
-    autocmd BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
-augroup END
-
-"}}}

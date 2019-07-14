@@ -34,7 +34,6 @@ sudo pacman -S \
     r \
     ripgrep \
     screen \
-    screen \
     texlive-most \
     yarn \
 
@@ -64,7 +63,7 @@ yarn install --frozen-lockfile
   whether this works on Windows, MacOS, or on GUI applications like `gvim`.
 * Plugins are handled as git submodules.
 * The runtime path for plugins is handled with [pathogen](https://github.com/tpope/vim-pathogen).
-  I am aware of vim 8.0+ built-in package manager, but Pathogen has some handy
+  I am aware of vim 8.0+ built-in package manager, but pathogen has some handy
   features that I commonly use, hence I am sticking to it.
 * Vim 8 has a nice native terminal integration, but I also use
   [screen](https://github.com/ervandew/screen) because it provides some simple
