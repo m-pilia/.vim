@@ -342,6 +342,18 @@ cnoremap w!! w !sudo tee % >/dev/null
 
 "}}}
 
+"{{{ netrw
+
+nnoremap <silent> - :Explore<cr>
+
+let g:netrw_fastbrowse = 0
+let g:netrw_banner = 1
+let g:netrw_liststyle = 3
+let g:netrw_hide = 1
+let g:netrw_list_hide = aux#netrw_list_hide()
+
+"}}}
+
 "{{{ termdebug
 
 packadd termdebug

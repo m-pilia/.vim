@@ -184,3 +184,16 @@ function! aux#onemored(keys) abort
         endif
     endtry
 endfunction
+
+" Return a hiding regex for netrw
+function! aux#netrw_list_hide() abort
+    let l:Fmt = {k, v -> '^' . substitute(escape(v, ".$~"), "*", ".*", "g") . '/\=$'}
+    return join(map(split(&wildignore, ','),  l:Fmt), ',') . ',\(^\|\s\s\)\zs\.\S\+'
+endfunction
+
+" Return the absolute path of the file name under cursor
+function! aux#netrw_path() abort
+    let l:filename = b:netrw_curdir . '/'
+    let l:filename .= substitute(getline('.'), '^\v(\s*\|*)*', '', '')
+    return fnameescape(l:filename)
+endfunction
