@@ -301,6 +301,9 @@ set statusline+=%1*(%p%%)%*             " line percentage
 " Completion options
 set completeopt=menuone,noselect
 
+" Do not ignore headers (for vim-unimpaired ]f and [f mappings)
+set suffixes-=.h
+
 " Replace visual selection with yanked ("0P) and yanked or deleted (P) text
 vnoremap <leader>S <esc>:call aux#onemored('gv"_d"0P')<cr>
 vnoremap <leader>s <esc>:call aux#onemored('gv"_dP')<cr>
