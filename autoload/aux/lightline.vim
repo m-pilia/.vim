@@ -62,17 +62,25 @@ function! aux#lightline#file_info() abort
     return l:result
 endfunction
 
-" ALE status
-function! aux#lightline#ale_warning() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? '' : printf('%d ⚠', all_non_errors)
+" Diagnostic status
+function! aux#lightline#count() abort
+    let l:error = 0
+    let l:other = 0
+    let l:info = get(b:, 'coc_diagnostic_info', {})
+    if !empty(l:info)
+        let l:error = l:info.error
+        let l:other = l:info.warning + l:info.information + l:info.hint
+    endif
+    let l:total = l:info.error + l:other
+    return {'total': l:total, 'error': l:error, 'other': l:other}
 endfunction
 
-function! aux#lightline#ale_error() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-    return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+function! aux#lightline#warning_count() abort
+    let l:count = aux#lightline#count()
+    return l:count.total == 0 ? '' : printf('%d ⚠', l:count.other)
+endfunction
+
+function! aux#lightline#error_count() abort
+    let l:count = aux#lightline#count()
+    return l:count.total == 0 ? '' : printf('%d ✗', l:count.error)
 endfunction

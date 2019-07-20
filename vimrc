@@ -28,6 +28,14 @@ highlight LineNr ctermfg=grey guifg=grey
 highlight CursorLine term=NONE cterm=NONE guibg=NONE
 highlight link CocHighlightText CursorColumn
 highlight CclsSkippedRegion ctermfg=darkgray guifg=darkgray
+highlight link CocErrorSign SpellBad
+highlight link CocWarningSign todo
+highlight link CocInfoSign CocWarningSign
+highlight CocHintSign ctermbg=green ctermfg=black guibg=green guifg=black
+highlight link CocErrorHighlight CocErrorSign
+highlight link CocWarningHighlight SpellCap
+highlight link CocInfoHighlight SpellCap
+highlight link CocHintHighlight CocHintSign
 
 " Text properties
 if has('textprop')
@@ -516,12 +524,12 @@ let g:lightline = {
 \       'fileformatandencoding': 'aux#lightline#file_info',
 \   },
 \   'component_expand': {
-\       'ale_warning': 'aux#lightline#ale_warning',
-\       'ale_error': 'aux#lightline#ale_error',
+\       'warning_count': 'aux#lightline#warning_count',
+\       'error_count': 'aux#lightline#error_count',
 \   },
 \   'component_type': {
-\       'ale_warning': 'warning',
-\       'ale_error': 'error',
+\       'warning_count': 'warning',
+\       'error_count': 'error',
 \   },
 \   'tab_component': {
 \       'filename': '%f %m',
@@ -535,7 +543,7 @@ let g:lightline = {
 \           ['percent'],
 \           ['lineinfo'],
 \           ['fileformatandencoding', 'filetype'],
-\           ['ale_warning', 'ale_error'],
+\           ['warning_count', 'error_count'],
 \       ],
 \   },
 \   'tabline': {
@@ -547,10 +555,7 @@ let g:lightline = {
 augroup lightline_settings
     autocmd!
     autocmd BufWinEnter * call aux#lightline#colours('green', 'yellow', 'red')
-    autocmd User ALEFixPre   call lightline#update()
-    autocmd User ALEFixPost  call lightline#update()
-    autocmd User ALELintPre  call lightline#update()
-    autocmd User ALELintPost call lightline#update()
+    autocmd User CocDiagnosticChange call lightline#update()
 augroup END
 
 "}}}
@@ -571,63 +576,6 @@ let g:tex_fold_additional_envs = ['frontmatter']
 "{{{ vim-prosession
 
 let g:prosession_on_startup = 1
-
-"}}}
-
-"{{{ ale
-
-" Do not load ALE in vimdiff
-if &diff
-    let g:ale_enabled = 0
-endif
-
-let g:ale_linters = {
-            \   'c': [],
-            \   'cpp': [],
-            \   'markdown': ['markdownlint', 'mdl', 'remark_lint'],
-            \   'mediawiki': [],
-            \   'python': ['pep8', 'flake8', 'pyre', 'mypy', 'bandit'],
-            \   'tex': ['chktex'],
-            \   'typescript': ['tslint', 'typecheck'],
-            \ }
-
-let s:text_linters = ['alex', 'proselint', 'redpen', 'vale', 'write-good']
-let g:ale_extra_linters = {
-            \   'tex': s:text_linters,
-            \   'markdown': s:text_linters,
-            \   'mediawiki': s:text_linters,
-            \   'python': ['pylint', 'pycodestyle', 'pydocstyle'],
-            \ }
-
-let g:ale_lint_on_text_changed = 'normal' " 'never' to disable
-let g:ale_lint_on_enter = 1
-
-let g:ale_completion_enabled = 0
-let g:ale_sign_error = 'EE'
-let g:ale_sign_warning = 'WW'
-let g:ale_sign_info = 'II'
-let g:ale_sign_style_error = 'SE'
-let g:ale_sign_style_warning = 'SW'
-let g:ale_set_highlights = 1
-
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_info_str = 'I'
-let g:ale_echo_msg_format = '[%severity%] (%linter%) %[code] %%s'
-
-nnoremap <leader>an <Plug>(ale_next_wrap)
-nnoremap <leader>aN <Plug>(ale_previous_wrap)
-nnoremap <leader>ag :ALEGoToDefinition<cr>
-nnoremap <leader>ah :ALEHover<cr>
-nnoremap <leader>as :ALESymbolSearch<cr>
-nnoremap <leader>af <Plug>(ale_fix)
-
-let g:ale_gitcommit_gitlint_options = '--config ~/.config/gitlint'
-let g:ale_python_mypy_options = '-ignore-missing-imports'
-let g:ale_alex_executable='alexjs'
-
-" Toggle extra linters
-command! ToggleExtraLinters call aux#toggle_extra_linters()
 
 "}}}
 
@@ -718,7 +666,12 @@ let g:coc_user_config = {
 \               'enable': v:false,
 \           },
 \           'diagnostic': {
-\               'displayByAle': v:true,
+\               'messageTarget': 'echo',
+\               'checkCurrentLine': v:true,
+\               'errorSign': 'EE',
+\               'warningSign': 'WW',
+\               'infoSign': 'II',
+\               'hintSign': 'HH',
 \           },
 \           'timeout': 5000,
 \           'noselect': v:true,
@@ -809,6 +762,47 @@ let g:coc_user_config = {
 \           'command': 'R',
 \           'args': ['--slave', '-e', 'languageserver::run()'],
 \           'filetypes': ['r'],
+\       },
+\       'dls': {
+\           'command': 'diagnostic-languageserver',
+\           'args': ['--stdio'],
+\           'filetypes': [
+\               'ada',
+\               'awk',
+\               'bib',
+\               'cmake',
+\               'dockerfile',
+\               'gitcommit',
+\               'ispc',
+\               'make',
+\               'matlab',
+\               'PKGBUILD',
+\               'python',
+\               'qml',
+\               'sh',
+\               'tex',
+\               'vim',
+\           ],
+\           'initializationOptions': {
+\               'linters': aux#diagnostic#linters(),
+\               'filetypes': {
+\                   'ada': 'gcc-ada',
+\                   'awk': 'gawk',
+\                   'bib': 'bibclean',
+\                   'cmake': 'cmakelint',
+\                   'dockerfile': 'hadolint',
+\                   'gitcommit': ['gitlint', 'languagetool'],
+\                   'ispc': 'ispc',
+\                   'make': 'checkmake',
+\                   'matlab': 'mlint',
+\                   'PKGBUILD': 'shellcheck_pkgbuild',
+\                   'python': 'bandit',
+\                   'qml': 'qmllint',
+\                   'sh': 'shellcheck',
+\                   'tex': 'chktex',
+\                   'vim': 'vint',
+\               },
+\           },
 \       },
 \   },
 \ }

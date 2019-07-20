@@ -193,11 +193,6 @@
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/ale"]
-	path = bundle/ale
-	url = https://github.com/w0rp/ale.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-speeddating"]
 	path = bundle/vim-speeddating
 	url = https://github.com/tpope/vim-speeddating.git

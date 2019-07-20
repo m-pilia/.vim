@@ -25,6 +25,7 @@ sudo pacman -S \
     flake8 \
     gdb \
     julia \
+    languagetool \
     mypy \
     nodejs \
     proselint \
@@ -35,12 +36,17 @@ sudo pacman -S \
     ripgrep \
     screen \
     texlive-most \
+    vint \
     yarn \
 
 yay -S \
+    bibclean \
     ccls \
+    cmake-lint \
+    gitlint \
     groovy-language-server \
     haskell-ide-engine \
+    pyls-mypy \
     ruby-mdl \
 ```
 
@@ -74,10 +80,6 @@ yarn install --frozen-lockfile
 * The configuration for coc.nvim is defined in the `vimrc` file with the
   `g:coc_user_config`, instead of using the `coc-settings.json` files, because
   I prefer the configuration to be scriptable.
-* I use [ALE](https://github.com/w0rp/ale) for linting. While ALE features
-  partially overlap with coc.nvim, the latter does not support most of ALE
-  linters. Warnings and errors from the language server are collected by
-  coc.nvim and passed to ALE for display.
 * This configuration does not include any debug integration plugin. Vim 8.0+
   already provides a nice built-in gdb integration (`:help terminal-debug`).
   While I would like a handier integration and support for other debuggers, I
