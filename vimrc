@@ -7,7 +7,8 @@ let g:mapleader = ' '
 
 "{{{ Colors
 
-syntax enable " Enable syntax highlighting
+syntax enable
+
 command! SyntaxRegionName echo synIDattr(synID(line("."), col("."), 0), "name")
 
 " Color scheme
@@ -17,13 +18,17 @@ highlight comment ctermfg=lightblue guifg=lightblue
 highlight constant ctermfg=red guifg=red
 highlight SpellBad ctermfg=white ctermbg=darkred guifg=white guibg=darkred
 highlight SpellCap ctermfg=white ctermbg=brown guifg=white guibg=brown
+highlight DiffAdd ctermbg=green ctermfg=black cterm=bold
+highlight DiffChange ctermbg=229 ctermfg=black cterm=bold
+highlight DiffDelete ctermbg=darkred ctermfg=white cterm=bold
+highlight DiffText ctermbg=darkyellow ctermfg=white cterm=bold
 highlight SignColumn ctermbg=black guibg=black
 highlight GitGutterAdd ctermbg=black ctermfg=green guibg=black guifg=green
 highlight GitGutterChange ctermbg=black ctermfg=yellow guibg=black guifg=yellow
 highlight GitGutterDelete ctermbg=black ctermfg=red guibg=black guifg=red
 highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=yellow
 highlight link QuickFixLine Normal
-highlight Pmenu ctermbg=darkgray guibg=darkgray
+highlight Pmenu ctermbg=238 ctermfg=grey guibg=#444444 ctermfg=grey
 highlight LineNr ctermfg=grey guifg=grey
 highlight CursorLine term=NONE cterm=NONE guibg=NONE
 highlight link CocHighlightText CursorColumn
@@ -895,3 +900,8 @@ imap <cr> <cr><plug>DiscretionaryEnd
 
 "}}}
 
+"{{{ vim-diffchar
+
+let g:DiffUnit = 'Char'
+
+"}}}
