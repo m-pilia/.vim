@@ -314,6 +314,9 @@ set statusline+=%1*(%p%%)%*             " line percentage
 " Completion options
 set completeopt=menuone,noselect
 
+" Format options
+set formatoptions=jcroql
+
 " Do not ignore headers (for vim-unimpaired ]f and [f mappings)
 set suffixes-=.h
 
@@ -620,6 +623,7 @@ let g:better_whitespace_filetypes_blacklist = [
 
 "{{{ editorconfig-vim
 
+let g:EditorConfig_preserve_formatoptions = 1
 let g:EditorConfig_exclude_patterns = [
             \ 'fugitive://.*',
             \ 'scp://.*',

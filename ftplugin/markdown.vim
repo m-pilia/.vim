@@ -1,3 +1,6 @@
+set formatoptions+=t
+set formatoptions-=l
+
 " Text width
 setlocal textwidth=79
 

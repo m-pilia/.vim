@@ -1,3 +1,6 @@
+set formatoptions+=t
+set formatoptions-=l
+
 " Tex file flavor
 let g:tex_flavor = 'latex'
 
