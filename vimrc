@@ -176,6 +176,9 @@ set updatetime=200
 " Close buffer without closing window
 command! Bd bp | bd#
 
+" Close all buffers except for the current one
+command! Bo %bd | e# | bd#
+
 " Diff options
 set diffopt+=vertical
 
