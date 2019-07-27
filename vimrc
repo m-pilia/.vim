@@ -424,7 +424,7 @@ let g:screenshell_commands = {
             \ 'java': 'jshell',
             \ 'javascript': 'js52',
             \ 'julia': 'julia',
-            \ 'matlab': '_matlab -nodesktop',
+            \ 'matlab': 'matlab -nodesktop',
             \ 'ocaml': 'rlwrap ocaml',
             \ 'python': 'python',
             \ 'racket': 'racket',
