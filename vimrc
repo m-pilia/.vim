@@ -840,7 +840,7 @@ nmap <leader>,td <plug>(coc-type-definition)
 " Completion mappings
 inoremap <silent> <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent> <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <expr> <c-j>   pumvisible() ? "\<C-y>" : "<C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
+inoremap <silent> <expr> <c-j>   aux#pum_noselect() ? "\<C-y>" : "<C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
 snoremap <silent> <c-j> <Esc>:call UltiSnips#ExpandSnippetOrJump()<cr>
 xnoremap <silent> <c-j> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
 inoremap <C-@> <C-x><C-o>

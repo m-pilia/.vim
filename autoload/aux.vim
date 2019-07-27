@@ -182,3 +182,8 @@ function! aux#netrw_path() abort
     let l:filename .= substitute(getline('.'), '^\v(\s*\|*)*', '', '')
     return fnameescape(l:filename)
 endfunction
+
+" Return true if the pop up menu is showing but no item is selected
+function! aux#pum_noselect() abort
+    return pumvisible() && !empty(v:completed_item)
+endfunction
