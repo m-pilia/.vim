@@ -15,7 +15,16 @@ setlocal spell
 
 " Match dollar signs
 let b:AutoPairs = g:AutoPairs
-let b:AutoPairs['$'] = '$'
+let s:latex_pairs = {
+\   '$': '$',
+\   '\\left(': '\right)',
+\   '\\left[': '\right]',
+\   '\\left{': '\right}',
+\   '\\left|': '\right|',
+\   '\\lvert': '\rvert',
+\   '\\lVert': '\rVert',
+\}
+call extend(b:AutoPairs, s:latex_pairs)
 
 " Shell command for TeX word count from stdin
 function! TeXWCcommand()
