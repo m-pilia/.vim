@@ -849,6 +849,12 @@ inoremap <C-@> <C-x><C-o>
 nmap ]h <Plug>(coc-git-nextchunk)
 nmap [h <Plug>(coc-git-prevchunk)
 nmap <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <silent> <leader>gu :CocCommand git.chunkUndo<cr>
+nmap <silent> <leader>gs :CocCommand git.chunkStage<cr>
+omap ih <Plug>(coc-text-object-inner)
+xmap ih <Plug>(coc-text-object-inner)
+omap ah <Plug>(coc-text-object-outer)
+xmap ah <Plug>(coc-text-object-outer)
 
 " List mappings
 nnoremap <leader>. :CocList vimcommands<cr>
