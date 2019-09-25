@@ -93,6 +93,9 @@ if has('nvim')
     set inccommand=nosplit
 endif
 
+" Forward word search operator without jumping
+nnoremap <silent> * :let @/='\<\C'.expand('<cword>').'\>'<cr>:set hls<cr>
+
 set lazyredraw " Don't redraw while executing macros
 
 set showmatch " Blink on matching brackets
