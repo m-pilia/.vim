@@ -390,6 +390,13 @@ nmap <leader>qe :Evaluate<cr>
 
 "}}}
 
+"{{{ Development tools
+
+" Prettyprint a vim object
+command! -nargs=1 PP echo aux#pprint(<args>)
+
+"}}}
+
 """"""""""""""""""" Plugin settings
 
 "{{{ pathogen

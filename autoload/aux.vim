@@ -187,3 +187,24 @@ endfunction
 function! aux#pum_noselect() abort
     return pumvisible() && !empty(v:completed_item)
 endfunction
+
+" Recursively convert funcrefs to strings
+function! aux#fun2str(obj) abort
+    if type(a:obj) == v:t_list
+        return map(copy(a:obj), {_, V -> aux#fun2str(V)})
+    elseif type(a:obj) == v:t_dict
+        let l:result = {}
+        for [l:k, l:V] in items(a:obj)
+            let l:result[l:k] = aux#fun2str(l:V)
+        endfor
+        return l:result
+    else
+        return type(a:obj) == v:t_func ? string(a:obj) : a:obj
+    endif
+endfunction
+
+" Prettyprint a vim object
+function! aux#pprint(obj) abort
+    let l:str = shellescape(escape(json_encode(aux#fun2str(a:obj)), '\'))
+    return system('echo ' . l:str . '| python -m json.tool')
+endfunction
