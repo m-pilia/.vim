@@ -263,7 +263,7 @@ function! aux#diagnostic#linters() abort
     \           'note': 'info',
     \       },
     \   },
-    \   'shellcheck_pkgbuild': PKGBUILD#diagnostic_languageserver(),
+    \   'shellcheck_pkgbuild': pkgbuild#diagnostic_languageserver(),
     \   'vint': {
     \       'command': 'vint',
     \       'args': ['--style-problem', '%file'],
