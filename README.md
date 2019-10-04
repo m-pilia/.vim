@@ -95,6 +95,14 @@ yarn install --frozen-lockfile
   other repositories on GitHub, I do not accept contributions here. The issue
   tracker is disabled, and pull requests will be closed and locked
   automatically.
+* If you are new to vim, my advice is to not blindly clone and use this as
+  your configuration. Many things here work for me but may not work very well
+  for you. Many others are likely beyond your current knowledge. The best way
+  to go is to build your own configuration from scratch. Using someone else's
+  configuration as a starting point is likely going to be suboptimal. You are
+  welcome to take inspiration or re-use pieces of code from here, but as a rule
+  of thumb you should never put something in your configuration if you do not
+  know exactly what it does and how it works.
 
 # License
 
