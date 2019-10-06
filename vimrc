@@ -70,6 +70,9 @@ set wildmenu
 set wildmode=longest:full
 set wildignore=*.o,*~,*.pyc
 
+" Ignore messages from completion menu
+set shortmess+=c
+
 set guicursor=
 set mouse=
 set noshowmode
