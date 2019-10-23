@@ -292,6 +292,9 @@ set showtabline=2
 " Show help for the word under cursor
 nnoremap <silent> <leader>h :help <c-r>=aux#vimhelp()<cr><cr>
 
+" To match HTML tags with %
+runtime macros/matchit.vim
+
 "}}}
 
 "{{{ Legacy status line
@@ -929,5 +932,20 @@ imap <cr> <cr><plug>DiscretionaryEnd
 "{{{ vim-diffchar
 
 let g:DiffUnit = 'Char'
+
+"}}}
+
+"{{{ vim-mediawiki
+
+let g:vim_mediawiki_mappings = 1
+let g:vim_mediawiki_completion_limit = 50
+let g:vim_mediawiki_completion_namespaces = {
+\ 'it.wikipedia.org': {
+\       '[[': 0,
+\       '{{': 10,
+\       '[[File:': 6,
+\       '[[Categoria:': 14,
+\   },
+\ }
 
 "}}}

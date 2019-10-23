@@ -233,11 +233,6 @@
 	url = https://github.com/tomtom/tcomment_vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/mediawiki"]
-	path = bundle/mediawiki
-	url = https://github.com/chikamichi/mediawiki.vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-syntax-extra"]
 	path = bundle/vim-syntax-extra
 	url = https://github.com/justinmk/vim-syntax-extra.git
@@ -296,5 +291,10 @@
 [submodule "bundle/vim-endwise"]
 	path = bundle/vim-endwise
 	url = https://github.com/tpope/vim-endwise.git
+	ignore = dirty
+	branch = master
+[submodule "bundle/vim-mediawiki"]
+	path = bundle/vim-mediawiki
+	url = https://github.com/m-pilia/vim-mediawiki
 	ignore = dirty
 	branch = master
