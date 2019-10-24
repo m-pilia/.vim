@@ -727,6 +727,7 @@ let g:coc_user_config = {
 \   },
 \   'yank': {
 \       'highlight': {'enable': v:false},
+\       'enableCompletion': v:false,
 \   },
 \   'languageserver': {
 \       'ccls': {
