@@ -26,6 +26,13 @@ let s:latex_pairs = {
 \}
 call extend(b:AutoPairs, s:latex_pairs)
 
+" Close environments with vim-endwise
+" Credit: https://github.com/tpope/vim-endwise/issues/41#issuecomment-432905813
+let b:endwise_addition = '\="\\end" . matchstr(submatch(0), "{.\\{-}}")'
+let b:endwise_words = 'begin'
+let b:endwise_pattern = '\\begin{.\{-}}'
+let b:endwise_syngroups = 'texSection,texBeginEnd,texBeginEndName,texStatement'
+
 " Shell command for TeX word count from stdin
 function! TeXWCcommand()
     return 'perl -X `command -v texcount` - | ' .
