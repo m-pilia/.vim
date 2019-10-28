@@ -837,22 +837,22 @@ let g:coc_user_config = {
 \ }
 
 " Mappings
-nmap <leader>,ca <plug>(coc-code-action)
-vmap <leader>,ca <plug>(coc-code-action-selected)
-nmap <leader>,cl <plug>(coc-codelens-action)
-nmap <leader>,gD <plug>(coc-declaration)
-nmap <leader>,gd <plug>(coc-definition)
-nnoremap <leader>,h  :call CocActionAsync('doHover')<cr>
-nmap <leader>,o  <plug>(coc-open-link)
-nmap <leader>,e  <plug>(coc-diagnostic-next)
-nmap <leader>,E  <plug>(coc-diagnostic-prev)
-nmap <leader>,rf <plug>(coc-references)
-nmap <leader>,r  <plug>(coc-rename)
-nmap <leader>,f  <plug>(coc-fix-current)
-nmap <leader>,df <plug>(coc-format)
-vmap <leader>,df <plug>(coc-format-selected)
-nmap <leader>,i  <plug>(coc-implementation)
-nmap <leader>,td <plug>(coc-type-definition)
+nmap <silent> <leader>,ca <plug>(coc-code-action)
+vmap <silent> <leader>,ca <plug>(coc-code-action-selected)
+nmap <silent> <leader>,cl <plug>(coc-codelens-action)
+nmap <silent> <leader>,gD <plug>(coc-declaration)
+nmap <silent> <leader>,gd <plug>(coc-definition)
+nnoremap <silent> <leader>,h  :call CocActionAsync('doHover')<cr>
+nmap <silent> <leader>,o  <plug>(coc-open-link)
+nmap <silent> <leader>,e  <plug>(coc-diagnostic-next)
+nmap <silent> <leader>,E  <plug>(coc-diagnostic-prev)
+nmap <silent> <leader>,rf <plug>(coc-references)
+nmap <silent> <leader>,r  <plug>(coc-rename)
+nmap <silent> <leader>,f  <plug>(coc-fix-current)
+nmap <silent> <leader>,df <plug>(coc-format)
+vmap <silent> <leader>,df <plug>(coc-format-selected)
+nmap <silent> <leader>,i  <plug>(coc-implementation)
+nmap <silent> <leader>,td <plug>(coc-type-definition)
 
 " Completion mappings
 inoremap <silent> <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -860,12 +860,12 @@ inoremap <silent> <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <expr> <c-j>   aux#pum_noselect() ? "\<C-y>" : "<C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
 snoremap <silent> <c-j> <Esc>:call UltiSnips#ExpandSnippetOrJump()<cr>
 xnoremap <silent> <c-j> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent> <expr> <c-space> coc#refresh()
 
 " Git mappings
-nmap ]h <Plug>(coc-git-nextchunk)
-nmap [h <Plug>(coc-git-prevchunk)
-nmap <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <silent> ]h <Plug>(coc-git-nextchunk)
+nmap <silent> [h <Plug>(coc-git-prevchunk)
+nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
 nmap <silent> <leader>gu :CocCommand git.chunkUndo<cr>
 nmap <silent> <leader>gs :CocCommand git.chunkStage<cr>
 omap ih <Plug>(coc-text-object-inner)
