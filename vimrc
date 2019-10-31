@@ -9,7 +9,7 @@ let g:mapleader = ' '
 
 syntax enable
 
-command! SyntaxRegionName echo synIDattr(synID(line("."), col("."), 0), "name")
+command! SyntaxRegionName echo synIDattr(synID(line('.'), col('.'), 0), 'name')
 
 " Color scheme
 colorscheme desert
@@ -41,6 +41,9 @@ highlight link CocErrorHighlight CocErrorSign
 highlight link CocWarningHighlight SpellCap
 highlight link CocInfoHighlight SpellCap
 highlight link CocHintHighlight CocHintSign
+highlight conflictStart ctermbg=lightred ctermfg=black
+highlight conflictMiddle ctermbg=lightblue ctermfg=black
+highlight conflictEnd ctermbg=lightgreen cterm=bold ctermfg=black
 
 " Text properties
 if has('textprop')
@@ -59,6 +62,9 @@ augroup syntax_highlighting
     " Syntax highlighting synchronization settings
     " Sync file from start (NOTE: slow but very precise)
     autocmd BufEnter * :syntax sync fromstart
+
+    " Detect conflict markers
+    autocmd BufEnter * call aux#detect_conflict_markers()
 augroup END
 
 "}}}
@@ -367,6 +373,9 @@ nnoremap <silent> <F5> :!make<cr>
 
 " Write as sudo
 cnoremap w!! w !sudo tee % >/dev/null
+
+" Accept conflict region under cursor
+nnoremap <silent> <leader>ga :call aux#accept_conflict()<cr>
 
 "}}}
 

@@ -208,3 +208,30 @@ function! aux#pprint(obj) abort
     let l:str = shellescape(escape(json_encode(aux#fun2str(a:obj)), '\'))
     return system('echo ' . l:str . '| python -m json.tool')
 endfunction
+
+" Detect conflict markers
+function! aux#detect_conflict_markers() abort
+    syntax region conflictStart start=/^<<<<<<< .*$/ end=/^\ze\(=======$\||||||||\)/
+    syntax region conflictMiddle start=/^||||||| .*$/ end=/^\ze=======$/
+    syntax region conflictEnd start=/^\(=======$\||||||| |\)/ end=/^>>>>>>> .*$/
+endfunction
+
+" Accept the current conflict region
+function! aux#accept_conflict() abort
+    let l:region = synIDattr(synID(line('.'), col('.'), 0), 'name')
+    if l:region !=# 'conflictStart' && l:region !=# 'conflictEnd'
+        return
+    endif
+
+    let l:begin = searchpos('^<<<<<<< .*$', 'bcnW')[0]
+    let l:Middle = {opt -> searchpos('^\(=======$\||||||||\)', opt)[0]}
+    let l:end = searchpos('^>>>>>>> .*$', 'cnW')[0]
+
+    if l:region ==# 'conflictStart'
+        silent execute l:Middle('cnW') . ',' l:end . 'd'
+        silent execute l:begin 'd'
+    else
+        silent execute l:end 'd'
+        silent execute l:begin . ',' l:Middle('bcnW') . 'd'
+    endif
+endfunction
