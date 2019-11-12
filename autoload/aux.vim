@@ -235,3 +235,47 @@ function! aux#accept_conflict() abort
         silent execute l:begin . ',' l:Middle('bcnW') . 'd'
     endif
 endfunction
+
+" Count characters in a string
+function! aux#strlen(str) abort
+    return len(split(a:str, '\zs'))
+endfunction
+
+" Get LaTeX command under cursor
+function! s:get_latex(line, col) abort
+    let l:i = match(a:line[0 : a:col - 2], '\\[^[:space:]\\]\+$')
+    return {'index': l:i, 'string': a:line[l:i : a:col - 2]}
+endfunction
+
+" Identify if the cursor is at the end of a LaTeX command
+function! aux#is_latex(line, col) abort
+    return has_key(g:l2u_symbols_dict, s:get_latex(a:line, a:col).string)
+endfunction
+
+" Replace LaTeX command with Unicode equivalent if possible
+function! aux#latex2unicode(line, col) abort
+    let l:last_col = a:col == col('$')
+    if aux#is_latex(a:line, a:col)
+        let l:key = s:get_latex(a:line, a:col).string
+        execute 'normal! dF\i' . g:l2u_symbols_dict[l:key]
+        execute 'normal!' . (l:last_col ? 'll' : 'l')
+    endif
+endfunction
+
+" Replace LaTeX command with Unicode equivalent in command mode
+function! aux#latex2unicode_cmd() abort
+    let l:line = getcmdline()
+    let l:col = getcmdpos()
+    if aux#is_latex(l:line, l:col)
+        let l:match = s:get_latex(l:line, l:col)
+        let l:end = l:match.index + len(l:match.string)
+        let l:prefix = l:match.index > 0 ? l:line[0 : l:match.index - 1] : ''
+        let l:char = g:l2u_symbols_dict[l:match.string]
+        let l:postfix = len(l:line) > l:end ? l:line[l:end :] : ''
+        let l:line = l:prefix . l:char . l:postfix
+        call setcmdpos(l:col + len(char) - len(l:match.string))
+    else
+        call feedkeys("\<Tab>", 'nt')
+    endif
+    return l:line
+endfunction

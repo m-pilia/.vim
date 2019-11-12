@@ -25,7 +25,7 @@
 	branch = master
 [submodule "bundle/julia-vim"]
 	path = bundle/julia-vim
-	url = https://github.com/JuliaLang/julia-vim.git
+	url = https://github.com/JuliaEditorSupport/julia-vim.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/python-syntax"]

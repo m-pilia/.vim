@@ -775,7 +775,18 @@ let g:coc_user_config = {
 \           'filetypes': ['python'],
 \       },
 \       'jls': {
-\           'command': 'jls',
+\           'command': 'bash',
+\           'args': ['-c', 'julia --startup-file=no --history-file=no -e "
+\               using Pkg;
+\               using LanguageServer;
+\               import StaticLint;
+\               import SymbolServer;
+\               env_path = dirname(Pkg.Types.Context().env.project_file);
+\               debug = false;
+\               server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\", Dict());
+\               server.runlinter = true;
+\               run(server);
+\           "'],
 \           'filetypes': ['julia'],
 \       },
 \       'haskell': {
@@ -867,9 +878,10 @@ nmap <silent> <leader>,i  <plug>(coc-implementation)
 nmap <silent> <leader>,td <plug>(coc-type-definition)
 
 " Completion mappings
-inoremap <silent> <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent> <expr> <plug>(smart_tab) pumvisible() ? "\<C-n>" : "\<Tab>"
+imap <silent> <Tab> <plug>(smart_tab)
 inoremap <silent> <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <expr> <c-j>   aux#pum_noselect() ? "\<C-y>" : "<C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
+inoremap <silent> <expr> <c-j> aux#pum_noselect() ? "\<C-y>" : "<C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
 snoremap <silent> <c-j> <Esc>:call UltiSnips#ExpandSnippetOrJump()<cr>
 xnoremap <silent> <c-j> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
 inoremap <silent> <expr> <c-space> coc#refresh()
