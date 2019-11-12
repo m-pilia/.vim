@@ -271,7 +271,10 @@ map k gk
 call aux#disable_keys(['Up', 'Down', 'Left', 'Right', 'Home', 'End', 'PageUp', 'PageDown'])
 
 " CamelCase word backspace
-imap <silent> <C-w> <C-o>:setlocal virtualedit+=onemore<cr><C-o>db<C-o>:setlocal virtualedit-=onemore<cr>
+imap <silent> <C-w> <C-O>:let save_ve = &virtualedit<cr>
+    \<C-o>:setlocal virtualedit=all<cr>
+    \<C-o>db
+    \<C-o>:let &virtualedit = save_ve<cr>
 
 " Search for visual selection
 vnoremap <silent> * <esc>/\V<c-r>=escape(aux#visual_selection(), '/\')<cr><cr>
