@@ -451,7 +451,7 @@ let g:screenshell_commands = {
             \ 'haskell': 'ghci -cpp',
             \ 'java': 'jshell',
             \ 'javascript': 'js52',
-            \ 'julia': 'julia',
+            \ 'julia': 'julia -p auto',
             \ 'matlab': 'matlab -nodesktop',
             \ 'ocaml': 'rlwrap ocaml',
             \ 'python': 'python',
@@ -460,8 +460,9 @@ let g:screenshell_commands = {
             \ }
 
 nnoremap <silent> <C-c><C-x> :call aux#screenshell_quit()<cr>
-nnoremap <silent> <C-c><C-c> :call aux#screenshell_call()<cr>
-vnoremap <silent> <C-c><C-c> :call aux#screenshell_send()<cr>
+nnoremap <silent> <Leader>r :call aux#screenshell_call()<cr>
+vnoremap <silent> <Leader>r :<C-u>call aux#screenshell_send()<cr>
+command! -nargs=0 -range=% SS <line1>,<line2>ScreenSend
 
 "}}}
 

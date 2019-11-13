@@ -3,7 +3,7 @@ function! aux#visual_selection() abort
     let l:tmp = ''
     try
         let l:tmp = @a
-        normal! gv"ay
+        silent normal! gv"ay
         return @a
     finally
         let @a = l:tmp
