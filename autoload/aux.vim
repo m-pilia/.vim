@@ -57,7 +57,6 @@ endfunction
 " Commute between upper, lower, and title case in visual selection
 function! aux#twiddle_case() abort
     let l:selection = aux#visual_selection()
-    echom l:selection
     if l:selection ==# toupper(l:selection)
         normal! gvu
     elseif l:selection ==# tolower(l:selection)
