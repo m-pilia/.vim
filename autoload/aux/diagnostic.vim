@@ -159,12 +159,12 @@ function! aux#diagnostic#linters() abort
     \       'args': ['-'],
     \       'sourceName': 'hadolint',
     \       'formatPattern': [
-    \           '^.*:(\d+):?(\d+)?\s*(DL|SC|\^)?(?:\d+)?\s*(.*)$',
+    \           '^.*:(\d+):?(\d+)?\s*(DL|SC|\^)?(\d+)?\s*(.*)$',
     \           {
     \               'line': 1,
     \               'column': 2,
     \               'security': 3,
-    \               'message': 4,
+    \               'message': [5, ' (', 3, 4, ')'],
     \           },
     \       ],
     \       'securities': {
