@@ -125,7 +125,7 @@ set number
 set cursorline
 
 " Open location list
-nnoremap <leader>l :lopen<cr>
+nnoremap <silent> <leader>l :lopen<cr>
 
 "}}}
 
