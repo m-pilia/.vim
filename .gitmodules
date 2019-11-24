@@ -298,3 +298,8 @@
 	url = https://github.com/m-pilia/vim-mediawiki
 	ignore = dirty
 	branch = master
+[submodule "bundle/vim-liquid"]
+	path = bundle/vim-liquid
+	url = https://github.com/tpope/vim-liquid.git
+	ignore = dirty
+	branch = master
