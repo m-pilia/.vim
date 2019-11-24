@@ -802,8 +802,7 @@ let g:coc_user_config = {
 \           'ignoredRootPaths': ['~'],
 \       },
 \       'latex': {
-\           'command': 'java',
-\           'args': ['-jar', '/usr/share/java/texlab/texlab.jar'],
+\           'command': 'texlab',
 \           'filetypes': ['tex', 'plaintex', 'contex'],
 \       },
 \       'groovy': {

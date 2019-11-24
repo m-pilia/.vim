@@ -35,6 +35,7 @@ sudo pacman -S \
     r \
     ripgrep \
     screen \
+    texlab \
     texlive-most \
     vint \
     yarn \
