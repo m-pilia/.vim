@@ -304,6 +304,11 @@ nnoremap <silent> <leader>h :help <c-r>=aux#vimhelp()<cr><cr>
 " To match HTML tags with %
 runtime macros/matchit.vim
 
+" Tag navigation
+set tagfunc=aux#tagfunc
+nmap <silent> <leader>t <C-]>
+nmap <silent> <leader>T g<C-]>
+
 "}}}
 
 "{{{ Legacy status line

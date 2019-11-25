@@ -1,3 +1,14 @@
+" Convert an uri to a path
+function! aux#uri2path(uri) abort
+    let l:path = substitute(a:uri, '^file://', '', '')
+    let l:path = substitute(l:path, '[?#].*', '', '')
+    let l:path = substitute(l:path,
+    \                       '%\(\x\x\)',
+    \                       '\=printf("%c", str2nr(submatch(1), 16))',
+    \                       'g')
+    return l:path
+endfunction
+
 " Get visual selection
 function! aux#visual_selection() abort
     let l:tmp = ''
@@ -277,4 +288,32 @@ function! aux#latex2unicode_cmd() abort
         call feedkeys("\<Tab>", 'nt')
     endif
     return l:line
+endfunction
+
+" Tag generator function based on coc.nvim
+function! aux#tagfunc(pattern, flags, info) abort
+    let l:name = a:flags ==? 'c' ? a:pattern : expand('<cword>')
+
+    for l:server in keys(filter(copy(g:coc_user_config['languageserver']),
+    \                           {_, v -> index(v.filetypes, &filetype) >= 0}))
+        try
+            let l:symbol_list = CocRequest(l:server, 'workspace/symbol', {'query': l:name})
+        catch
+            continue
+        endtry
+
+        let l:tags = []
+        for l:symbol in l:symbol_list
+            let l:pos = l:symbol.location.range.start
+            call add(l:tags, {
+            \   'name': l:name,
+            \   'filename': aux#uri2path(l:symbol.location.uri),
+            \   'cmd': '/\%' . (l:pos.line + 1) . 'l\%' . (l:pos.character + 1) . 'c/',
+            \ })
+        endfor
+
+        return l:tags
+    endfor
+
+    return v:null
 endfunction
