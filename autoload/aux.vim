@@ -123,6 +123,10 @@ endfunction
 " Grey out regions skipped by C pre-processor
 if has('textprop')
     function! aux#skipped_regions(msg) abort
+        if aux#uri2path(a:msg.uri) !=# expand('%:p')
+            return
+        endif
+
         call prop_remove({'type': 'ccls_skipped_region', 'all': v:true})
         for l:range in a:msg.skippedRanges
             let l:options = {
@@ -135,6 +139,10 @@ if has('textprop')
     endfunction
 elseif has('nvim')
     function! aux#skipped_regions(msg) abort
+        if aux#uri2path(a:msg.uri) !=# expand('%:p')
+            return
+        endif
+
         let l:buf = nvim_get_current_buf()
         let l:ns = nvim_create_namespace(string(l:buf))
         call nvim_buf_clear_namespace(l:buf, l:ns, 0, -1)
@@ -146,6 +154,10 @@ elseif has('nvim')
     endfunction
 else
     function! aux#skipped_regions(msg) abort
+        if aux#uri2path(a:msg.uri) !=# expand('%:p')
+            return
+        endif
+
         if exists('w:ccls_skipped_regions')
             for l:match in w:ccls_skipped_regions
                 silent! call matchdelete(l:match)
