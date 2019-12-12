@@ -820,6 +820,14 @@ let g:coc_user_config = {
 \           'args': ['--slave', '-e', 'languageserver::run()'],
 \           'filetypes': ['r'],
 \       },
+\       'cmake': {
+\           'command': 'cmake-language-server',
+\           'filetypes': ['cmake'],
+\           'rootPatterns': ['build/'],
+\           'initializationOptions': {
+\               'buildDirectory': 'build',
+\           },
+\       },
 \       'dls': {
 \           'command': 'diagnostic-languageserver',
 \           'args': ['--stdio'],

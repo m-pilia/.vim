@@ -43,6 +43,7 @@ sudo pacman -S \
 yay -S \
     bibclean \
     ccls \
+    cmake-language-server \
     cmake-lint \
     gitlint \
     groovy-language-server \
