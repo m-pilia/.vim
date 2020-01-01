@@ -890,6 +890,10 @@ vmap <silent> <leader>,df <plug>(coc-format-selected)
 nmap <silent> <leader>,i  <plug>(coc-implementation)
 nmap <silent> <leader>,td <plug>(coc-type-definition)
 
+" Scroll float window
+nnoremap <expr> <C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+nnoremap <expr> <C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+
 " Completion mappings
 inoremap <silent> <expr> <plug>(smart_tab) pumvisible() ? "\<C-n>" : "\<Tab>"
 imap <silent> <Tab> <plug>(smart_tab)
