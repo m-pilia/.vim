@@ -329,3 +329,16 @@ function! aux#tagfunc(pattern, flags, info) abort
 
     return v:null
 endfunction
+
+" Load a Python stack trace from the clipboard to the quickfix window
+function! aux#python_stack_trace_to_quickfix() abort
+    compiler python
+    let l:saved_makeprg = &l:makeprg
+    try
+        setlocal makeprg=xclip\ -out\ -selection\ clipboard
+        silent make
+        copen
+    finally
+        let &l:makeprg = l:saved_makeprg
+    endtry
+endfunction

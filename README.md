@@ -38,6 +38,7 @@ sudo pacman -S \
     texlab \
     texlive-most \
     vint \
+    xclip \
     yarn \
 
 yay -S \

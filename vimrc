@@ -126,6 +126,7 @@ set cursorline
 
 " Open location list
 nnoremap <silent> <leader>l :lopen<cr>
+nnoremap <silent> <leader>L :copen<cr>
 
 "}}}
 
