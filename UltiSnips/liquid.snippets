@@ -1,0 +1,26 @@
+priority -50
+
+snippet cite "Jekyll Scholar citation"
+{% cite ${1:citation_id} %}$0
+endsnippet
+
+snippet img "Image"
+<img src="${1:/path/to/file.png}"
+     class="${2:center-block pull-right} ${3:content-image-padded}"
+     style="width:${4:80}%;"
+     markdown="1"/>$0
+endsnippet
+
+snippet ref "References section"
+# References
+
+{% bibliography --cited %}
+$0
+endsnippet
+
+snippet foot "Footnotes section"
+# Footnotes
+{:footnotes}
+
+[^1]: $0
+endsnippet
