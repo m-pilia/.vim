@@ -86,7 +86,7 @@ yarn install --frozen-lockfile
 * This configuration does not include any debug integration plugin. Vim 8.0+
   already provides a nice built-in gdb integration (`:help terminal-debug`).
   While I would like a handier integration and support for other debuggers, I
-  have not found any that satisfies my needs, so when I need something more
+  have not found any that satisfies my needs, so when I need anything more
   than `:Termdebug`, I usually perform debugging using external tools, outside
   vim.
 * This configuration provides settings and plugins for a lot of languages and,
@@ -98,6 +98,14 @@ yarn install --frozen-lockfile
   other repositories on GitHub, I do not accept contributions here. The issue
   tracker is disabled, and pull requests will be closed and locked
   automatically.
+* The `master` branch contains "stable" commits, i.e. pieces of configuration
+  that, after some battle testing, I find to be satisfactory enough. The
+  `develop` branch contains "experimental" commits that I want to try more
+  extensively in my daily usage of vim before merging them to master. Note that
+  the commits in the `develop` branch that are not already merged to `master`
+  may be amended, in case their code turns out to be faulty, since keeping a
+  clean history is a top priority for this repository. The history of the
+  `master` branch, on the other hand, is never rewritten.
 * If you are new to vim, my advice is to not blindly clone and use this as
   your configuration. Many things here work for me but may not work very well
   for you. Many others are likely beyond your current knowledge. The best way
