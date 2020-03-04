@@ -68,11 +68,6 @@
 	url = https://github.com/tpope/vim-abolish.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-easymotion"]
-	path = bundle/vim-easymotion
-	url = https://github.com/easymotion/vim-easymotion.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-erlang-runtime"]
 	path = bundle/vim-erlang-runtime
 	url = https://github.com/vim-erlang/vim-erlang-runtime.git
@@ -302,4 +297,8 @@
 	path = bundle/vim-liquid
 	url = https://github.com/tpope/vim-liquid.git
 	ignore = dirty
+	branch = master
+[submodule "bundle/vim-sneak"]
+	path = bundle/vim-sneak
+	url = https://github.com/justinmk/vim-sneak.git
 	branch = master

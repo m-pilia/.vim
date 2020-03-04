@@ -1025,3 +1025,33 @@ let g:vim_mediawiki_completion_namespaces = {
 \ }
 
 "}}}
+
+"{{{ vim-sneak
+
+let g:sneak#label = 1
+
+" 2-character Sneak
+nmap <leader><leader>w <Plug>Sneak_s
+xmap <leader><leader>w <Plug>Sneak_s
+omap <leader><leader>w <Plug>Sneak_s
+nmap <leader><leader>b <Plug>Sneak_S
+xmap <leader><leader>b <Plug>Sneak_S
+omap <leader><leader>b <Plug>Sneak_S
+
+" 1-character enhanced 'f'
+nmap f <Plug>Sneak_f
+xmap f <Plug>Sneak_f
+omap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap F <Plug>Sneak_F
+omap F <Plug>Sneak_F
+
+" 1-character enhanced 't'
+nmap t <Plug>Sneak_t
+xmap t <Plug>Sneak_t
+omap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+xmap T <Plug>Sneak_T
+omap T <Plug>Sneak_T
+
+"}}}
