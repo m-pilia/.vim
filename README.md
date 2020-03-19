@@ -32,6 +32,7 @@ sudo pacman -S \
     python-language-server \
     python-pycodestyle \
     python-pylint \
+    python-pynvim \
     r \
     ripgrep \
     screen \
@@ -47,7 +48,7 @@ yay -S \
     cmake-language-server \
     cmake-lint \
     gitlint \
-    groovy-language-server \
+    groovy-language-server-git \
     haskell-ide-engine \
     pyls-mypy \
     ruby-mdl \
