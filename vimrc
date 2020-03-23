@@ -282,7 +282,7 @@ vnoremap <silent> * <esc>/\V<c-r>=escape(aux#visual_selection(), '/\')<cr><cr>
 vnoremap <silent> # <esc>?\V<c-r>=escape(aux#visual_selection(), '/\')<cr><cr>
 
 " Remove search highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh <bar> :CtrlSFClearHL<cr>
+map <silent> <leader><cr> :noh<cr>
 
 " Cycle through buffers
 nnoremap <leader>g :b#<CR>
@@ -400,20 +400,6 @@ let g:netrw_list_hide = aux#netrw_list_hide()
 
 "}}}
 
-"{{{ termdebug
-
-packadd termdebug
-nmap <leader>qb :Break<cr>
-nmap <leader>qB :Clear<cr>
-nmap <leader>qs :Step<cr>
-nmap <leader>qo :Over<cr>
-nmap <leader>qf :Finish<cr>
-nmap <leader>qc :Continue<cr>
-nmap <leader>qS :Stop<cr>
-nmap <leader>qe :Evaluate<cr>
-
-"}}}
-
 "{{{ Development tools
 
 " Prettyprint a vim object
@@ -434,72 +420,6 @@ call pathogen#infect()
 "{{{ Ultisnips
 
 let g:UltiSnipsExpandTrigger = '<not_needed>'
-
-"}}}
-
-"{{{ Screenshell
-
-" Choose terminal multiplexer ('GnuScreen' or 'Tmux')
-let g:ScreenImpl = 'GnuScreen'
-
-" Create shell session into a new terminal window
-let g:ScreenShellExternal = 1
-
-" Height of the screenshell screen
-let g:ScreenShellHeight = 16
-
-" Set initial focus ('vim' or 'shell')
-let g:ScreenShellInitialFocus = 'vim'
-let g:ScreenShellTerminal = 'konsole'
-
-let g:screenshell_commands = {
-            \ 'erlang': 'erl',
-            \ 'haskell': 'ghci -cpp',
-            \ 'java': 'jshell',
-            \ 'javascript': 'js52',
-            \ 'julia': 'julia -p auto',
-            \ 'matlab': 'matlab -nodesktop',
-            \ 'ocaml': 'rlwrap ocaml',
-            \ 'python': 'python',
-            \ 'racket': 'racket',
-            \ 'sml': 'rlwrap poly',
-            \ }
-
-nnoremap <silent> <C-c><C-x> :call aux#screenshell_quit()<cr>
-nnoremap <silent> <Leader>r :call aux#screenshell_call()<cr>
-vnoremap <silent> <Leader>r :<C-u>call aux#screenshell_send()<cr>
-command! -nargs=0 -range=% SS <line1>,<line2>ScreenSend
-
-"}}}
-
-"{{{ RainbowParentheses
-
-let g:rbpt_max = 16
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['red',         'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-
-augroup rainbow_parentheses
-    autocmd!
-    autocmd FileType lisp,racket RainbowParenthesesToggle
-    autocmd FileType lisp,racket RainbowParenthesesLoadRound
-    autocmd FileType lisp,racket RainbowParenthesesLoadSquare
-augroup END
 
 "}}}
 
@@ -534,26 +454,6 @@ let g:vim_markdown_strikethrough = 1
 
 let g:AutoPairsShortcutFastWrap = '<C-S-e>'
 let g:AutoPairsMultilineClose = v:false
-
-"}}}
-
-"{{{ CtrlSF
-
-let g:ctrlsf_search_mode = 'async'
-let g:ctrlsf_auto_focus = {'at': 'start'}
-let g:ctrlsf_selected_line_hl = 'p'
-nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>N <Plug>CtrlSFVwordPath
-vmap     <C-F>n <Plug>CtrlSFVwordExec
-nmap     <C-F>N <Plug>CtrlSFCwordPath
-nmap     <C-F>n <Plug>CtrlSFCwordExec
-nmap     <C-F>C <Plug>CtrlSFCCwordPath
-nmap     <C-F>c <Plug>CtrlSFCCwordExec
-nmap     <C-F>P <Plug>CtrlSFPwordPath
-nmap     <C-F>p <Plug>CtrlSFPwordExec
-nnoremap <C-F>o :CtrlSFOpen<CR>
-nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 "}}}
 
@@ -610,12 +510,6 @@ augroup END
 
 nnoremap <F7> :UndotreeToggle<cr>
 let g:undotree_SetFocusWhenToggle = 1
-
-"}}}
-
-"{{{ vim-tex-fold
-
-let g:tex_fold_additional_envs = ['frontmatter']
 
 "}}}
 

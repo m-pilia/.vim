@@ -3,49 +3,14 @@
 	url = https://github.com/jiangmiao/auto-pairs
 	ignore = dirty
 	branch = master
-[submodule "bundle/ctrlsf.vim"]
-	path = bundle/ctrlsf.vim
-	url = https://github.com/dyng/ctrlsf.vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/diffchar.vim"]
 	path = bundle/diffchar.vim
 	url = https://github.com/rickhowe/diffchar.vim.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/haskell-vim"]
-	path = bundle/haskell-vim
-	url = https://github.com/neovimhaskell/haskell-vim.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/hexmode"]
-	path = bundle/hexmode
-	url = https://github.com/fidian/hexmode.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/julia-vim"]
-	path = bundle/julia-vim
-	url = https://github.com/JuliaEditorSupport/julia-vim.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/python-syntax"]
 	path = bundle/python-syntax
 	url = https://github.com/vim-python/python-syntax.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/rainbow_parentheses.vim"]
-	path = bundle/rainbow_parentheses.vim
-	url = https://github.com/kien/rainbow_parentheses.vim.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/screen"]
-	path = bundle/screen
-	url = https://github.com/ervandew/screen.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/swapstrings"]
-	path = bundle/swapstrings
-	url = https://github.com/m-pilia/swapstrings.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/tabular"]
@@ -68,11 +33,6 @@
 	url = https://github.com/tpope/vim-abolish.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-erlang-runtime"]
-	path = bundle/vim-erlang-runtime
-	url = https://github.com/vim-erlang/vim-erlang-runtime.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
@@ -83,19 +43,9 @@
 	url = https://github.com/tikhomirov/vim-glsl.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-go"]
-	path = bundle/vim-go
-	url = https://github.com/fatih/vim-go.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-ispc"]
 	path = bundle/vim-ispc
 	url = https://github.com/jez/vim-ispc
-	ignore = dirty
-	branch = master
-[submodule "bundle/vim-loves-dafny"]
-	path = bundle/vim-loves-dafny
-	url = https://github.com/mlr-msft/vim-loves-dafny.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/vim-markdown"]
@@ -107,15 +57,10 @@
 	path = bundle/vim-perl
 	url = https://github.com/vim-perl/vim-perl.git
 	ignore = dirty
-	branch = master
+	branch = dev
 [submodule "bundle/vim-qml"]
 	path = bundle/vim-qml
 	url = https://github.com/peterhoeg/vim-qml.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/vim-racket"]
-	path = bundle/vim-racket
-	url = https://github.com/wlangstroth/vim-racket.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/vim-repeat"]
@@ -138,11 +83,6 @@
 	url = https://github.com/lervag/vimtex
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-vis"]
-	path = bundle/vim-vis
-	url = https://github.com/m-pilia/vim-vis.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-git"]
 	path = bundle/vim-git
 	url = https://github.com/tpope/vim-git.git
@@ -163,11 +103,6 @@
 	url = https://github.com/Konfekt/FastFold.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-tex-fold"]
-	path = bundle/vim-tex-fold
-	url = https://github.com/matze/vim-tex-fold.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/restore_view"]
 	path = bundle/restore_view
 	url = https://github.com/vim-scripts/restore_view.vim
@@ -186,11 +121,6 @@
 [submodule "bundle/vim-python-pep8-indent"]
 	path = bundle/vim-python-pep8-indent
 	url = https://github.com/Vimjas/vim-python-pep8-indent.git
-	ignore = dirty
-	branch = master
-[submodule "bundle/vim-speeddating"]
-	path = bundle/vim-speeddating
-	url = https://github.com/tpope/vim-speeddating.git
 	ignore = dirty
 	branch = master
 [submodule "bundle/vim-wordmotion"]
@@ -257,7 +187,7 @@
 	path = bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
 	ignore = dirty
-	branch = master
+	branch = release
 [submodule "bundle/vim-ccls"]
 	path = bundle/vim-ccls
 	url = https://github.com/m-pilia/vim-ccls

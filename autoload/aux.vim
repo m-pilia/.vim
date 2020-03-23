@@ -26,34 +26,6 @@ function! aux#is_loclist() abort
     return getwininfo(win_getid())[0]['loclist']
 endfunction
 
-" Send current line if the shell is active, otherwise start it
-function! aux#screenshell_call() abort
-    if g:ScreenShellActive
-        call g:ScreenShellSend(trim(getline('.')))
-    else
-        if has_key(g:screenshell_commands, &filetype)
-            execute 'ScreenShell ' . g:screenshell_commands[&filetype]
-        else
-            ScreenShell
-        endif
-    endif
-endfunction
-
-" Send visual selection buffer to the shell
-function! aux#screenshell_send() abort
-    if g:ScreenShellActive
-        call g:ScreenShellSend(aux#visual_selection())
-    endif
-    normal! gv
-endfunction
-
-" Quit the shell
-function! aux#screenshell_quit() abort
-    if g:ScreenShellActive
-        ScreenQuit
-    endif
-endfunction
-
 " Toggle between forward slash and backslash in visual selection
 function! aux#convert_path() abort
     let l:visual_selection = aux#visual_selection()
