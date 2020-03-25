@@ -33,6 +33,8 @@ highlight LineNr ctermfg=grey guifg=grey
 highlight CursorLine term=NONE cterm=NONE guibg=NONE
 highlight link CocHighlightText CursorColumn
 highlight CclsSkippedRegion ctermfg=darkgray guifg=darkgray
+highlight link CclsType cType
+highlight link CclsMacro cDefine
 highlight link CocErrorSign SpellBad
 highlight link CocWarningSign todo
 highlight link CocInfoSign CocWarningSign
@@ -47,7 +49,9 @@ highlight conflictEnd ctermbg=lightgreen cterm=bold ctermfg=black
 
 " Text properties
 if has('textprop')
-    call prop_type_add('ccls_skipped_region', {'highlight': 'CclsSkippedRegion'})
+    call prop_type_add('CclsSkippedRegion', {'highlight': 'CclsSkippedRegion'})
+    call prop_type_add('CclsType', {'highlight': 'CclsType'})
+    call prop_type_add('CclsMacro', {'highlight': 'CclsMacro'})
 endif
 
 " File EOL formats
@@ -804,7 +808,10 @@ if ! &diff
         autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
         autocmd User CocNvimInit call CocRegistNotification('ccls',
         \                                                   '$ccls/publishSkippedRanges',
-        \                                                   function('aux#skipped_regions'))
+        \                                                   function('aux#skreg#skipped_regions'))
+        autocmd User CocNvimInit call CocRegistNotification('ccls',
+        \                                                   '$ccls/publishSemanticHighlight',
+        \                                                   function('aux#semhl#semantic_highlight'))
     augroup END
 endif
 

@@ -12,8 +12,8 @@ define some auxiliary functions used to implement custom commands.
 # Dependencies
 
 Vim or Neovim:
-  + Vim 8.1+ with `+jobs`, `+python3`, `+timers`, or
-  + Neovim 0.4+ with python (`pip install neovim`).
+  + Vim 8.1+ with `+jobs`, `+python3`, `+timers`, `+textprop`, or
+  + Neovim 0.5+ with python (`pip install neovim`).
 
 External dependencies (example packages for Arch Linux):
 ```sh

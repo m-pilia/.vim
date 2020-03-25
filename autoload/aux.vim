@@ -9,6 +9,32 @@ function! aux#uri2path(uri) abort
     return l:path
 endfunction
 
+" Convert a path to an uri
+function! aux#path2uri(path) abort
+    let l:path = substitute(a:path, '\', '/', 'g')
+
+    let l:prefix = matchstr(l:path, '\v(^\w+::|^\w+://)')
+    if len(l:prefix) < 1
+        let l:prefix = 'file://'
+    endif
+
+    let l:volume_end = has('win32') ? matchstrpos(l:path, '\c[A-Z]:')[2] : 0
+    if l:volume_end < 0
+        let l:volume_end = 0
+    endif
+
+    let l:uri = l:prefix . strpart(l:path, 0, l:volume_end)
+    for l:index in range(l:volume_end, len(l:path) - 1)
+        if l:path[l:index] =~# '^[a-zA-Z0-9_.~/-]$'
+            let l:uri .= l:path[l:index]
+        else
+            let l:uri .= printf('%%%02X', char2nr(l:path[l:index]))
+        endif
+    endfor
+
+    return l:uri
+endfunction
+
 " Get visual selection
 function! aux#visual_selection() abort
     let l:tmp = ''
@@ -91,59 +117,6 @@ function! aux#disable_keys(keys) abort
         endfor
     endfor
 endfunction
-
-" Grey out regions skipped by C pre-processor
-if has('textprop')
-    function! aux#skipped_regions(msg) abort
-        if aux#uri2path(a:msg.uri) !=# expand('%:p')
-            return
-        endif
-
-        call prop_remove({'type': 'ccls_skipped_region', 'all': v:true})
-        for l:range in a:msg.skippedRanges
-            let l:options = {
-            \   'type': 'ccls_skipped_region',
-            \   'end_lnum': l:range.end.line - 1,
-            \   'end_col': 999,
-            \ }
-            call prop_add(l:range.start.line + 2, 1, l:options)
-        endfor
-    endfunction
-elseif has('nvim')
-    function! aux#skipped_regions(msg) abort
-        if aux#uri2path(a:msg.uri) !=# expand('%:p')
-            return
-        endif
-
-        let l:buf = nvim_get_current_buf()
-        let l:ns = nvim_create_namespace(string(l:buf))
-        call nvim_buf_clear_namespace(l:buf, l:ns, 0, -1)
-        for l:range in a:msg.skippedRanges
-            for l:line in range(l:range.start.line + 1, l:range.end.line - 2)
-                call nvim_buf_add_highlight(l:buf, l:ns, 'CclsSkippedRegion', l:line, 0, -1)
-            endfor
-        endfor
-    endfunction
-else
-    function! aux#skipped_regions(msg) abort
-        if aux#uri2path(a:msg.uri) !=# expand('%:p')
-            return
-        endif
-
-        if exists('w:ccls_skipped_regions')
-            for l:match in w:ccls_skipped_regions
-                silent! call matchdelete(l:match)
-            endfor
-        endif
-        let w:ccls_skipped_regions = []
-        for l:range in a:msg.skippedRanges
-            for l:line in range(l:range.start.line + 2, l:range.end.line - 1)
-                let l:match = matchaddpos('CclsSkippedRegion', [l:line], -5)
-                silent! call add(w:ccls_skipped_regions, l:match)
-            endfor
-        endfor
-    endfunction
-endif
 
 " Yank the current file name as a C include directive
 function! aux#yank_header() abort
