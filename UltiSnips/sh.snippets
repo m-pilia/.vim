@@ -1,0 +1,8 @@
+priority -50
+
+snippet argparse "Argument parser"
+while [[ "$#" -gt 0 ]]; do case \$1 in
+	${1:-o|--option}) ${2:option=1};;
+	*) echo "Unknown parameter: \$1"; exit 1;;
+esac; shift; done$0
+endsnippet
