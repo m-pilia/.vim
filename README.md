@@ -25,7 +25,6 @@ sudo pacman -S \
     flake8 \
     gdb \
     julia \
-    languagetool \
     mypy \
     nodejs \
     proselint \
@@ -51,6 +50,8 @@ yay -S \
     haskell-ide-engine \
     pyls-mypy \
     ruby-mdl \
+    shellcheck-static \
+
 ```
 
 # Install
