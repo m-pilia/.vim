@@ -30,7 +30,7 @@ highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=y
 highlight link QuickFixLine Normal
 highlight Pmenu ctermbg=238 ctermfg=grey guibg=#444444 ctermfg=grey
 highlight LineNr ctermfg=grey guifg=grey
-highlight CursorLine term=NONE cterm=NONE guibg=NONE
+highlight clear CursorLine
 highlight link CocHighlightText CursorColumn
 highlight CclsSkippedRegion ctermfg=darkgray guifg=darkgray
 highlight link CclsType cType
@@ -794,10 +794,10 @@ omap ah <Plug>(coc-text-object-outer)
 xmap ah <Plug>(coc-text-object-outer)
 
 " List mappings
-nnoremap <leader>. :CocList vimcommands<cr>
-nnoremap <silent> <C-p> :CocList files<cr>
-nnoremap <silent> <C-k> :CocList buffers<cr>
-nnoremap <silent> <C-j> :CocList yank<cr>
+nnoremap <leader>. :CocList --number-select vimcommands<cr>
+nnoremap <silent> <C-p> :CocList --number-select files<cr>
+nnoremap <silent> <C-k> :CocList --number-select buffers<cr>
+nnoremap <silent> <C-j> :CocList --number-select yank<cr>
 
 " Reference highlight
 if ! &diff
