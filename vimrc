@@ -712,7 +712,7 @@ let g:coc_user_config = {
 \       },
 \       'groovy': {
 \           'command': 'java',
-\           'args': ['-jar', '/usr/share/java/groovy-language-server/groovy-language-server-all.jar'],
+\           'args': ['-jar', '/usr/share/java/groovy-language-server/groovy-language-server.jar'],
 \           'filetypes': ['groovy'],
 \       },
 \       'r': {
