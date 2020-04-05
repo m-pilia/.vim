@@ -198,11 +198,6 @@
 	url = https://github.com/m-pilia/vim-pkgbuild.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/vim-textobj-parameter"]
-	path = bundle/vim-textobj-parameter
-	url = https://github.com/sgur/vim-textobj-parameter.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-textobj-functioncall"]
 	path = bundle/vim-textobj-functioncall
 	url = https://github.com/machakann/vim-textobj-functioncall
@@ -231,4 +226,10 @@
 [submodule "bundle/vim-sneak"]
 	path = bundle/vim-sneak
 	url = https://github.com/justinmk/vim-sneak.git
+	ignore = dirty
+	branch = master
+[submodule "bundle/targets.vim"]
+	path = bundle/targets.vim
+	url = https://github.com/wellle/targets.vim.git
+	ignore = dirty
 	branch = master
