@@ -118,6 +118,16 @@ set matchtime=2 " Matching brackets blink duration
 set grepprg=rg\ --vimgrep\ --no-heading\ --column\ $*
 set grepformat=%f:%l:%c:%m
 
+cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() =~# '^grep')  ? 'silent grep!'  : 'grep'
+cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() =~# '^lgrep') ? 'silent lgrep!' : 'lgrep'
+
+" Automatically open the quickfix/location list after command
+augroup quickfix_commands
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l* lwindow
+augroup END
+
 " No sound on errors
 set noerrorbells
 set novisualbell
