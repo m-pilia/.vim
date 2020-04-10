@@ -411,6 +411,20 @@ let g:netrw_list_hide = aux#netrw_list_hide()
 
 "}}}
 
+"{{{ terminal
+
+tnoremap <Esc> <C-\><C-n>
+
+if has('nvim')
+    augroup nvim_terminal
+        autocmd!
+        autocmd TermOpen * startinsert
+        autocmd WinEnter term://* startinsert
+    augroup END
+end
+
+"}}}
+
 "{{{ Development tools
 
 " Prettyprint a vim object
@@ -941,5 +955,18 @@ omap t <Plug>Sneak_t
 nmap T <Plug>Sneak_T
 xmap T <Plug>Sneak_T
 omap T <Plug>Sneak_T
+
+"}}}
+
+"{{{ neoterm
+
+let g:neoterm_autoinsert = v:true
+let g:neoterm_default_mod = 'botright vertical'
+
+nmap gr <Plug>(neoterm-repl-send)
+xmap gr <Plug>(neoterm-repl-send)
+nmap gl <Plug>(neoterm-repl-send-line)
+
+nnoremap <silent> <leader>r :TREPLSendFile<cr>
 
 "}}}

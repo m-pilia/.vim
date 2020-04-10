@@ -238,3 +238,8 @@
 	url = https://github.com/JuliaEditorSupport/julia-vim.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/neoterm"]
+	path = bundle/neoterm
+	url = https://github.com/kassio/neoterm.git
+	ignore = dirty
+	branch = master
