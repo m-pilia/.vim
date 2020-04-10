@@ -8,3 +8,8 @@ inoremap <buffer> <silent> <Plug>(latex2unicode) <C-O>:let save_ve = &virtualedi
     \<C-o>:let &virtualedit = save_ve<cr>
     \<Esc>a
 cnoremap <buffer> <Tab> <C-\>eaux#latex2unicode_cmd()<cr>
+
+" Support for vim-endwise
+let b:endwise_addition = 'end'
+let b:endwise_words = 'if,for,while,begin,function,macro,quote,type,immutable,let,do,module,baremodule,try'
+let b:endwise_syngroups = 'juliaConditional,juliaRepeat,juliaBlKeyword,juliaException'

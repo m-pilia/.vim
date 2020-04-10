@@ -233,3 +233,8 @@
 	url = https://github.com/wellle/targets.vim.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/julia-vim"]
+	path = bundle/julia-vim
+	url = https://github.com/JuliaEditorSupport/julia-vim.git
+	ignore = dirty
+	branch = master
