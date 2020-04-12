@@ -92,6 +92,23 @@ function! aux#diagnostic#linters() abort
     \           ':': 'warning',
     \       },
     \   },
+    \   'flake8': {
+    \       'command': 'flake8',
+    \       'args': ['-'],
+    \       'sourceName': 'flake8',
+    \       'formatPattern': [
+    \           '^.+(:)(\d+):(\d+):\s*(.*)$',
+    \           {
+    \               'security': 1,
+    \               'line': 2,
+    \               'column': 3,
+    \               'message': 4,
+    \           },
+    \       ],
+    \       'securities': {
+    \           ':': 'warning',
+    \       },
+    \   },
     \   'gawk': {
     \       'command': 'awk',
     \       'args': [

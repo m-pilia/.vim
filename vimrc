@@ -773,7 +773,7 @@ let g:coc_user_config = {
 \           'make': 'checkmake',
 \           'matlab': 'mlint',
 \           'pkgbuild': 'shellcheck_pkgbuild',
-\           'python': 'bandit',
+\           'python': ['bandit', 'flake8'],
 \           'qml': 'qmllint',
 \           'sh': 'shellcheck',
 \           'tex': 'chktex',
