@@ -700,6 +700,16 @@ let g:coc_user_config = {
 \       'pyls': {
 \           'command': 'pyls',
 \           'filetypes': ['python'],
+\           'settings': {
+\               'pyls': {
+\                   'plugins': {
+\                       'pylint': {
+\                           'enabled': v:false,
+\                           'args': [],
+\                       },
+\                   },
+\               },
+\           },
 \       },
 \       'jls': {
 \           'command': 'bash',

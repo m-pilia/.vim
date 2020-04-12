@@ -32,6 +32,7 @@ sudo pacman -S \
     python-pycodestyle \
     python-pylint \
     python-pynvim \
+    python-rope \
     r \
     ripgrep \
     texlab \
