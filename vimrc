@@ -219,7 +219,7 @@ set textwidth=2000
 " Set different text width inside comment regions
 augroup comment_width <buffer>
     autocmd!
-    autocmd FileType c,cpp,cuda,java,python,vim
+    autocmd FileType c,cpp,cuda,matlab,java,python,vim
                 \ autocmd CursorMoved,CursorMovedI <buffer>
                 \ :call aux#set_text_width('\v(Comment|doxygen)', 72, 120)
 augroup END
