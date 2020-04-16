@@ -644,6 +644,10 @@ let g:coc_user_config = {
 \           'noselect': v:true,
 \           'previewAutoClose': v:false,
 \       },
+\   'source': {
+\       'around': {'firstMatch': v:false},
+\       'buffer': {'firstMatch': v:false},
+\   },
 \   },
 \   'suggest': {
 \       'snippetIndicator': '►',
