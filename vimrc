@@ -362,13 +362,29 @@ set suffixes-=.h
 vnoremap <leader>S <esc>:call aux#onemored('gv"_d"0P')<cr>
 vnoremap <leader>s <esc>:call aux#onemored('gv"_dP')<cr>
 
-" Yank to system clipboard
-vnoremap <leader>y "+y
-vnoremap <leader>d "+d
-
 " Put line
-nnoremap <leader>p :put<cr>
-nnoremap <leader>P :put!<cr>
+nnoremap <leader>u :put<cr>
+nnoremap <leader>U :put!<cr>
+nnoremap <leader>i :put +<cr>
+nnoremap <leader>I :put! +<cr>
+
+" Yank/paste to system clipboard
+vmap <leader>y "+y
+vmap <leader>d "+d
+nmap <leader>p "+p
+nmap <leader>P "+P
+
+" Yank to clipboard when missing has('clipboard')
+if executable('powershell.exe')
+    augroup wsl_clipboard
+        autocmd!
+        autocmd TextYankPost * call aux#win#write_clipboard()
+    augroup END
+    nnoremap <silent> <leader>p :call aux#win#read_clipboard("normal! \"\rp")<cr>
+    nnoremap <silent> <leader>P :call aux#win#read_clipboard("normal! \"\rP")<cr>
+    nnoremap <silent> <leader>i :call aux#win#read_clipboard("put \r")<cr>
+    nnoremap <silent> <leader>I :call aux#win#read_clipboard("put! \r")<cr>
+endif
 
 " Yank file name
 nnoremap <silent> <leader>cp :let @" = expand('%')<cr><bar>:let @+ = expand('%')<cr>
@@ -396,6 +412,9 @@ cnoremap w!! w !sudo tee % >/dev/null
 
 " Accept conflict region under cursor
 nnoremap <silent> <leader>ga :call aux#accept_conflict()<cr>
+
+" Toggle paste mode
+set pastetoggle=<f10>
 
 "}}}
 
