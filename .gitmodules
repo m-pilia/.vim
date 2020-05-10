@@ -243,3 +243,8 @@
 	url = https://github.com/kassio/neoterm.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/qmake-syntax-vim"]
+	path = bundle/qmake-syntax-vim
+	url = https://github.com/artoj/qmake-syntax-vim.git
+	ignore = dirty
+	branch = master
