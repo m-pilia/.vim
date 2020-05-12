@@ -649,6 +649,7 @@ command! InstallCocExtensions
 let g:coc_user_config = {
 \   'coc': {
 \       'preferences': {
+\       'extensionUpdateCheck': 'never',
 \           'codeLens': {
 \               'enable': v:false,
 \           },
