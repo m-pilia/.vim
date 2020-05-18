@@ -202,9 +202,13 @@ set updatetime=200
 
 " Close buffer without closing window
 command! Bd bp | bd#
+command! Bw bp | bw#
 
 " Close all buffers except for the current one
 command! Bo %bd | e# | bd#
+
+" Open scratch buffer
+command! Scratch call aux#scratch()
 
 " Diff options
 set diffopt+=vertical

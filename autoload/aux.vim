@@ -287,3 +287,12 @@ function! aux#python_stack_trace_to_quickfix() abort
         let &l:makeprg = l:saved_makeprg
     endtry
 endfunction
+
+" Open a new scratch buffer
+function! aux#scratch() abort
+    new
+    setlocal buftype=nofile
+    setlocal bufhidden=wipe
+    setlocal noswapfile
+    nnoremap <silent> <buffer> q :q<cr>
+endfunction
