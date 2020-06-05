@@ -20,6 +20,7 @@ External dependencies (example packages for Arch Linux):
 sudo pacman -S \
     bandit \
     bash-language-server \
+    ccls \
     clang \
     fd \
     flake8 \
@@ -43,7 +44,6 @@ sudo pacman -S \
 
 yay -S \
     bibclean \
-    ccls \
     cmake-language-server \
     cmake-lint \
     gitlint \
