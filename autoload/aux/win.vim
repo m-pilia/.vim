@@ -5,11 +5,10 @@ endfunction
 
 " Escape string to be usable as input to PowerShell from a bash-like shell
 "
-" First, double all single quotes (escape for Powershell). Then, replace
-" all single quotes with '"'"' (escape for bash) and enclose everything
-" within single quotes.
+" Replace all single quotes with '"'"' (escape for bash) and enclose
+" everything within single quotes.
 function! s:psescape(str) abort
-    return "'" . substitute(escape(a:str, '\'), "'", repeat("'\"'\"'", 2), 'g') . "'"
+    return "'" . substitute(escape(a:str, '\'), "'", "'\"'\"'", 'g') . "'"
 endfunction
 
 " Read the clipboard when has('clipboard') is false
