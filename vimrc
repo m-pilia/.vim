@@ -637,8 +637,7 @@ if &diff
     let g:did_coc_loaded = 1
 endif
 
-command! InstallCocExtensions
-\   call coc#add_extension(
+let g:coc_global_extensions = [
 \       'coc-diagnostic',
 \       'coc-json',
 \       'coc-git',
@@ -648,7 +647,7 @@ command! InstallCocExtensions
 \       'coc-tsserver',
 \       'coc-vimlsp',
 \       'coc-yank',
-\       )
+\       ]
 
 let g:coc_user_config = {
 \   'coc': {
