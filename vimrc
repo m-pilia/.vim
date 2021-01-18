@@ -736,6 +736,7 @@ nmap <silent> <leader>,df <plug>(coc-format)
 vmap <silent> <leader>,df <plug>(coc-format-selected)
 nmap <silent> <leader>,i  <plug>(coc-implementation)
 nmap <silent> <leader>,td <plug>(coc-type-definition)
+nnoremap <silent> <leader>l :CocDiagnostics<cr>
 
 " Scroll float window
 nnoremap <expr> <C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
@@ -768,7 +769,7 @@ nnoremap <silent> <C-k> :CocList --number-select buffers<cr>
 nnoremap <silent> <C-j> :CocList --number-select yank<cr>
 
 " Reference highlight
-if ! &diff
+if ! &diff && index(g:pathogen_disabled, 'coc.nvim') < 0
     augroup coc_highlight
         autocmd!
         autocmd CursorHold * silent call aux#matchdelete('CocHighlightText') |
