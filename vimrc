@@ -652,28 +652,28 @@ let g:coc_global_extensions = [
 let g:coc_user_config = {
 \   'coc': {
 \       'preferences': {
-\       'extensionUpdateCheck': 'never',
-\           'codeLens': {
-\               'enable': v:false,
-\           },
-\           'diagnostic': {
-\               'messageTarget': 'echo',
-\               'checkCurrentLine': v:true,
-\               'errorSign': 'EE',
-\               'warningSign': 'WW',
-\               'infoSign': 'II',
-\               'hintSign': 'HH',
-\           },
-\           'timeout': 5000,
-\           'noselect': v:true,
+\           'extensionUpdateCheck': 'never',
 \           'previewAutoClose': v:false,
 \       },
-\   'source': {
-\       'around': {'firstMatch': v:false},
-\       'buffer': {'firstMatch': v:false},
+\       'source': {
+\           'around': {'firstMatch': v:false},
+\           'buffer': {'firstMatch': v:false},
+\       },
 \   },
+\   'codeLens': {
+\       'enable': v:false,
+\   },
+\   'diagnostic': {
+\       'messageTarget': 'echo',
+\       'checkCurrentLine': v:true,
+\       'errorSign': 'EE',
+\       'warningSign': 'WW',
+\       'infoSign': 'II',
+\       'hintSign': 'HH',
 \   },
 \   'suggest': {
+\       'timeout': 5000,
+\       'noselect': v:true,
 \       'snippetIndicator': '►',
 \   },
 \   'git': {
