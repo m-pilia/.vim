@@ -303,7 +303,7 @@ vnoremap <silent> # <esc>?\V<c-r>=escape(aux#visual_selection(), '/\')<cr><cr>
 map <silent> <leader><cr> :noh<cr>
 
 " Cycle through buffers
-nnoremap <leader>g :b#<CR>
+nnoremap <leader>v :b#<CR>
 nnoremap <leader>f :bn<CR>
 nnoremap <leader>F :bp<CR>
 nnoremap <leader>b :ls<CR>:b<space>
