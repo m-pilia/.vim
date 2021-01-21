@@ -325,6 +325,11 @@ set tagfunc=aux#tagfunc
 nmap <silent> <leader>t <C-]>
 nmap <silent> <leader>T g<C-]>
 
+" Make the jump list behave like the tag stack
+if has('nvim')
+    set jumpoptions+=stack
+end
+
 "}}}
 
 "{{{ Legacy status line
