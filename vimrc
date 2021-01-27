@@ -742,6 +742,8 @@ vmap <silent> <leader>,df <plug>(coc-format-selected)
 nmap <silent> <leader>,i  <plug>(coc-implementation)
 nmap <silent> <leader>,td <plug>(coc-type-definition)
 nnoremap <silent> <leader>l :CocDiagnostics<cr>
+nnoremap <silent> <leader>,j :CocCommand document.jumpToNextSymbol<cr>
+nnoremap <silent> <leader>,k :CocCommand document.jumpToPrevSymbol<cr>
 
 " Scroll float window
 nnoremap <expr> <C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
