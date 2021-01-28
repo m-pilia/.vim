@@ -383,18 +383,6 @@ vmap <leader>d "+d
 nmap <leader>p "+p
 nmap <leader>P "+P
 
-" Yank to clipboard when missing has('clipboard')
-if executable('powershell.exe')
-    augroup wsl_clipboard
-        autocmd!
-        autocmd TextYankPost * call aux#win#write_clipboard()
-    augroup END
-    nnoremap <silent> <leader>p :call aux#win#read_clipboard("normal! \"\rp")<cr>
-    nnoremap <silent> <leader>P :call aux#win#read_clipboard("normal! \"\rP")<cr>
-    nnoremap <silent> <leader>i :call aux#win#read_clipboard("put \r")<cr>
-    nnoremap <silent> <leader>I :call aux#win#read_clipboard("put! \r")<cr>
-endif
-
 " Yank file name
 nnoremap <silent> <leader>cp :let @" = expand('%')<cr><bar>:let @+ = expand('%')<cr>
 nnoremap <silent> <leader>cP :let @" = expand('%:p')<cr><bar>:let @+ = expand('%:p')<cr>

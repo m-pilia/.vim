@@ -55,6 +55,9 @@ yay -S \
 
 ```
 
+On Windows/WSL, having [win32yank.exe](https://github.com/equalsraf/win32yank)
+in the Windows PATH makes clipboard support work out of the box in neovim.
+
 # Install
 
 Plugins are handled as submodules. After cloning, initialise them with
