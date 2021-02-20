@@ -77,13 +77,13 @@ function! aux#twiddle_case() abort
 endfunction
 
 " Set different text width according to the syntax region
-function! aux#set_text_width(re, tw, cw) abort
+function! aux#set_text_width(re) abort
     let l:winview = winsaveview()
     let l:region = synIDattr(synID(line('.'), col('.'), 0), 'name')
     if match(l:region, a:re) >= 0
-        execute 'setlocal textwidth=' . a:tw
+        execute 'setlocal textwidth=' . get(b:, 'comment_width', get(g:, 'comment_width', 72))
     else
-        execute 'setlocal textwidth=' . a:cw
+        execute 'setlocal textwidth=' . get(b:, 'code_width', get(g:, 'code_width', 120))
     endif
     call winrestview(l:winview)
 endfunction

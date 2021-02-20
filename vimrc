@@ -225,8 +225,11 @@ augroup comment_width <buffer>
     autocmd!
     autocmd FileType c,cpp,cuda,matlab,java,python,vim
                 \ autocmd CursorMoved,CursorMovedI <buffer>
-                \ :call aux#set_text_width('\v(Comment|doxygen)', 72, 120)
+                \ :call aux#set_text_width('\v(Comment|doxygen)')
 augroup END
+
+let g:code_width = 120
+let g:comment_width = 72
 
 " Automatic line break
 set linebreak
