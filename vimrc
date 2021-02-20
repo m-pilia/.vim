@@ -737,8 +737,10 @@ nnoremap <silent> <leader>,j :CocCommand document.jumpToNextSymbol<cr>
 nnoremap <silent> <leader>,k :CocCommand document.jumpToPrevSymbol<cr>
 
 " Scroll float window
-nnoremap <expr> <C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-nnoremap <expr> <C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+nnoremap <silent> <expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-f>"
+nnoremap <silent> <expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0, 1) : "\<C-b>"
+inoremap <silent> <expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 1)\<cr>" : "\<Right>"
+inoremap <silent> <expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
 
 " Completion mappings
 inoremap <silent> <expr> <plug>(smart_tab) pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -772,7 +774,7 @@ if ! &diff && index(g:pathogen_disabled, 'coc.nvim') < 0
         autocmd!
         autocmd CursorHold * silent call aux#matchdelete('CocHighlightText') |
         \                           call CocActionAsync('highlight')
-        autocmd CursorHoldI * silent call CocActionAsync('showSignatureHelp')
+        autocmd CursorHoldI * silent if !coc#float#has_scroll() | call CocActionAsync('showSignatureHelp') | fi
         autocmd User CocNvimInit call CocRegistNotification('ccls',
         \                                                   '$ccls/publishSkippedRanges',
         \                                                   function('aux#skreg#skipped_regions'))
