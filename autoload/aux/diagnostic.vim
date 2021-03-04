@@ -173,7 +173,7 @@ function! aux#diagnostic#linters() abort
     \   },
     \   'hadolint': {
     \       'command': 'hadolint',
-    \       'args': ['-'],
+    \       'args': ['--no-color', '-'],
     \       'sourceName': 'hadolint',
     \       'formatPattern': [
     \           '^.*:(\d+):?(\d+)?\s*(DL|SC|\^)?(\d+)?\s*(.*)$',
