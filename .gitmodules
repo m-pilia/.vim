@@ -248,3 +248,13 @@
 	url = https://github.com/artoj/qmake-syntax-vim.git
 	ignore = dirty
 	branch = master
+[submodule "bundle/vim-peekaboo"]
+	path = bundle/vim-peekaboo
+	url = https://github.com/junegunn/vim-peekaboo
+	ignore = dirty
+	branch = master
+[submodule "bundle/vim-markbar"]
+	path = bundle/vim-markbar
+	url = https://github.com/Yilin-Yang/vim-markbar
+	ignore = dirty
+	branch = master
