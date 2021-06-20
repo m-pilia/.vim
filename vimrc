@@ -634,6 +634,7 @@ if &diff
 endif
 
 let g:coc_global_extensions = [
+\       'coc-docker',
 \       'coc-diagnostic',
 \       'coc-json',
 \       'coc-git',
