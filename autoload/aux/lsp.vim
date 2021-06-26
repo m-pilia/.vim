@@ -52,13 +52,5 @@ function! aux#lsp#coc_config() abort
 \           'args': ['--slave', '-e', 'languageserver::run()'],
 \           'filetypes': ['r'],
 \       },
-\       'cmake': {
-\           'command': 'cmake-language-server',
-\           'filetypes': ['cmake'],
-\           'rootPatterns': ['build/'],
-\           'initializationOptions': {
-\               'buildDirectory': 'build',
-\           },
-\       },
 \   }
 endfunction

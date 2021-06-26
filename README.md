@@ -41,7 +41,6 @@ sudo pacman -S \
 
 yay -S \
     bibclean \
-    cmake-language-server \
     cmake-lint \
     gitlint \
     haskell-ide-engine \
