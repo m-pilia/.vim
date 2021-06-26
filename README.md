@@ -24,7 +24,6 @@ sudo pacman -S \
     fd \
     flake8 \
     gdb \
-    julia \
     mypy \
     nodejs \
     proselint \

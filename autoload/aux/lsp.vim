@@ -42,21 +42,6 @@ function! aux#lsp#coc_config() abort
 \               },
 \           },
 \       },
-\       'jls': {
-\           'command': 'julia',
-\           'args': ['--startup-file=no', '--history-file=no', '-e', '
-\               using Pkg;
-\               using LanguageServer;
-\               import StaticLint;
-\               import SymbolServer;
-\               env_path = dirname(Pkg.Types.Context().env.project_file);
-\               debug = false;
-\               server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path);
-\               server.runlinter = true;
-\               run(server);
-\           '],
-\           'filetypes': ['julia'],
-\       },
 \       'haskell': {
 \           'command': 'hie-wrapper',
 \           'rootPatterns': ['.stack.yaml', 'cabal.config', 'package.yaml'],
