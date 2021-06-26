@@ -641,6 +641,7 @@ let g:coc_global_extensions = [
 \       'coc-lists',
 \       'coc-omni',
 \       'coc-snippets',
+\       'coc-texlab',
 \       'coc-tsserver',
 \       'coc-vimlsp',
 \       'coc-yank',

@@ -68,10 +68,6 @@ function! aux#lsp#coc_config() abort
 \           'filetypes': ['sh'],
 \           'ignoredRootPaths': ['~'],
 \       },
-\       'latex': {
-\           'command': 'texlab',
-\           'filetypes': ['tex', 'plaintex', 'contex'],
-\       },
 \       'groovy': {
 \           'command': 'java',
 \           'args': ['-jar', '/usr/share/java/groovy-language-server/groovy-language-server-all.jar'],

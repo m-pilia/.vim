@@ -36,7 +36,6 @@ sudo pacman -S \
     python-rope \
     r \
     ripgrep \
-    texlab \
     texlive-most \
     vint \
     xclip \
