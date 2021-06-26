@@ -44,7 +44,6 @@ yay -S \
     cmake-language-server \
     cmake-lint \
     gitlint \
-    groovy-language-server-git \
     haskell-ide-engine \
     pyls-mypy \
     ruby-mdl \

@@ -638,6 +638,7 @@ let g:coc_global_extensions = [
 \       'coc-diagnostic',
 \       'coc-json',
 \       'coc-git',
+\       'coc-groovy',
 \       'coc-julia',
 \       'coc-lists',
 \       'coc-omni',
