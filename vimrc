@@ -640,6 +640,7 @@ let g:coc_global_extensions = [
 \       'coc-git',
 \       'coc-lists',
 \       'coc-omni',
+\       'coc-sh',
 \       'coc-snippets',
 \       'coc-texlab',
 \       'coc-tsserver',

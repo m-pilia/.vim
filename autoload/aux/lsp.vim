@@ -62,12 +62,6 @@ function! aux#lsp#coc_config() abort
 \           'rootPatterns': ['.stack.yaml', 'cabal.config', 'package.yaml'],
 \           'filetypes': ['hs', 'lhs', 'haskell'],
 \       },
-\       'bash': {
-\           'args': ['start'],
-\           'command': 'bash-language-server',
-\           'filetypes': ['sh'],
-\           'ignoredRootPaths': ['~'],
-\       },
 \       'groovy': {
 \           'command': 'java',
 \           'args': ['-jar', '/usr/share/java/groovy-language-server/groovy-language-server-all.jar'],
