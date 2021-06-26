@@ -1,5 +1,5 @@
 # My Vim configuration
-[![Travis CI Build Status](https://travis-ci.org/m-pilia/.vim.svg?branch=master)](https://travis-ci.org/m-pilia/.vim)
+[![Checks](https://github.com/m-pilia/.vim/workflows/Checks/badge.svg)](https://github.com/m-pilia/.vim/actions/workflows/checks.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/m-pilia/.vim/blob/master/LICENSE)
 
 This repository hosts my Vim configuration. All the code here should be
