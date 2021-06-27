@@ -10,3 +10,16 @@ endsnippet
 snippet scriptdir "Script directory"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 endsnippet
+
+snippet errorprinter "Error printer"
+set -Ee
+
+function print_error_context() {
+	>&2 echo
+	>&2 echo "\$0: Error at line \$1"
+	awk -v l="\$1" 'NR > (l - 5) && NR < (l + 4) {printf "%-5d%4s%s\n", NR, (NR == l ? ">>> " : ""), \$0}' "\$0"
+}
+
+trap 'print_error_context $LINENO' ERR
+$0
+endsnippet
