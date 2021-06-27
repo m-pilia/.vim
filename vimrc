@@ -643,6 +643,7 @@ let g:coc_global_extensions = [
 \       'coc-julia',
 \       'coc-lists',
 \       'coc-omni',
+\       'coc-rust-analyzer',
 \       'coc-sh',
 \       'coc-snippets',
 \       'coc-texlab',
@@ -717,6 +718,11 @@ let g:coc_user_config = {
 \           'sh': 'shellcheck',
 \           'tex': 'chktex',
 \           'vim': 'vint',
+\       },
+\   },
+\   'rust-analyzer': {
+\       'server': {
+\           'path': '/usr/bin/rust-analyzer',
 \       },
 \   },
 \ }

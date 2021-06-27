@@ -34,6 +34,7 @@ sudo pacman -S \
     python-rope \
     r \
     ripgrep \
+    rust-analyzer \
     texlive-most \
     vint \
     xclip \
