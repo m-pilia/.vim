@@ -258,3 +258,8 @@
 	url = https://github.com/Yilin-Yang/vim-markbar
 	ignore = dirty
 	branch = master
+[submodule "bundle/plantuml-syntax"]
+	path = bundle/plantuml-syntax
+	url = https://github.com/aklt/plantuml-syntax
+	ignore = dirty
+	branch = master
