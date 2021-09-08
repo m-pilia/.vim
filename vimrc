@@ -213,6 +213,9 @@ command! Scratch call aux#scratch()
 " Diff options
 set diffopt+=vertical
 
+" Hex mode
+command -bar HexMode silent call aux#hex#toggle_hex()
+
 "}}}
 
 "{{{ Indent
