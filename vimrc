@@ -216,6 +216,9 @@ set diffopt+=vertical
 " Hex mode
 command -bar HexMode silent call aux#hex#toggle_hex()
 
+" Intel hex checksum
+command! -range IHexChecksum <line1>,<line2>call aux#hex#ihex_checksum()
+
 "}}}
 
 "{{{ Indent
