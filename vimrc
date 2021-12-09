@@ -30,6 +30,7 @@ highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=y
 highlight link QuickFixLine Normal
 highlight Pmenu ctermbg=238 ctermfg=grey guibg=#444444 ctermfg=grey
 highlight LineNr ctermfg=grey guifg=grey
+highlight CursorLineNr cterm=none ctermfg=yellow
 highlight clear CursorLine
 highlight link CocHighlightText CursorColumn
 highlight CclsSkippedRegion ctermfg=darkgray guifg=darkgray
