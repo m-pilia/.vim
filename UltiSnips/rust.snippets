@@ -1,0 +1,12 @@
+priority -50
+
+snippet main "Main function with result"
+use std::error::Error;
+
+pub fn main() -> Result<(), Box<dyn Error>> {
+	$0
+
+	Ok(())
+}
+endsnippet
+
