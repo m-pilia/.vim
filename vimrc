@@ -849,7 +849,7 @@ let g:DiffUnit = 'Char'
 
 "{{{ vim-mediawiki
 
-let g:vim_mediawiki_browser_command = "chromium \r"
+let g:vim_mediawiki_browser_command = "firefox \r"
 let g:vim_mediawiki_mappings = 1
 let g:vim_mediawiki_completion_namespaces = {
 \   'en.wikipedia.org': {
