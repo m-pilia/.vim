@@ -773,13 +773,15 @@ inoremap <silent> <expr> <c-space> coc#refresh()
 " Git mappings
 nmap <silent> ]h <Plug>(coc-git-nextchunk)
 nmap <silent> [h <Plug>(coc-git-prevchunk)
+nmap ]c <Plug>(coc-git-nextconflict)
+nmap [c <Plug>(coc-git-prevconflict)
 nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
 nmap <silent> <leader>gu :CocCommand git.chunkUndo<cr>
 nmap <silent> <leader>gs :CocCommand git.chunkStage<cr>
-omap ih <Plug>(coc-text-object-inner)
-xmap ih <Plug>(coc-text-object-inner)
-omap ah <Plug>(coc-text-object-outer)
-xmap ah <Plug>(coc-text-object-outer)
+omap ih <Plug>(coc-git-chunk-inner)
+xmap ih <Plug>(coc-git-chunk-inner)
+omap ah <Plug>(coc-git-chunk-outer)
+xmap ah <Plug>(coc-git-chunk-outer)
 
 " List mappings
 nnoremap <leader>. :CocList --number-select vimcommands<cr>
