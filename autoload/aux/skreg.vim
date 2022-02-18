@@ -9,7 +9,7 @@ if has('nvim')
         let l:ns = nvim_create_namespace(string(l:buf) . '_skipped_regions')
         call nvim_buf_clear_namespace(l:buf, l:ns, 0, -1)
         for l:range in a:msg.skippedRanges
-            for l:line in range(l:range.start.line + 1, l:range.end.line - 2)
+            for l:line in range(l:range.start.line + 1, l:range.end.line - 1)
                 call nvim_buf_add_highlight(l:buf, l:ns, 'CclsSkippedRegion', l:line, 0, -1)
             endfor
         endfor
