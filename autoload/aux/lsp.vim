@@ -28,11 +28,11 @@ function! aux#lsp#coc_config() abort
 \               '.hg/',
 \           ],
 \       },
-\       'pyls': {
-\           'command': 'pyls',
+\       'pylsp': {
+\           'command': 'pylsp',
 \           'filetypes': ['python'],
 \           'settings': {
-\               'pyls': {
+\               'pylsp': {
 \                   'plugins': {
 \                       'pylint': {
 \                           'enabled': v:false,
