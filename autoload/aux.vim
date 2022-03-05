@@ -280,11 +280,16 @@ function! aux#python_stack_trace_to_quickfix() abort
     compiler python
     let l:saved_makeprg = &l:makeprg
     try
-        setlocal makeprg=xclip\ -out\ -selection\ clipboard
+        " Feed makeprg from clipboard, avoiding direct calls to a platform-specific clipboard tool
+        let l:temporary_file = tempname()
+        let l:escaped_path = substitute(l:temporary_file, ' ', '\\ ', 'g')
+        call writefile(split(getreg('+'), "\n"), l:temporary_file)
+        execute 'setlocal makeprg=cat\ \"' . l:escaped_path . '\"'
         silent make
         copen
     finally
         let &l:makeprg = l:saved_makeprg
+        call delete(l:temporary_file)
     endtry
 endfunction
 
