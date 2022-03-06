@@ -263,3 +263,8 @@
 	url = https://github.com/aklt/plantuml-syntax
 	ignore = dirty
 	branch = master
+[submodule "bundle/vim-swap"]
+	path = bundle/vim-swap
+	url = https://github.com/machakann/vim-swap.git
+    ignore = dirty
+	branch = master
