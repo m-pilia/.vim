@@ -44,9 +44,9 @@ highlight link CocErrorHighlight CocErrorSign
 highlight link CocWarningHighlight SpellCap
 highlight link CocInfoHighlight SpellCap
 highlight link CocHintHighlight CocHintSign
-highlight conflictStart ctermbg=lightred ctermfg=black
-highlight conflictMiddle ctermbg=lightblue ctermfg=black
-highlight conflictEnd ctermbg=lightgreen cterm=bold ctermfg=black
+highlight ConflictCurrent ctermbg=lightred ctermfg=black
+highlight ConflictParent ctermbg=lightblue ctermfg=black
+highlight ConflictIncoming ctermbg=lightgreen cterm=bold ctermfg=black
 
 " Text properties
 if has('textprop')
@@ -418,7 +418,7 @@ nnoremap <silent> <F5> :!make<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
 " Accept conflict region under cursor
-nnoremap <silent> <leader>ga :call aux#accept_conflict()<cr>
+nnoremap <silent> <leader>ga :call aux#accept_conflict_under_cursor()<cr>
 
 " Toggle paste mode
 set pastetoggle=<f10>
@@ -692,6 +692,9 @@ let g:coc_user_config = {
 \       'removedSign': {'hlGroup': 'GitGutterDelete'},
 \       'topRemovedSign': {'hlGroup': 'GitGutterDelete'},
 \       'changeRemovedSign': {'hlGroup': 'GitGutterChangeDelete'},
+\       'conflict': {
+\           'enabled': v:false,
+\       },
 \   },
 \   'list': {
 \       'limitLines': 30000,
@@ -773,8 +776,6 @@ inoremap <silent> <expr> <c-space> coc#refresh()
 " Git mappings
 nmap <silent> ]h <Plug>(coc-git-nextchunk)
 nmap <silent> [h <Plug>(coc-git-prevchunk)
-nmap ]c <Plug>(coc-git-nextconflict)
-nmap [c <Plug>(coc-git-prevconflict)
 nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
 nmap <silent> <leader>gu :CocCommand git.chunkUndo<cr>
 nmap <silent> <leader>gs :CocCommand git.chunkStage<cr>
