@@ -38,6 +38,9 @@ function! aux#lsp#coc_config() abort
 \                           'enabled': v:false,
 \                           'args': [],
 \                       },
+\                       'flake8': {
+\                           'enabled': v:true,
+\                       },
 \                   },
 \               },
 \           },
