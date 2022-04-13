@@ -23,3 +23,13 @@ function print_error_context() {
 trap 'print_error_context $LINENO' ERR
 $0
 endsnippet
+
+snippet parallelbatch "Parallel batch"
+BATCH_SIZE=${1:4}
+(
+for ${2:f} in $3; do
+	((i = i % BATCH_SIZE)); ((i++ == 0)) && wait
+	${4:echo "$f"} &
+done
+)
+endsnippet
