@@ -295,6 +295,8 @@ set viminfo^=% " Remember info about open buffers on close
 " Treat long lines as break lines
 map j gj
 map k gk
+map $ g$
+map 0 g0
 
 " Disable unconvenient keys
 call aux#disable_keys(['Up', 'Down', 'Left', 'Right', 'Home', 'End', 'PageUp', 'PageDown'])
