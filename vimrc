@@ -33,6 +33,8 @@ highlight LineNr ctermfg=grey guifg=grey
 highlight CursorLineNr cterm=none ctermfg=yellow
 highlight clear CursorLine
 highlight link CocHighlightText CursorColumn
+highlight CocListLine cterm=none ctermfg=yellow
+highlight CocMenuSel ctermbg=DarkGray guibg=DarkGray
 highlight CclsSkippedRegion ctermfg=darkgray guifg=darkgray
 highlight link CclsType cType
 highlight link CclsMacro cDefine
@@ -767,10 +769,9 @@ inoremap <silent> <expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll
 inoremap <silent> <expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 1)\<cr>" : "\<Left>"
 
 " Completion mappings
-inoremap <silent> <expr> <plug>(smart_tab) pumvisible() ? "\<C-n>" : "\<Tab>"
-imap <silent> <Tab> <plug>(smart_tab)
-inoremap <silent> <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <expr> <c-j> aux#pum_noselect() ? "\<C-y>" : "<C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
+inoremap <silent> <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <silent> <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+inoremap <silent> <expr> <c-j> aux#coc_pum_noselect() ? "\<C-y>" : "<C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
 snoremap <silent> <c-j> <Esc>:call UltiSnips#ExpandSnippetOrJump()<cr>
 xnoremap <silent> <c-j> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
 inoremap <silent> <expr> <c-space> coc#refresh()

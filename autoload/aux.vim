@@ -151,8 +151,8 @@ function! aux#netrw_path() abort
 endfunction
 
 " Return true if the pop up menu is showing but no item is selected
-function! aux#pum_noselect() abort
-    return pumvisible() && !empty(v:completed_item)
+function! aux#coc_pum_noselect() abort
+    return coc#pum#visible() && coc#pum#info()['index'] != -1
 endfunction
 
 " Recursively convert funcrefs to strings
