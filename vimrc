@@ -701,7 +701,7 @@ let g:coc_user_config = {
 \       },
 \   },
 \   'list': {
-\       'limitLines': 30000,
+\       'limitLines': 50000,
 \       'source': {
 \           'files': {
 \               'command': 'fd',
