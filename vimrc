@@ -35,9 +35,6 @@ highlight clear CursorLine
 highlight link CocHighlightText CursorColumn
 highlight CocListLine cterm=none ctermfg=yellow
 highlight CocMenuSel ctermbg=DarkGray guibg=DarkGray
-highlight CclsSkippedRegion ctermfg=darkgray guifg=darkgray
-highlight link CclsType cType
-highlight link CclsMacro cDefine
 highlight link CocErrorSign SpellBad
 highlight link CocWarningSign todo
 highlight link CocInfoSign CocWarningSign
@@ -49,13 +46,6 @@ highlight link CocHintHighlight CocHintSign
 highlight ConflictCurrent ctermbg=lightred ctermfg=black
 highlight ConflictParent ctermbg=lightblue ctermfg=black
 highlight ConflictIncoming ctermbg=lightgreen cterm=bold ctermfg=black
-
-" Text properties
-if has('textprop')
-    call prop_type_add('CclsSkippedRegion', {'highlight': 'CclsSkippedRegion'})
-    call prop_type_add('CclsType', {'highlight': 'CclsType'})
-    call prop_type_add('CclsMacro', {'highlight': 'CclsMacro'})
-endif
 
 " File EOL formats
 set fileformats=unix,dos,mac
@@ -619,24 +609,6 @@ let g:EditorConfig_exclude_patterns = [
 
 "}}}
 
-"{{{ vim-ccls
-
-let g:ccls_close_on_jump = v:true
-
-nnoremap <leader>,cc :CclsCallers<cr>
-nnoremap <leader>,cC :CclsCallees<cr>
-nnoremap <leader>,bb :CclsBaseHierarchy<cr>
-nnoremap <leader>,dd :CclsDerivedHierarchy<cr>
-nnoremap <leader>,mm :CclsMemberHierarchy<cr>
-
-nnoremap <leader>,ch :CclsCallHierarchy<cr>
-nnoremap <leader>,cH :CclsCalleeHierarchy<cr>
-nnoremap <leader>,bh :CclsBaseHierarchy<cr>
-nnoremap <leader>,dh :CclsDerivedHierarchy<cr>
-nnoremap <leader>,mh :CclsMemberHierarchy<cr>
-
-"}}}
-
 "{{{ coc.nvim
 
 " Do not load in vimdiff
@@ -645,6 +617,7 @@ if &diff
 endif
 
 let g:coc_global_extensions = [
+\       'coc-clangd',
 \       'coc-cmake',
 \       'coc-docker',
 \       'coc-diagnostic',
@@ -689,6 +662,15 @@ let g:coc_user_config = {
 \       'timeout': 5000,
 \       'noselect': v:true,
 \       'snippetIndicator': '►',
+\   },
+\   'semanticTokens': {
+\       'filetypes': ['*'],
+\   },
+\   'tree': {
+\       'key': {
+\           'close': 'q',
+\           'toggle': 'o',
+\       },
 \   },
 \   'git': {
 \       'addedSign': {'hlGroup': 'GitGutterAdd'},
@@ -739,7 +721,21 @@ let g:coc_user_config = {
 \           'path': '/usr/bin/rust-analyzer',
 \       },
 \   },
+\   'clangd': {
+\       'inlayHints': {
+\           'enable': v:false,
+\       },
+\   },
 \ }
+
+" Semantic highlighting
+let g:coc_default_semantic_highlight_groups = v:false
+highlight CocSemComment ctermfg=darkgray guifg=darkgray
+highlight link CocSemTypeParameter Type
+highlight link CocSemClass Type
+highlight link CocSemMacro Define
+highlight link CocSemMethod Function
+highlight link CocSemFunction Function
 
 " Mappings
 nmap <silent> <leader>,ca <plug>(coc-code-action)
@@ -748,7 +744,7 @@ nmap <silent> <leader>,cl <plug>(coc-codelens-action)
 nmap <silent> <leader>,gD <plug>(coc-declaration)
 nmap <silent> <leader>,gd <plug>(coc-definition)
 nnoremap <silent> <leader>,h  :call CocActionAsync('doHover')<cr>
-nmap <silent> <leader>,o  <plug>(coc-open-link)
+nmap <silent> <leader>,l  <plug>(coc-open-link)
 nmap <silent> <leader>,e  <plug>(coc-diagnostic-next)
 nmap <silent> <leader>,E  <plug>(coc-diagnostic-prev)
 nmap <silent> <leader>,rf <plug>(coc-references)
@@ -761,6 +757,9 @@ nmap <silent> <leader>,td <plug>(coc-type-definition)
 nnoremap <silent> <leader>l :CocDiagnostics<cr>
 nnoremap <silent> <leader>,j :CocCommand document.jumpToNextSymbol<cr>
 nnoremap <silent> <leader>,k :CocCommand document.jumpToPrevSymbol<cr>
+nnoremap <silent> <leader>,ch :call CocAction('showIncomingCalls')<cr>
+nnoremap <silent> <leader>,cH :call CocAction('showOutgoingCalls')<cr>
+nnoremap <silent> <leader>,o :call CocAction('showOutline')<cr>
 
 " Scroll float window
 nnoremap <silent> <expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1, 1) : "\<C-f>"
@@ -793,19 +792,15 @@ nnoremap <silent> <C-p> :CocList --number-select files<cr>
 nnoremap <silent> <C-k> :CocList --number-select buffers<cr>
 nnoremap <silent> <C-j> :CocList --number-select yank<cr>
 
+" Show info for semantic token under the cursor
+command! SemanticToken call CocAction('inspectSemanticToken')
+
 " Reference highlight
 if ! &diff && index(g:pathogen_disabled, 'coc.nvim') < 0
     augroup coc_highlight
         autocmd!
-        autocmd CursorHold * silent call aux#matchdelete('CocHighlightText') |
-        \                           call CocActionAsync('highlight')
-        autocmd CursorHoldI * silent if !coc#float#has_scroll() | call CocActionAsync('showSignatureHelp') | fi
-        autocmd User CocNvimInit call CocRegistNotification('ccls',
-        \                                                   '$ccls/publishSkippedRanges',
-        \                                                   function('aux#skreg#skipped_regions'))
-        autocmd User CocNvimInit call CocRegistNotification('ccls',
-        \                                                   '$ccls/publishSemanticHighlight',
-        \                                                   function('aux#semhl#semantic_highlight'))
+        autocmd CursorHold * silent call aux#refresh_highlighting()
+        autocmd CursorHoldI * silent call aux#show_signature_help()
     augroup END
 endif
 

@@ -188,11 +188,6 @@
 	url = https://github.com/neoclide/coc.nvim.git
 	ignore = dirty
 	branch = release
-[submodule "bundle/vim-ccls"]
-	path = bundle/vim-ccls
-	url = https://github.com/m-pilia/vim-ccls
-	ignore = dirty
-	branch = master
 [submodule "bundle/vim-pkgbuild"]
 	path = bundle/vim-pkgbuild
 	url = https://github.com/m-pilia/vim-pkgbuild.git

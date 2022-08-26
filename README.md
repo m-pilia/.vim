@@ -19,7 +19,6 @@ External dependencies (example packages for Arch Linux):
 ```sh
 sudo pacman -S \
     bandit \
-    ccls \
     clang \
     fd \
     flake8 \

@@ -97,6 +97,19 @@ function! aux#matchdelete(group) abort
     endfor
 endfunction
 
+" Refresh semantic highlighting
+function! aux#refresh_highlighting() abort
+    call aux#matchdelete('CocHighlightText')
+    call CocActionAsync('highlight')
+endfunction
+
+" Show signature help at cursor position
+function! aux#show_signature_help() abort
+    if &buftype !=# 'nofile' && !coc#float#has_scroll()
+        call CocActionAsync('showSignatureHelp')
+    endif
+endfunction
+
 " Get search query for the word under cursor
 function! aux#vimhelp() abort
     let l:word = expand('<cword>')

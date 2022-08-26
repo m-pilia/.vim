@@ -1,33 +1,5 @@
 function! aux#lsp#coc_config() abort
     return {
-\       'ccls': {
-\           'command': 'ccls',
-\           'filetypes': ['c', 'cpp', 'objc', 'objcpp'],
-\           'rootPatterns': [
-\               '.ccls',
-\               'compile_commands.json',
-\               '.git/',
-\               '.hg/',
-\           ],
-\           'initializationOptions': {
-\               'cache': {
-\                   'directory': expand('~/.cache/ccls'),
-\               },
-\               'highlight': {
-\                   'lsRanges': v:true,
-\               },
-\           },
-\       },
-\       'clangd': {
-\           'command': 'clangd',
-\           'filetypes': ['cuda'],
-\           'rootPatterns': [
-\               'compile_flags.txt',
-\               'compile_commands.json',
-\               '.git/',
-\               '.hg/',
-\           ],
-\       },
 \       'pylsp': {
 \           'command': 'pylsp',
 \           'filetypes': ['python'],
