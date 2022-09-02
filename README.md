@@ -23,10 +23,8 @@ sudo pacman -S \
     fd \
     flake8 \
     gdb \
-    mypy \
     nodejs \
     proselint \
-    python-language-server \
     python-pycodestyle \
     python-pylint \
     python-pynvim \
@@ -44,7 +42,6 @@ yay -S \
     cmake-lint \
     gitlint \
     haskell-ide-engine \
-    pyls-mypy \
     ruby-mdl \
     shellcheck-static \
 

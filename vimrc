@@ -627,6 +627,7 @@ let g:coc_global_extensions = [
 \       'coc-julia',
 \       'coc-lists',
 \       'coc-omni',
+\       'coc-pyright',
 \       'coc-rust-analyzer',
 \       'coc-sh',
 \       'coc-snippets',
@@ -709,7 +710,6 @@ let g:coc_user_config = {
 \           'make': 'checkmake',
 \           'matlab': 'mlint',
 \           'pkgbuild': 'shellcheck_pkgbuild',
-\           'python': ['bandit'],
 \           'qml': 'qmllint',
 \           'sh': 'shellcheck',
 \           'tex': 'chktex',
@@ -724,6 +724,19 @@ let g:coc_user_config = {
 \   'clangd': {
 \       'inlayHints': {
 \           'enable': v:false,
+\       },
+\   },
+\   'python': {
+\       'linting': {
+\           'flake8Enabled': v:true,
+\           'banditEnabled': v:true,
+\           'mypyEnabled': v:true,
+\           'pytypeEnabled': v:true,
+\           'pycodestyleEnabled': v:false,
+\           'prospectorEnabled': v:true,
+\           'pydocstyleEnabled': v:false,
+\           'pylamaEnabled': v:true,
+\           'pylintEnabled': v:false,
 \       },
 \   },
 \ }
