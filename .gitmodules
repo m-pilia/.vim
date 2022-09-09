@@ -18,11 +18,6 @@
 	url = https://github.com/godlygeek/tabular.git
 	ignore = dirty
 	branch = master
-[submodule "bundle/ultisnips"]
-	path = bundle/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
-	ignore = dirty
-	branch = master
 [submodule "bundle/undotree"]
 	path = bundle/undotree
 	url = https://github.com/mbbill/undotree.git

@@ -462,12 +462,6 @@ call pathogen#infect()
 
 "}}}
 
-"{{{ Ultisnips
-
-let g:UltiSnipsExpandTrigger = '<not_needed>'
-
-"}}}
-
 "{{{ tcomment
 
 let g:tcomment#rstrip_on_uncomment = 0
@@ -783,9 +777,11 @@ inoremap <silent> <expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll
 " Completion mappings
 inoremap <silent> <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
 inoremap <silent> <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
-inoremap <silent> <expr> <c-j> aux#coc_pum_noselect() ? "\<C-y>" : "<C-R>=UltiSnips#ExpandSnippetOrJump()<cr>"
-snoremap <silent> <c-j> <Esc>:call UltiSnips#ExpandSnippetOrJump()<cr>
-xnoremap <silent> <c-j> :call UltiSnips#SaveLastVisualSelection()<cr>gvs
+inoremap <silent> <expr> <c-j>
+\   coc#pum#visible() ? coc#_select_confirm() :
+\   coc#expandableOrJumpable() ?
+\   "\<c-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
+\   "\<c-j>"
 inoremap <silent> <expr> <c-space> coc#refresh()
 
 " Git mappings
