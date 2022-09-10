@@ -943,6 +943,4 @@ nmap gr <Plug>(neoterm-repl-send)
 xmap gr <Plug>(neoterm-repl-send)
 nmap gl <Plug>(neoterm-repl-send-line)
 
-nnoremap <silent> <leader>r :TREPLSendFile<cr>
-
 "}}}
