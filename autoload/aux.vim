@@ -309,3 +309,24 @@ function! aux#scratch() abort
     setlocal noswapfile
     nnoremap <silent> <buffer> q :q<cr>
 endfunction
+
+" Show all 256 xterm colour in a scratch buffer
+function! aux#colour_demo_xterm256() abort
+    call aux#scratch()
+    setlocal tabstop=13
+    setlocal notermguicolors
+
+    let l:line = 1
+    for l:num in range(0, 255)
+        exec 'hi col_' . l:num . ' ctermbg=' . l:num . ' ctermfg=white'
+        exec 'syn match col_' . l:num . ' "ctermbg=' . l:num . '\t" containedIn=ALL'
+        call setline(l:line, getline(l:line) . 'ctermbg=' . l:num . "\t")
+
+        if (l:num % 4 == 3) || (l:num == 255)
+            call setline(l:line, getline(l:line) . ' |')
+            let l:line += 1
+        else
+            call setline(l:line, getline(l:line) . ' ')
+        endif
+    endfor
+endfunction
