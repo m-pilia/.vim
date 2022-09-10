@@ -7,45 +7,12 @@ let g:mapleader = ' '
 
 "{{{ Colors
 
-syntax enable
-
 command! SyntaxRegionName echo synIDattr(synID(line('.'), col('.'), 0), 'name')
 
 " Color scheme
-colorscheme desert
-set background=dark
-highlight comment ctermfg=lightblue guifg=lightblue
-highlight constant ctermfg=red guifg=red
-highlight SpellBad ctermfg=white ctermbg=darkred guifg=white guibg=darkred
-highlight SpellCap ctermfg=white ctermbg=brown guifg=white guibg=brown
-highlight DiffAdd ctermbg=green ctermfg=black cterm=bold
-highlight DiffChange ctermbg=229 ctermfg=black cterm=bold
-highlight DiffDelete ctermbg=darkred ctermfg=white cterm=bold
-highlight DiffText ctermbg=darkyellow ctermfg=white cterm=bold
-highlight SignColumn ctermbg=black guibg=black
-highlight GitGutterAdd ctermbg=black ctermfg=green guibg=black guifg=green
-highlight GitGutterChange ctermbg=black ctermfg=yellow guibg=black guifg=yellow
-highlight GitGutterDelete ctermbg=black ctermfg=red guibg=black guifg=red
-highlight GitGutterChangeDelete ctermbg=black ctermfg=yellow guibg=black guifg=yellow
-highlight link QuickFixLine Normal
-highlight Pmenu ctermbg=238 ctermfg=grey guibg=#444444 ctermfg=grey
-highlight LineNr ctermfg=grey guifg=grey
-highlight CursorLineNr cterm=none ctermfg=yellow
-highlight clear CursorLine
-highlight link CocHighlightText CursorColumn
-highlight CocListLine cterm=none ctermfg=yellow
-highlight CocMenuSel ctermbg=DarkGray guibg=DarkGray
-highlight link CocErrorSign SpellBad
-highlight link CocWarningSign todo
-highlight link CocInfoSign CocWarningSign
-highlight CocHintSign ctermbg=green ctermfg=black guibg=green guifg=black
-highlight link CocErrorHighlight CocErrorSign
-highlight link CocWarningHighlight SpellCap
-highlight link CocInfoHighlight SpellCap
-highlight link CocHintHighlight CocHintSign
-highlight ConflictCurrent ctermbg=lightred ctermfg=black
-highlight ConflictParent ctermbg=lightblue ctermfg=black
-highlight ConflictIncoming ctermbg=lightgreen cterm=bold ctermfg=black
+colorscheme tundra
+set termguicolors
+syntax enable
 
 " File EOL formats
 set fileformats=unix,dos,mac
@@ -539,7 +506,7 @@ let g:lightline = {
 
 augroup lightline_settings
     autocmd!
-    autocmd BufWinEnter * call aux#lightline#colours('green', 'yellow', 'red')
+    autocmd BufWinEnter * call aux#lightline#colours()
     autocmd User CocDiagnosticChange call lightline#update()
 augroup END
 
@@ -589,6 +556,8 @@ let g:better_whitespace_filetypes_blacklist = [
             \   'qf',
             \   'help',
             \ ]
+
+highlight link ExtraWhitespace SpellBad
 
 "}}}
 
@@ -668,11 +637,11 @@ let g:coc_user_config = {
 \       },
 \   },
 \   'git': {
-\       'addedSign': {'hlGroup': 'GitGutterAdd'},
-\       'changedSign': {'hlGroup': 'GitGutterChange'},
-\       'removedSign': {'hlGroup': 'GitGutterDelete'},
-\       'topRemovedSign': {'hlGroup': 'GitGutterDelete'},
-\       'changeRemovedSign': {'hlGroup': 'GitGutterChangeDelete'},
+\       'addedSign': {'hlGroup': 'GutterAdd'},
+\       'changedSign': {'hlGroup': 'GutterChange'},
+\       'removedSign': {'hlGroup': 'GutterDelete'},
+\       'topRemovedSign': {'hlGroup': 'GutterDelete'},
+\       'changeRemovedSign': {'hlGroup': 'GutterChangeDelete'},
 \       'conflict': {
 \           'enabled': v:false,
 \       },
@@ -734,16 +703,29 @@ let g:coc_user_config = {
 \   },
 \ }
 
-" Semantic highlighting
-highlight link CocSemNamespace Normal
-highlight link CocSemVariable Normal
-highlight link CocSemParameter Normal
-highlight CocSemComment ctermfg=darkgray guifg=darkgray
-highlight link CocSemTypeParameter Type
+highlight link CocErrorHighlight CocErrorSign
+highlight link CocErrorSign SpellBad
+highlight link CocHighlightText CursorColumn
+highlight link CocHintHighlight CocHintSign
+highlight link CocHintSign Hint
+highlight link CocInfoHighlight SpellCap
+highlight link CocInfoSign CocWarningSign
+highlight link CocInlayHint Ignore
+highlight link CocListLine CursorLineNr
+highlight link CocMenuSel PmenuSel
 highlight link CocSemClass Type
+highlight link CocSemComment Comment
+highlight link CocSemEnumMember Normal
+highlight link CocSemFunction Function
 highlight link CocSemMacro Define
 highlight link CocSemMethod Function
-highlight link CocSemFunction Function
+highlight link CocSemNamespace Normal
+highlight link CocSemParameter Normal
+highlight link CocSemStruct Type
+highlight link CocSemTypeParameter Type
+highlight link CocSemVariable Normal
+highlight link CocWarningHighlight SpellCap
+highlight link CocWarningSign Todo
 
 " Mappings
 nmap <silent> <leader>,ca <plug>(coc-code-action)

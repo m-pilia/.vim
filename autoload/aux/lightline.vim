@@ -33,20 +33,20 @@ let s:map = {
 
 " Update the highlight groups for the git status
 " Use in autocmd if the lightline theme has different colours for different modes
-function! aux#lightline#colours(colour_add, colour_change, colour_delete) abort
+function! aux#lightline#colours() abort
     let l:mode = get(s:map, tolower(mode()[0]), 'normal')
     let l:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
     let l:palette = l:palette[l:mode]['left'][1]
     let [l:termbg, l:guibg] = [l:palette[3], l:palette[1]]
     exec 'highlight GitStatusLineAdd '
-    \               'ctermbg=' . l:termbg . ' ctermfg=' . a:colour_add .
-    \               ' guibg=' . l:guibg . ' guifg=' . a:colour_add
+    \               'ctermbg=' . l:termbg . ' ctermfg=Green' .
+    \               ' guibg=' . l:guibg . ' guifg=#54ff54'
     exec 'highlight GitStatusLineChange '
-    \               'ctermbg=' . l:termbg . ' ctermfg=' . a:colour_change .
-    \               ' guibg=' . l:guibg . ' guifg=' . a:colour_change
+    \               'ctermbg=' . l:termbg . ' ctermfg=Yellow' .
+    \               ' guibg=' . l:guibg . ' guifg=#ffff54'
     exec 'highlight GitStatusLineDelete '
-    \               'ctermbg=' . l:termbg . ' ctermfg=' . a:colour_delete .
-    \               ' guibg=' . l:guibg . ' guifg=' . a:colour_delete
+    \               'ctermbg=' . l:termbg . ' ctermfg=Red' .
+    \               ' guibg=' . l:guibg . ' guifg=#ff5454'
 endfunction
 
 " Get file format and encoding, if different than unix and utf-8
