@@ -645,6 +645,7 @@ let g:coc_user_config = {
 \       'conflict': {
 \           'enabled': v:false,
 \       },
+\       'showCommitInFloating': v:true,
 \   },
 \   'list': {
 \       'limitLines': 50000,
