@@ -735,7 +735,9 @@ let g:coc_user_config = {
 \ }
 
 " Semantic highlighting
-let g:coc_default_semantic_highlight_groups = v:false
+highlight link CocSemNamespace Normal
+highlight link CocSemVariable Normal
+highlight link CocSemParameter Normal
 highlight CocSemComment ctermfg=darkgray guifg=darkgray
 highlight link CocSemTypeParameter Type
 highlight link CocSemClass Type
