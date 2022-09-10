@@ -296,7 +296,7 @@ call aux#disable_keys(['Up', 'Down', 'Left', 'Right', 'Home', 'End', 'PageUp', '
 " CamelCase word backspace
 imap <silent> <C-w> <C-O>:let save_ve = &l:virtualedit<cr>
     \<C-o>:setlocal virtualedit=onemore<cr>
-    \<C-o>db
+    \<C-o>"_db
     \<C-o>:let &l:virtualedit = save_ve<cr>
 
 " Search for visual selection
