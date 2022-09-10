@@ -705,7 +705,6 @@ let g:coc_user_config = {
 \           'matlab': 'mlint',
 \           'pkgbuild': 'shellcheck_pkgbuild',
 \           'qml': 'qmllint',
-\           'sh': 'shellcheck',
 \           'tex': 'chktex',
 \           'vim': 'vint',
 \       },
