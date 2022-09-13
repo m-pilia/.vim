@@ -781,10 +781,11 @@ omap ah <Plug>(coc-git-chunk-outer)
 xmap ah <Plug>(coc-git-chunk-outer)
 
 " List mappings
-nnoremap <leader>. :CocList --number-select vimcommands<cr>
-nnoremap <silent> <C-p> :CocList --number-select files<cr>
-nnoremap <silent> <C-k> :CocList --number-select buffers<cr>
-nnoremap <silent> <C-j> :CocList --number-select yank<cr>
+nnoremap <leader>. :CocList vimcommands<cr>
+nnoremap <silent> <C-p> :CocList files<cr>
+nnoremap <silent> <C-h> :CocList mru<cr>
+nnoremap <silent> <C-k> :CocList buffers<cr>
+nnoremap <silent> <C-j> :CocList yank<cr>
 
 " Show info for semantic token under the cursor
 command! SemanticToken call CocAction('inspectSemanticToken')
