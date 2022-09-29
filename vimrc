@@ -763,10 +763,9 @@ inoremap <silent> <expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll
 inoremap <silent> <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
 inoremap <silent> <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 inoremap <silent> <expr> <c-j>
-\   coc#pum#visible() ? coc#_select_confirm() :
 \   coc#expandableOrJumpable() ?
 \   "\<c-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<cr>" :
-\   "\<c-j>"
+\   coc#pum#visible() ? coc#pum#confirm() : "\<c-j>"
 inoremap <silent> <expr> <c-space> coc#refresh()
 
 " Git mappings
