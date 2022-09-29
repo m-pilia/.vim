@@ -33,3 +33,10 @@ for ${2:f} in $3; do
 done
 )
 endsnippet
+
+snippet whileread "Iterate over lines" b
+while IFS= read -r ${1:line}
+do
+	${3:echo "Line: $$line"}
+done < <(${2:find . -name foo})
+endsnippet
