@@ -258,3 +258,8 @@
 	url = https://github.com/machakann/vim-swap.git
     ignore = dirty
 	branch = master
+[submodule "bundle/context.vim"]
+	path = bundle/context.vim
+	url = https://github.com/wellle/context.vim
+	ignore = dirty
+	branch = master
