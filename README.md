@@ -50,6 +50,21 @@ yay -S \
 On Windows/WSL, having [win32yank.exe](https://github.com/equalsraf/win32yank)
 in the Windows PATH makes clipboard support work out of the box in neovim.
 
+Copyq can be used as a clipboard provider with the following configuration:
+```viml
+let g:clipboard = {
+\   'name': 'copyq',
+\   'copy': {
+\       '+': ['bash', '-c', 'copyq add - && copyq select 0'],
+\   },
+\   'paste': {
+\       '+': ['copyq', 'clipboard'],
+\       '*': ['copyq', 'selection'],
+\   },
+\   'cache_enabled': 1,
+\ }
+```
+
 # Install
 
 Plugins are handled as submodules. After cloning, initialise them with
