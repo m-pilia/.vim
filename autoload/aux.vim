@@ -330,3 +330,11 @@ function! aux#colour_demo_xterm256() abort
         endif
     endfor
 endfunction
+
+" Search for a file in ancestor directories
+function! aux#edit_file(filename) abort
+    let l:path = findfile(a:filename, '.;')
+    if l:path !=# ''
+        execute 'e ' . l:path
+    endif
+endfunction
