@@ -180,7 +180,7 @@ command -bar HexMode silent call aux#hex#toggle_hex()
 command! -range IHexChecksum <line1>,<line2>call aux#hex#ihex_checksum()
 
 " Open specific project files
-command! BazelFile call aux#edit_file('BUILD.bazel')
+command! BazelFile call aux#bazel_file()
 command! ClangdFile call aux#edit_file('.clangd')
 
 "}}}

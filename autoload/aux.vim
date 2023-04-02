@@ -338,3 +338,10 @@ function! aux#edit_file(filename) abort
         execute 'e ' . l:path
     endif
 endfunction
+
+" Open Bazel build file and jump to current file name
+function! aux#bazel_file() abort
+    let l:file_name = expand('%:t')
+    call aux#edit_file('BUILD.bazel')
+    call searchpos(l:file_name)
+endfunction
