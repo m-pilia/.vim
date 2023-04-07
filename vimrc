@@ -437,6 +437,7 @@ call pathogen#infect()
 
 let g:tcomment#rstrip_on_uncomment = 0
 let g:tcomment_textobject_inlinecomment = 'Ic'
+call tcomment#type#Define('asm', '# %s')
 
 "}}}
 
