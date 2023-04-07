@@ -1,1 +1,1 @@
-setlocal bufhidden=delete
+setlocal bufhidden=wipe
