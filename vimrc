@@ -756,6 +756,8 @@ nnoremap <silent> <leader>,j :CocCommand document.jumpToNextSymbol<cr>
 nnoremap <silent> <leader>,k :CocCommand document.jumpToPrevSymbol<cr>
 nnoremap <silent> <leader>,ch :call CocAction('showIncomingCalls')<cr>
 nnoremap <silent> <leader>,cH :call CocAction('showOutgoingCalls')<cr>
+nnoremap <silent> <leader>,th :call CocAction('showSubTypes')<cr>
+nnoremap <silent> <leader>,tH :call CocAction('showSuperTypes')<cr>
 nnoremap <silent> <leader>,o :call CocAction('showOutline')<cr>
 
 " Scroll float window
