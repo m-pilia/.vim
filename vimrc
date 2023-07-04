@@ -789,7 +789,7 @@ xmap ah <Plug>(coc-git-chunk-outer)
 " List mappings
 nnoremap <leader>. :CocList vimcommands<cr>
 nnoremap <silent> <C-p> :CocList files<cr>
-nnoremap <silent> <C-h> :CocList mru<cr>
+nnoremap <silent> <C-h> :CocCommand mru.validate<cr>:CocList mru<cr>
 nnoremap <silent> <C-k> :CocList buffers<cr>
 nnoremap <silent> <C-j> :CocList yank<cr>
 
