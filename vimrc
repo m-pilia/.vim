@@ -717,7 +717,7 @@ highlight link CocHintSign Hint
 highlight link CocInfoHighlight SpellCap
 highlight link CocInfoSign CocWarningSign
 highlight link CocInlayHint Ignore
-highlight link CocListLine CursorLineNr
+highlight link CocListSearch SpellBad
 highlight link CocMenuSel PmenuSel
 highlight link CocSemClass Type
 highlight link CocSemComment Comment
@@ -732,6 +732,12 @@ highlight link CocSemTypeParameter Type
 highlight link CocSemVariable Normal
 highlight link CocWarningHighlight SpellCap
 highlight link CocWarningSign Todo
+
+augroup coc_list
+    autocmd!
+    " CocListLine seems to no longer work in recent releases
+    autocmd FileType list set winhighlight=CursorLine:CursorLineNr
+augroup END
 
 " Mappings
 nmap <silent> <leader>,ca <plug>(coc-code-action)
