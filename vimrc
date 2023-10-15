@@ -689,11 +689,6 @@ let g:coc_user_config = {
 \           'path': '/usr/bin/rust-analyzer',
 \       },
 \   },
-\   'clangd': {
-\       'inlayHints': {
-\           'enable': v:false,
-\       },
-\   },
 \   'python': {
 \       'linting': {
 \           'flake8Enabled': v:true,
