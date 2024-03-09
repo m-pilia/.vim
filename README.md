@@ -29,6 +29,7 @@ sudo pacman -S \
     python-pylint \
     python-pynvim \
     python-rope \
+    qt6-languageserver \
     r \
     ripgrep \
     rust-analyzer \
