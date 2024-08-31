@@ -137,6 +137,13 @@ function! aux#yank_header() abort
     let @+ = '#include "' . expand('%') . '"'
 endfunction
 
+" Yank the current file name as a Python import statement
+function! aux#yank_python_import() abort
+    let l:import = 'import ' . substitute(expand('%:r'), '/', '.', 'g')
+    let @" = l:import
+    let @+ = l:import
+endfunction
+
 " Run a sequence of keys in normal mode after temporarily setting onemore
 function! aux#onemored(keys) abort
     let l:has_onemore = &virtualedit =~# 'onemore'
