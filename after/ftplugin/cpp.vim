@@ -1,5 +1,7 @@
 let g:load_doxygen_syntax = 1
 
+setlocal comments^=:///
+
 setlocal syntax=cpp.doxygen
 
 setlocal cindent
