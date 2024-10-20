@@ -1,0 +1,15 @@
+return {
+    'JuliaEditorSupport/julia-vim',
+    'aklt/plantuml-syntax',
+    'artoj/qmake-syntax-vim',
+    'jez/vim-ispc',
+    'm-pilia/vim-pkgbuild',
+    'tpope/vim-abolish',
+    'tpope/vim-fugitive',
+    'tpope/vim-git',
+    'tpope/vim-liquid',
+    'tpope/vim-repeat',
+    'tpope/vim-surround',
+    'tpope/vim-unimpaired',
+    'wellle/targets.vim',
+}
