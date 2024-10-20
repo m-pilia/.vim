@@ -12,6 +12,7 @@ highlight   ConflictCurrent      ctermfg=Black         ctermbg=LightRed     guif
 highlight   ConflictIncoming     ctermfg=Black         ctermbg=LightGreen   guifg=#000000   guibg=#87ffaf   cterm=bold           gui=bold
 highlight   ConflictParent       ctermfg=Black         ctermbg=LightBlue    guifg=#000000   guibg=#5fd7ff
 highlight   Constant             ctermfg=Red           ctermbg=NONE         guifg=#ff5454   guibg=NONE
+highlight   CursorColumn         ctermfg=NONE          ctermbg=DarkGrey     guifg=NONE      guibg=#6c6c6c
 highlight   CursorLine           ctermfg=NONE          ctermbg=NONE         guifg=NONE      guibg=NONE      cterm=NONE           gui=NONE
 highlight   CursorLineNr         ctermfg=Yellow        ctermbg=NONE         guifg=#ffff54   guibg=NONE      cterm=bold           gui=bold
 highlight   DiffAdd              ctermfg=Black         ctermbg=Green        guifg=#000000   guibg=#54ff54   cterm=bold

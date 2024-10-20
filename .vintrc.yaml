@@ -1,0 +1,3 @@
+policies:
+  ProhibitEncodingOptionAfterScriptEncoding:
+    enabled: false

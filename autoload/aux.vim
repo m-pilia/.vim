@@ -97,19 +97,6 @@ function! aux#matchdelete(group) abort
     endfor
 endfunction
 
-" Refresh semantic highlighting
-function! aux#refresh_highlighting() abort
-    call aux#matchdelete('CocHighlightText')
-    call CocActionAsync('highlight')
-endfunction
-
-" Show signature help at cursor position
-function! aux#show_signature_help() abort
-    if &buftype !=# 'nofile' && !coc#float#has_scroll()
-        call CocActionAsync('showSignatureHelp')
-    endif
-endfunction
-
 " Get search query for the word under cursor
 function! aux#vimhelp() abort
     let l:word = expand('<cword>')
@@ -260,34 +247,6 @@ function! aux#latex2unicode_cmd() abort
         call feedkeys("\<Tab>", 'nt')
     endif
     return l:line
-endfunction
-
-" Tag generator function based on coc.nvim
-function! aux#tagfunc(pattern, flags, info) abort
-    let l:name = a:flags ==? 'c' ? a:pattern : expand('<cword>')
-
-    for l:server in keys(filter(copy(g:coc_user_config['languageserver']),
-    \                           {_, v -> index(v.filetypes, &filetype) >= 0}))
-        try
-            let l:symbol_list = CocRequest(l:server, 'workspace/symbol', {'query': l:name})
-        catch
-            continue
-        endtry
-
-        let l:tags = []
-        for l:symbol in l:symbol_list
-            let l:pos = l:symbol.location.range.start
-            call add(l:tags, {
-            \   'name': l:name,
-            \   'filename': aux#uri2path(l:symbol.location.uri),
-            \   'cmd': '/\%' . (l:pos.line + 1) . 'l\%' . (l:pos.character + 1) . 'c/',
-            \ })
-        endfor
-
-        return l:tags
-    endfor
-
-    return v:null
 endfunction
 
 " Load a Python stack trace from the clipboard to the quickfix window

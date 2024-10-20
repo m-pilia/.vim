@@ -1,9 +1,9 @@
-# My Vim configuration
+# My Vim/Neovim configuration
 [![Checks](https://github.com/m-pilia/.vim/workflows/Checks/badge.svg)](https://github.com/m-pilia/.vim/actions/workflows/checks.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/m-pilia/.vim/blob/master/LICENSE)
 
 This repository hosts my Vim configuration. All the code here should be
-compatible with Vim 8.1+ and Neovim 0.4+.
+compatible with Neovim 0.11.
 
 The `vimrc` and the scripts in `ftplugin` and `after` provide options,
 autocommands, variables, and command definitions. The files in `autoload`
@@ -11,42 +11,10 @@ define some auxiliary functions used to implement custom commands.
 
 # Dependencies
 
-Vim or Neovim:
-  + Vim 8.1+ with `+jobs`, `+python3`, `+timers`, `+textprop`, or
-  + Neovim 0.5+ with python (`pip install neovim`).
+Neovim 0.11 with python (`pip install neovim`).
 
-External dependencies (example packages for Arch Linux):
-```sh
-sudo pacman -S \
-    bandit \
-    clang \
-    fd \
-    flake8 \
-    gdb \
-    nodejs \
-    proselint \
-    python-pycodestyle \
-    python-pylint \
-    python-pynvim \
-    python-rope \
-    qt6-languageserver \
-    r \
-    ripgrep \
-    rust-analyzer \
-    texlive-most \
-    vint \
-    xclip \
-    yarn \
-
-yay -S \
-    bibclean \
-    cmake-lint \
-    gitlint \
-    haskell-ide-engine \
-    ruby-mdl \
-    shellcheck-static \
-
-```
+Vim compatibility is no longer provided for most plugins. For the last fully
+compatible version see the `vim-compatible` branch.
 
 On Windows/WSL, having [win32yank.exe](https://github.com/equalsraf/win32yank)
 in the Windows PATH makes clipboard support work out of the box in neovim.
@@ -66,27 +34,40 @@ let g:clipboard = {
 \ }
 ```
 
-# Install
-
-Plugins are handled as submodules. After cloning, initialise them with
+External dependencies (example packages for Arch Linux):
 ```sh
-git submodule update --init --recursive
+sudo pacman -S \
+    clang \
+    fd \
+    gdb \
+    lua-language-server \
+    nodejs \
+    proselint \
+    pyright \
+    python-pylint \
+    python-pynvim \
+    python-rope \
+    qt6-languageserver \
+    ripgrep \
+    rust-analyzer \
+    shellcheck \
+    texlive-most \
+    vint \
+    yarn \
+
+yay -S \
+    bibclean \
+    cmake-lint \
+    diagnostic-languageserver \
+    gitlint \
+    vim-language-server \
+
 ```
 
 # Caveat emptor
 
-* The configuration is tested on terminal Vim/Neovim on Linux. I have no idea
-  whether this works on Windows, MacOS, or on GUI applications like `gvim`.
-* Plugins are handled as git submodules.
-* The runtime path for plugins is handled with [pathogen](https://github.com/tpope/vim-pathogen).
-  I am aware of Vim 8.0+ built-in package manager, but pathogen has some handy
-  features that I commonly use, hence I am sticking to it.
-* Language server features are provided by
-  [coc.nvim](https://github.com/neoclide/coc.nvim). While this plugin works
-  both with Vim and Neovim, it works significantly better with Neovim.
-* The configuration for coc.nvim is defined in the `vimrc` file with the
-  `g:coc_user_config`, instead of using the `coc-settings.json` files, because
-  I prefer the configuration to be scriptable.
+* The configuration is tested on terminal Neovim on Linux. I have no idea
+  whether this works on Windows, MacOS, or on GUI applications.
 * This configuration does not include any debug integration plugin. Vim 8.0+
   already provides a nice built-in gdb integration (`:help terminal-debug`).
   While I would like a handier integration and support for other debuggers, I
