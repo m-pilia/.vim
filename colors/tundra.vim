@@ -31,7 +31,7 @@ highlight   GutterDelete         ctermfg=Red           ctermbg=NONE         guif
 highlight   Hint                 ctermfg=Black         ctermbg=Green        guifg=#000000   guibg=#54ff54
 highlight   Identifier           ctermfg=Cyan          ctermbg=NONE         guifg=#54ffff   guibg=NONE      cterm=bold           gui=bold
 highlight   Ignore               ctermfg=DarkGrey      ctermbg=NONE         guifg=#606060   guibg=NONE
-highlight   IncSearch            ctermfg=Yellow        ctermbg=Green        guifg=#ffff54   guibg=#54ff54   cterm=NONE           gui=NONE
+highlight   IncSearch            ctermfg=DarkGrey      ctermbg=Green        guifg=#606060   guibg=#54ff54   cterm=NONE           gui=NONE
 highlight   LineNr               ctermfg=Grey          ctermbg=NONE         guifg=#b8b8b8   guibg=NONE
 highlight   ModeMsg              ctermfg=Brown         ctermbg=NONE         guifg=#b26818   guibg=NONE      cterm=NONE           gui=NONE
 highlight   MoreMsg              ctermfg=DarkGreen     ctermbg=NONE         guifg=#18b218   guibg=NONE
@@ -51,8 +51,8 @@ highlight   SpecialKey           ctermfg=DarkGreen     ctermbg=NONE         guif
 highlight   SpellBad             ctermfg=White         ctermbg=DarkRed      guifg=#ffffff   guibg=#b21818   cterm=NONE           gui=NONE
 highlight   SpellCap             ctermfg=White         ctermbg=Brown        guifg=#ffffff   guibg=#b26818   cterm=NONE           gui=NONE
 highlight   Statement            ctermfg=Brown         ctermbg=NONE         guifg=#b26818   guibg=NONE      cterm=NONE           gui=NONE
-highlight   StatusLine           ctermfg=Black         ctermbg=LightGrey    guibg=#c2bfa5   guifg=#000000   cterm=bold,reverse   gui=bold,reverse
-highlight   StatusLineNC         ctermfg=Grey          ctermbg=LightGrey    guifg=#808080   guibg=#c2bfa5   cterm=reverse        gui=reverse
+highlight   StatusLine           ctermfg=Black         ctermbg=LightGrey    guibg=#c2bfa5   guifg=#000000   cterm=NONE           gui=NONE
+highlight   StatusLineNC         ctermfg=Grey          ctermbg=LightGrey    guifg=#808080   guibg=#c2bfa5   cterm=NONE           gui=NONE
 highlight   Title                ctermfg=DarkMagenta   ctermbg=NONE         guifg=#b218b2   guibg=NONE
 highlight   Todo                 ctermfg=Black         ctermbg=Yellow       guifg=#000000   guibg=#ffff54
 highlight   Type                 ctermfg=DarkGreen     ctermbg=NONE         guifg=#18b218   guibg=NONE      cterm=NONE           gui=NONE
@@ -62,30 +62,30 @@ highlight   Visual               ctermfg=NONE          ctermbg=DarkGrey     guif
 highlight   WarningMsg           ctermfg=DarkRed       ctermbg=NONE         guifg=#b21818   guibg=NONE
 highlight   WildMenu             ctermfg=Black         ctermbg=Brown        guifg=#000000   guibg=#b26818
 
-highlight link Boolean Constant
-highlight link Character Constant
-highlight link Float Constant
-highlight link Number Constant
-highlight link String Constant
+highlight! link Boolean Constant
+highlight! link Character Constant
+highlight! link Float Constant
+highlight! link Number Constant
+highlight! link String Constant
 
-highlight link Conditional Statement
-highlight link Exception Statement
-highlight link Keyword Statement
-highlight link Label Statement
-highlight link Repeat Statement
+highlight! link Conditional Statement
+highlight! link Exception Statement
+highlight! link Keyword Statement
+highlight! link Label Statement
+highlight! link Repeat Statement
 
-highlight link Define PreProc
-highlight link Include PreProc
-highlight link Macro PreProc
-highlight link PreCondit PreProc
+highlight! link Define PreProc
+highlight! link Include PreProc
+highlight! link Macro PreProc
+highlight! link PreCondit PreProc
 
-highlight link StorageClass Type
-highlight link Structure Type
-highlight link Typedef Type
+highlight! link StorageClass Type
+highlight! link Structure Type
+highlight! link Typedef Type
 
-highlight link Debug Special
-highlight link Delimiter Special
-highlight link SpecialChar Special
-highlight link SpecialComment Special
-highlight link Tag Special
+highlight! link Debug Special
+highlight! link Delimiter Special
+highlight! link SpecialChar Special
+highlight! link SpecialComment Special
+highlight! link Tag Special
 
