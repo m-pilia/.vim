@@ -5,4 +5,7 @@
 /spell/*.spl
 /spell/*.sug
 .netrwhist
-
+lazy-lock.json
+init.after.vim
+lua/init.after.lua
+lua/plugins/*.local.lua

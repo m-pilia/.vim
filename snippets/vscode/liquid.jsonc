@@ -1,0 +1,40 @@
+{
+    "Jekyll Scholar citation": {
+        "prefix": "cite",
+        "description": "Jekyll Scholar citation",
+        "body": "{% cite ${1:citation_id} %}$0"
+    },
+
+    "Image": {
+        "prefix": "img",
+        "description": "HTML image",
+        "body": [
+            "<img src=\"${1:/path/to/file.png}\"",
+            "     class=\"${2:center-block pull-right} ${3:content-image-padded}\"",
+            "     style=\"width:${4:80}%;\"",
+            "     markdown=\"1\"/>$0"
+        ]
+    },
+
+    "References section": {
+        "prefix": "ref",
+        "description": "References section",
+        "body": [
+            "# References",
+            "",
+            "{% bibliography --cited %}",
+            "$0"
+        ]
+    },
+
+    "Footnotes section": {
+        "prefix": "foot",
+        "description": "Footnotes section",
+        "body": [
+            "# Footnotes",
+            "{:footnotes}",
+            "",
+            "[^1]: $0"
+        ]
+    }
+}

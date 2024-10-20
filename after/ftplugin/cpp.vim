@@ -1,6 +1,7 @@
 let g:load_doxygen_syntax = 1
 
 setlocal comments^=:///
+let &l:commentstring = '// %s'
 
 setlocal syntax=cpp.doxygen
 

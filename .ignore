@@ -2,4 +2,4 @@
 !.gitignore
 !.gitmodules
 !.ignore
-!.travis.yml
+!.editorconfig

@@ -13,19 +13,6 @@ setlocal showbreak=\ \ \ \ |
 " Enable spell
 setlocal spell
 
-" Match dollar signs
-let b:AutoPairs = g:AutoPairs
-let s:latex_pairs = {
-\   '$': '$',
-\   '\\left(': '\right)',
-\   '\\left[': '\right]',
-\   '\\left{': '\right}',
-\   '\\left|': '\right|',
-\   '\\lvert': '\rvert',
-\   '\\lVert': '\rVert',
-\}
-call extend(b:AutoPairs, s:latex_pairs)
-
 " Close environments with vim-endwise
 " Credit: https://github.com/tpope/vim-endwise/issues/41#issuecomment-432905813
 let b:endwise_addition = '\="\\end" . matchstr(submatch(0), "{.\\{-}}")'

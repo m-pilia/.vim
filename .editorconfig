@@ -1,0 +1,10 @@
+# see https://github.com/CppCXY/EmmyLuaCodeStyle
+
+[*.lua]
+indent_style = space
+indent_size = 4
+quote_style = single
+max_line_length = 150
+space_around_table_field_list = false
+align_continuous_assign_statement = false
+align_array_table = false
