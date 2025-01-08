@@ -328,5 +328,16 @@ return {
             tex = {'chktex'},
             vim = {'vint'},
         },
+
+        formatters = {
+            black = {
+                command = 'black',
+                args = {'--quiet', '-'},
+            },
+        },
+
+        formatFiletypes = {
+            python = {'black'},
+        }
     },
 }
