@@ -24,26 +24,19 @@ sudo pacman -S \
     fd \
     gdb \
     lua-language-server \
-    nodejs \
     proselint \
     pyright \
-    python-pylint \
     python-pynvim \
-    python-rope \
     qt6-languageserver \
     ripgrep \
     rust-analyzer \
     shellcheck \
-    texlab \
     texlive-most \
     vint \
-    yarn \
 
 yay -S \
     bibclean \
     cmake-lint \
-    diagnostic-languageserver \
-    gitlint \
     vim-language-server \
     vscode-langservers-extracted \
 
