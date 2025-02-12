@@ -1,3 +1,14 @@
+-- Entries with higher source priority will be ranked higher
+local function priority_comparator(entry1, entry2)
+    local diff = entry1.source:get_source_config().priority - entry2.source:get_source_config().priority
+    if diff > 0 then
+        return true
+    elseif diff < 0 then
+        return false
+    end
+    return nil
+end
+
 return {
     'hrsh7th/nvim-cmp',
 
@@ -57,6 +68,20 @@ return {
 
                     return lspkind_format(entry, vim_item)
                 end
+            },
+
+            sorting = {
+                comparators = {
+                    priority_comparator,
+                    cmp.config.compare.offset,
+                    cmp.config.compare.exact,
+                    cmp.config.compare.score,
+                    cmp.config.compare.recently_used,
+                    cmp.config.compare.locality,
+                    cmp.config.compare.kind,
+                    cmp.config.compare.length,
+                    cmp.config.compare.order,
+                },
             },
 
             sources = {
