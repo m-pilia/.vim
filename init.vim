@@ -426,6 +426,9 @@ highlight link DiagnosticVirtualTextInfo Todo
 highlight link DiagnosticVirtualTextHint Hint
 highlight link DiagnosticUnnecessary Ignore
 
+highlight link @comment.error Todo
+highlight link @comment.note Question
+
 highlight link @lsp.type.class Type
 highlight link @lsp.type.struct Type
 highlight link @lsp.type.typeParameter Type
