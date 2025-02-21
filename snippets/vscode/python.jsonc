@@ -1,0 +1,10 @@
+{
+    "Argument parser": {
+        "prefix": "pytestmain",
+        "decription": "PyTest main",
+        "body": [
+            "if __name__ == '__main__':",
+            "\traise SystemExit(pytest.main([__file__]))"
+        ]
+    }
+}
