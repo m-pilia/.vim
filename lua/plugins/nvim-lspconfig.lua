@@ -12,6 +12,7 @@ return {
         lspconfig.pyright.setup({})
         lspconfig.qmlls.setup({})
         lspconfig.starpls.setup(require('config.lsp.starpls'))
+        lspconfig.texlab.setup({})
         lspconfig.vimls.setup({})
 
         vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
