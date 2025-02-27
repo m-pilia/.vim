@@ -6,7 +6,9 @@ return {
     },
 
     config = function()
-        require('treesitter-context').setup()
+        require('treesitter-context').setup({
+            multiline_threshold = 5,
+        })
 
         -- Separator
         vim.api.nvim_set_hl(0, 'TreesitterContextBottom', {underline = true, sp = '#54ffff'})
