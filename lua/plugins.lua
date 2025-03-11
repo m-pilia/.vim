@@ -1,5 +1,6 @@
 return {
     'JuliaEditorSupport/julia-vim',
+    'Vimjas/vim-python-pep8-indent',
     'aklt/plantuml-syntax',
     'artoj/qmake-syntax-vim',
     'jez/vim-ispc',
