@@ -185,18 +185,8 @@ command! ClangdFile call aux#edit_file('.clangd')
 "{{{ Indent
 
 " Text width
-set textwidth=2000
-
-" Set different text width inside comment regions
-augroup comment_width <buffer>
-    autocmd!
-    autocmd FileType c,cpp,cuda,matlab,java,python,vim
-                \ autocmd CursorMoved,CursorMovedI <buffer>
-                \ :call aux#set_text_width('\v(Comment|doxygen)')
-augroup END
-
-let g:code_width = 120
-let g:comment_width = 72
+set textwidth=99
+set formatexpr=v:none
 
 " Automatic line break
 set linebreak
