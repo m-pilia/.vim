@@ -18,6 +18,7 @@ return {
                 null_ls.builtins.diagnostics.vint,
                 null_ls.builtins.diagnostics.zsh,
                 null_ls.builtins.formatting.bibclean,
+                null_ls.builtins.formatting.isort,
                 null_ls.builtins.formatting.black,
                 null_ls.builtins.formatting.buildifier,
                 null_ls.builtins.formatting.format_r,
