@@ -366,9 +366,6 @@ nnoremap <silent> <F5> :!make<cr>
 " Write as sudo
 cnoremap w!! w !sudo tee % >/dev/null
 
-" Toggle paste mode
-set pastetoggle=<f10>
-
 "}}}
 
 "{{{ netrw
