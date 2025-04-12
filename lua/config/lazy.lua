@@ -22,5 +22,13 @@ require('lazy').setup({
     spec = {
         {import = 'plugins'},
     },
+
     checker = {enabled = false},
+
+    performance = {
+        cache = {
+            -- To avoid https://github.com/neovim/neovim/issues/25008
+            enabled = false,
+        },
+    },
 })
