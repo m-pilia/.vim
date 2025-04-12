@@ -58,6 +58,7 @@ return {
                         show_labelDetails = true,
                         symbol_map = {
                             Copilot = '',
+                            gemini = '✧',
                         },
                     })
 
@@ -135,6 +136,10 @@ return {
                 },
             },
 
+            performance = {
+                fetching_timeout = 2000,
+            },
+
             snippet = {
                 expand = function(args)
                     require('luasnip').lsp_expand(args.body)
@@ -193,6 +198,17 @@ return {
                 ['<c-space>'] = cmp.mapping {
                     i = cmp.mapping.complete(),
                 },
+
+                ['<c-e>'] = cmp.mapping(
+                    function(fallback)
+                        if cmp.visible() then
+                            cmp.close()
+                        else
+                            fallback()
+                        end
+                    end,
+                    {'i', 's'}
+                ),
             },
         })
     end

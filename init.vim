@@ -51,6 +51,7 @@ set signcolumn=yes
 set cmdheight=1 " Height of the command bar
 set showcmd
 set hidden " Hide abandoned buffers
+set splitright
 
 set backspace=eol,start,indent " Configure backspace
 
