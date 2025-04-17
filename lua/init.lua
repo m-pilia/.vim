@@ -25,12 +25,7 @@ local function set_location_list()
     pcall(function() vim.diagnostic.setloclist({buffer = 0, open = false}) end)
 end
 
-local function open_diagnostic_float()
-    vim.diagnostic.open_float({focusable = false})
-end
-
 local diagnostic_au_group = vim.api.nvim_create_augroup('diagnostic_settings', {clear = true})
 vim.api.nvim_create_autocmd('DiagnosticChanged', {callback = set_location_list, group = diagnostic_au_group})
-vim.api.nvim_create_autocmd('CursorHold', {callback = open_diagnostic_float, group = diagnostic_au_group})
 
 require('config.lazy')

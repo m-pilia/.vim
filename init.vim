@@ -451,6 +451,7 @@ nnoremap <silent> <leader>,td :lua vim.lsp.buf.type_definition()<cr>
 nnoremap <silent> <leader>,ch :lua vim.lsp.buf.incoming_calls()<cr>
 nnoremap <silent> <leader>,cH :lua vim.lsp.buf.outgoing_calls()<cr>
 nnoremap <silent> <leader>,th :lua vim.lsp.buf.typehierarchy()<cr>
+nnoremap <silent> <leader>,d  :lua vim.diagnostic.open_float({focusable = false})<cr>
 
 "}}}
 
