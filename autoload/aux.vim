@@ -176,9 +176,9 @@ function! aux#edit_file(filename) abort
     endif
 endfunction
 
-" Open Bazel build file and jump to current file name
-function! aux#bazel_file() abort
+" Open build file with given name and jump to current file name
+function! aux#build_file(filename) abort
     let l:file_name = expand('%:t')
-    call aux#edit_file('BUILD.bazel')
+    call aux#edit_file(a:filename)
     call searchpos(l:file_name)
 endfunction

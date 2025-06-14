@@ -178,8 +178,9 @@ command -bar HexMode silent call aux#hex#toggle_hex()
 command! -range IHexChecksum <line1>,<line2>call aux#hex#ihex_checksum()
 
 " Open specific project files
-command! BazelFile call aux#bazel_file()
+command! BazelFile call aux#build_file('BUILD.bazel')
 command! ClangdFile call aux#edit_file('.clangd')
+command! CMakeListsFile call aux#build_file('CMakeLists.txt')
 
 "}}}
 

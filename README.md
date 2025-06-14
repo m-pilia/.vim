@@ -11,7 +11,7 @@ define some auxiliary functions used to implement custom commands.
 
 # Dependencies
 
-Neovim 0.10 with python (`pip install neovim`).
+Neovim 0.11 with python (`pip install neovim`).
 
 Vim compatibility is no longer provided for most plugins. For the last fully
 compatible version see the `vim-compatible` branch.
@@ -36,7 +36,7 @@ sudo pacman -S \
 
 yay -S \
     bibclean \
-    cmake-lint \
+    neocmake \
     vim-language-server \
     vscode-langservers-extracted \
 

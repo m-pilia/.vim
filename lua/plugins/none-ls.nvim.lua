@@ -11,7 +11,6 @@ return {
         null_ls.setup({
             sources = {
                 null_ls.builtins.diagnostics.checkmake,
-                null_ls.builtins.diagnostics.cmake_lint,
                 null_ls.builtins.diagnostics.hadolint,
                 null_ls.builtins.diagnostics.mlint,
                 null_ls.builtins.diagnostics.qmllint,
