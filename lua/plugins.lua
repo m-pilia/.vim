@@ -7,6 +7,7 @@ return {
     'junegunn/vader.vim',
     'justinmk/vim-syntax-extra',
     'm-pilia/vim-pkgbuild',
+    'neovim/nvim-lspconfig',
     'tpope/vim-abolish',
     'tpope/vim-fugitive',
     'tpope/vim-git',

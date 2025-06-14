@@ -1,0 +1,13 @@
+vim.lsp.config('lua_ls', require('config.lsp.lua_ls'))
+vim.lsp.config('starpls', require('config.lsp.starpls'))
+
+vim.lsp.enable('bashls')
+vim.lsp.enable('bazelrc_lsp')
+vim.lsp.enable('clangd')
+vim.lsp.enable('jsonls')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('pyright')
+vim.lsp.enable('qmlls')
+vim.lsp.enable('starpls')
+vim.lsp.enable('texlab')
+vim.lsp.enable('vimls')

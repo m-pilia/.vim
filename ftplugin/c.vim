@@ -14,4 +14,4 @@ augroup end
 nnoremap <silent> <leader>ch :call aux#yank_header()<cr>
 
 " Switch between source and header
-nnoremap <silent> <leader>h :ClangdSwitchSourceHeader<cr>
+nnoremap <silent> <leader>h :LspClangdSwitchSourceHeader<cr>
