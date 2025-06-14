@@ -1,3 +1,4 @@
+vim.lsp.config('clangd', require('config.lsp.clangd'))
 vim.lsp.config('lua_ls', require('config.lsp.lua_ls'))
 vim.lsp.config('starpls', require('config.lsp.starpls'))
 

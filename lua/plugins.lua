@@ -3,6 +3,7 @@ return {
     'Vimjas/vim-python-pep8-indent',
     'aklt/plantuml-syntax',
     'artoj/qmake-syntax-vim',
+    'brgmnn/vim-opencl',
     'jez/vim-ispc',
     'junegunn/vader.vim',
     'justinmk/vim-syntax-extra',
