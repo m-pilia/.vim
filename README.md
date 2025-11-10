@@ -25,7 +25,6 @@ sudo pacman -S \
     gdb \
     lua-language-server \
     proselint \
-    pyright \
     python-pynvim \
     qt6-languageserver \
     ripgrep \
@@ -37,6 +36,7 @@ sudo pacman -S \
 yay -S \
     bibclean \
     neocmake \
+    ty \
     vim-language-server \
     vscode-langservers-extracted \
 
