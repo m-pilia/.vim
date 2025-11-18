@@ -28,6 +28,7 @@ sudo pacman -S \
     python-pynvim \
     qt6-languageserver \
     ripgrep \
+    ruff \
     rust-analyzer \
     shellcheck \
     texlive-most \
