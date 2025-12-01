@@ -45,6 +45,7 @@ yay -S \
 
 On Windows/WSL, having [win32yank.exe](https://github.com/equalsraf/win32yank)
 in the Windows PATH makes clipboard support work out of the box in neovim.
+Neovim 10.0+ supports OSC52 out of the box.
 
 Copyq can be used as a clipboard provider with the following configuration:
 ```viml
