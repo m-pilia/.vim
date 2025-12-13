@@ -30,6 +30,7 @@ return {
 
     config = function()
         require('codecompanion').setup({
+            ignore_warnings = true,
             strategies = get_adapter(),
         })
     end
