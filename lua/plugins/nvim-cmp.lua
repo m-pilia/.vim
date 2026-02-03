@@ -21,9 +21,7 @@ return {
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-path',
         'kdheepak/cmp-latex-symbols',
-        'nvim-treesitter/nvim-treesitter-textobjects', -- for paolopal/cmp-doxygen
         'onsails/lspkind.nvim',
-        'paopaol/cmp-doxygen',
         'saadparwaiz1/cmp_luasnip',
         'tamago324/cmp-zsh',
     },
@@ -105,10 +103,6 @@ return {
                 {
                     name = 'luasnip',
                     priority = 80,
-                },
-                {
-                    name = 'doxygen',
-                    priority = 50,
                 },
                 {
                     name = 'emoji',
