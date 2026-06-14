@@ -32,6 +32,7 @@ sudo pacman -S \
     rust-analyzer \
     shellcheck \
     texlive-most \
+    tree-sitter-cli \
     vint \
 
 yay -S \
